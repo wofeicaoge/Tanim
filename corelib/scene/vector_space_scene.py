@@ -1,12 +1,8 @@
-import numpy as np
-
 from corelib.animation.animation import Animation
 from corelib.animation.creation import ShowCreation
 from corelib.animation.creation import Write
 from corelib.animation.fading import FadeOut
 from corelib.animation.growing import GrowArrow
-from corelib.animation.transform import ApplyFunction
-from corelib.animation.transform import ApplyPointwiseFunction
 from corelib.animation.transform import Transform
 from corelib.constants import *
 from corelib.mobject.coordinate_systems import Axes
@@ -29,6 +25,10 @@ from corelib.utils.rate_functions import rush_from
 from corelib.utils.rate_functions import rush_into
 from corelib.utils.space_ops import angle_of_vector
 from corelib.utils.space_ops import get_norm
+
+
+from extention.animation.transform import ApplyFunction
+from extention.animation.transform import ApplyPointwiseFunction
 
 X_COLOR = GREEN_C
 Y_COLOR = RED_C

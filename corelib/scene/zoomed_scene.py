@@ -1,10 +1,11 @@
-from corelib.animation.transform import ApplyMethod
 from corelib.camera.moving_camera import MovingCamera
 from corelib.camera.multi_camera import MultiCamera
 from corelib.constants import *
 from corelib.mobject.types.image_mobject import ImageMobjectFromCamera
 from corelib.scene.moving_camera_scene import MovingCameraScene
 from corelib.utils.simple_functions import fdiv
+
+from extention.animation.transform import ApplyMethod
 
 # Note, any scenes from old videos using ZoomedScene will almost certainly
 # break, as it was restructured.

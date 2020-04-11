@@ -84,6 +84,8 @@ from corelib.utils.sounds import *
 from corelib.utils.space_ops import *
 from corelib.utils.strings import *
 
+from extention.animation.transform import *
+
 # Non tanim libraries that are also nice to have without thinking
 
 import inspect
