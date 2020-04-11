@@ -28,5 +28,5 @@ def main():
         variables.update(locals())
         shell = code.InteractiveConsole(variables)
         shell.push(f"tanim = Scene(**conf)")
-        shell.push("from corelib.imports import *")
+        shell.push("from imports import *")
         shell.interact(banner=corelib.constants.STREAMING_CONSOLE_BANNER)
