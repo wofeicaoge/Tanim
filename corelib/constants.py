@@ -6,7 +6,8 @@ VIDEO_DIR = ""
 VIDEO_OUTPUT_DIR = ""
 TEX_DIR = ""
 TEXT_DIR = ""
-ASSETS_DIR= os.path.join("./media", "assets")
+ASSETS_DIR = os.path.join("./media", "assets")
+
 
 def initialize_directories(config):
     global MEDIA_DIR
@@ -23,7 +24,7 @@ def initialize_directories(config):
         else:
             MEDIA_DIR = os.path.join(
                 os.path.expanduser('~'),
-                "Dropbox (3Blue1Brown)/3Blue1Brown Team Folder"
+                "media"
             )
         if not os.path.isdir(MEDIA_DIR):
             MEDIA_DIR = "./media"
@@ -52,7 +53,8 @@ def initialize_directories(config):
         if folder != "" and not os.path.exists(folder):
             os.makedirs(folder)
 
-NOT_SETTING_FONT_MSG='''
+
+NOT_SETTING_FONT_MSG = '''
 Warning:
 You haven't set font.
 If you are not using English, this may cause text rendering problem.
@@ -161,11 +163,9 @@ LARGE_BUFF = 1
 DEFAULT_MOBJECT_TO_EDGE_BUFFER = MED_LARGE_BUFF
 DEFAULT_MOBJECT_TO_MOBJECT_BUFFER = MED_SMALL_BUFF
 
-
 # All in seconds
 DEFAULT_POINTWISE_FUNCTION_RUN_TIME = 3.0
 DEFAULT_WAIT_TIME = 1.0
-
 
 ORIGIN = np.array((0., 0., 0.))
 UP = np.array((0., 1., 0.))
@@ -270,8 +270,8 @@ STREAMING_PORT = "2000"
 STREAMING_CLIENT = "ffplay"
 STREAMING_URL = f"{STREAMING_PROTOCOL}://{STREAMING_IP}:{STREAMING_PORT}?listen"
 STREAMING_CONSOLE_BANNER = """
-Manim is now running in streaming mode. Stream animations by passing
-them to manim.play(), e.g.
+Tanim is now running in streaming mode. Stream animations by passing
+them to tanim.play(), e.g.
 >>> c = Circle()
->>> manim.play(ShowCreation(c))
+>>> tanim.play(ShowCreation(c))
 """

@@ -24,11 +24,10 @@ def main():
                 [corelib.constants.STREAMING_CLIENT, corelib.constants.STREAMING_URL],
                 stdout=FNULL,
                 stderr=FNULL)
-            sleep(3)
 
         variables = globals().copy()
         variables.update(locals())
         shell = code.InteractiveConsole(variables)
-        shell.push(f"manim = Scene(**conf)")
+        shell.push(f"tanim = Scene(**conf)")
         shell.push("from corelib.imports import *")
         shell.interact(banner=corelib.constants.STREAMING_CONSOLE_BANNER)

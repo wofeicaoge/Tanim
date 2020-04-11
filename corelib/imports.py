@@ -59,19 +59,6 @@ from corelib.mobject.mobject_update_utils import *
 from corelib.mobject.value_tracker import *
 from corelib.mobject.vector_field import *
 
-from corelib.for_3b1b_videos.common_scenes import *
-from corelib.for_3b1b_videos.pi_creature import *
-from corelib.for_3b1b_videos.pi_creature_animations import *
-from corelib.for_3b1b_videos.pi_creature_scene import *
-
-from corelib.once_useful_constructs.arithmetic import *
-from corelib.once_useful_constructs.combinatorics import *
-from corelib.once_useful_constructs.complex_transformation_scene import *
-from corelib.once_useful_constructs.counting import *
-from corelib.once_useful_constructs.fractals import *
-from corelib.once_useful_constructs.graph_theory import *
-from corelib.once_useful_constructs.light import *
-
 from corelib.scene.graph_scene import *
 from corelib.scene.moving_camera_scene import *
 from corelib.scene.reconfigurable_scene import *
