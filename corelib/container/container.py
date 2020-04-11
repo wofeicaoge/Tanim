@@ -6,8 +6,6 @@ from corelib.utils.iterables import list_update
 # Still, we abstract its functionality here, albeit purely nominally.
 # All actual implementation has to be handled by derived classes for now.
 
-# TODO: Move the "remove" functionality of Scene to this class
-
 
 class Container(object):
     def __init__(self, **kwargs):

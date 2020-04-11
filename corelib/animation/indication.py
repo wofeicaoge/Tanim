@@ -1,24 +1,23 @@
-import numpy as np
-
-from corelib.constants import *
 from corelib.animation.animation import Animation
-from corelib.animation.movement import Homotopy
-from corelib.animation.composition import AnimationGroup
-from corelib.animation.composition import Succession
+from extention.animation.animation_group import AnimationGroup
 from corelib.animation.creation import ShowCreation
 from corelib.animation.creation import ShowPartial
 from corelib.animation.fading import FadeOut
+from corelib.animation.movement import Homotopy
 from corelib.animation.transform import Transform
-from corelib.mobject.types.vectorized_mobject import VMobject
+from corelib.constants import *
 from corelib.mobject.geometry import Circle
 from corelib.mobject.geometry import Dot
+from corelib.mobject.geometry import Line
 from corelib.mobject.shape_matchers import SurroundingRectangle
 from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.geometry import Line
+from corelib.mobject.types.vectorized_mobject import VMobject
 from corelib.utils.bezier import interpolate
 from corelib.utils.config_ops import digest_config
 from corelib.utils.rate_functions import there_and_back
 from corelib.utils.rate_functions import wiggle
+
+from extention.animation.animation_group import Succession
 
 
 class FocusOn(Transform):

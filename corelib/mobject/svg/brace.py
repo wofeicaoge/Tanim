@@ -1,6 +1,6 @@
 import numpy as np
 
-from corelib.animation.composition import AnimationGroup
+from extention.animation.animation_group import AnimationGroup
 from corelib.constants import *
 from corelib.animation.fading import FadeIn
 from corelib.animation.growing import GrowFromCenter

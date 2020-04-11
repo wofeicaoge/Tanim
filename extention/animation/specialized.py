@@ -1,6 +1,5 @@
 import operator as op
 
-from corelib.animation.composition import LaggedStart
 from corelib.constants import WHITE
 from corelib.constants import BLACK
 from corelib.mobject.geometry import Circle
@@ -11,6 +10,7 @@ from corelib.utils.space_ops import get_norm
 
 from extention.animation.transform import ApplyMethod
 from extention.animation.transform import Restore
+from extention.animation.animation_group import LaggedStart
 
 
 class MoveCar(ApplyMethod):
@@ -78,7 +78,7 @@ class Broadcast(LaggedStart):
             circle.set_width(self.small_radius * 2)
             circle.set_stroke(self.color, self.start_stroke_width)
             circles.add(circle)
-        animations = [
+            animations = [
             Restore(circle)
             for circle in circles
         ]

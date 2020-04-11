@@ -136,24 +136,5 @@ class Animation(object):
         lower = index * lag_ratio
         return np.clip((value - lower), 0, 1)
 
-    # Getters and setters
-    def set_run_time(self, run_time):
-        self.run_time = run_time
-        return self
-
-    def get_run_time(self):
-        return self.run_time
-
-    def set_rate_func(self, rate_func):
-        self.rate_func = rate_func
-        return self
-
-    def get_rate_func(self):
-        return self.rate_func
-
-    def set_name(self, name):
-        self.name = name
-        return self
-
     def is_remover(self):
         return self.remover

@@ -1,5 +1,7 @@
+import numpy as np
+import itertools as it
+
 from corelib.animation.animation import Animation
-from corelib.animation.composition import Succession
 from corelib.mobject.types.vectorized_mobject import VMobject
 from corelib.mobject.mobject import Group
 from corelib.utils.bezier import integer_interpolate
@@ -8,8 +10,7 @@ from corelib.utils.rate_functions import linear
 from corelib.utils.rate_functions import double_smooth
 from corelib.utils.rate_functions import smooth
 
-import numpy as np
-import itertools as it
+from extention.animation.animation_group import Succession
 
 
 class ShowPartial(Animation):
@@ -53,14 +54,11 @@ class DrawBorderThenFill(Animation):
     }
 
     def __init__(self, vmobject, **kwargs):
-        self.check_validity_of_input(vmobject)
-        super().__init__(vmobject, **kwargs)
-
-    def check_validity_of_input(self, vmobject):
         if not isinstance(vmobject, VMobject):
             raise Exception(
                 "DrawBorderThenFill only works for VMobjects"
             )
+        super().__init__(vmobject, **kwargs)
 
     def begin(self):
         self.outline = self.get_outline()
