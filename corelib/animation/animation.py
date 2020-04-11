@@ -1,5 +1,4 @@
 from copy import deepcopy
-
 import numpy as np
 
 from corelib.mobject.mobject import Mobject

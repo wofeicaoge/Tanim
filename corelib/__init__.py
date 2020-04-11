@@ -1,14 +1,13 @@
 #!/usr/bin/env python
-import corelib.config
-import corelib.constants
-import corelib.extract_scene
-from time import sleep
 import code
 import os
 import subprocess
 
-from corelib.scene.scene import Scene
+import corelib.config
 import corelib.constants
+import corelib.constants
+import corelib.extract_scene
+from corelib.scene.scene import Scene
 
 
 def main():
