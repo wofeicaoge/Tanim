@@ -20,8 +20,8 @@ from extention.animation.animation_group import *
 from extention.animation.creation import *
 from extention.animation.transform import *
 from extention.animation.specialized import *
+from extention.animation.fading import *
 
-from corelib.animation.fading import *
 from corelib.animation.growing import *
 from corelib.animation.indication import *
 from corelib.animation.movement import *

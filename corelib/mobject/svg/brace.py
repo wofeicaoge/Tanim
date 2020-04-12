@@ -1,8 +1,6 @@
-import numpy as np
-
 from extention.animation.animation_group import AnimationGroup
 from corelib.constants import *
-from corelib.animation.fading import FadeIn
+from extention.animation.fading import FadeIn
 from corelib.animation.growing import GrowFromCenter
 from corelib.mobject.svg.tex_mobject import TexMobject
 from corelib.mobject.svg.tex_mobject import TextMobject
