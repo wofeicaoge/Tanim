@@ -1,7 +1,4 @@
 from corelib.animation.animation import Animation
-from extention.animation.animation_group import AnimationGroup
-from extention.animation.creation import ShowCreation
-from extention.animation.fading import FadeOut
 from corelib.animation.movement import Homotopy
 from corelib.animation.transform import Transform
 from corelib.constants import *
@@ -17,6 +14,9 @@ from corelib.utils.rate_functions import there_and_back
 from corelib.utils.rate_functions import wiggle
 
 from extention.animation.animation_group import Succession
+from extention.animation.animation_group import AnimationGroup
+from extention.animation.creation import ShowCreation
+from extention.animation.fading import FadeOut
 
 
 class FocusOn(Transform):
@@ -232,7 +232,7 @@ class ApplyWave(Homotopy):
         def homotopy(x, y, z, t):
             alpha = (x - left_x) / (right_x - left_x)
             power = np.exp(2.0 * (alpha - 0.5))
-            nudge = there_and_back(t**power)
+            nudge = there_and_back(t ** power)
             return np.array([x, y, z]) + nudge * vect
 
         super().__init__(homotopy, mobject, **kwargs)

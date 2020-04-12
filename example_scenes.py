@@ -16,19 +16,22 @@ from imports import *
 
 class SquareToCircle(Scene):
     def construct(self):
-        circle = Circle()
-        square = Square()
-        square.flip(RIGHT)
-        square.rotate(-3 * TAU / 8)
-        circle.set_fill(PINK, opacity=0.5)
-        circle.shift(LEFT*2)
+        # circle = Circle()
+        # square = Square()
+        # square.flip(RIGHT)
+        # square.rotate(-3 * TAU / 8)
+        # circle.set_fill(PINK, opacity=0.5)
+        # circle.shift(LEFT*2)
+        #
+        # self.play(ShowCreation(square))
+        # self.play(ShowCreation(circle))
+        # self.play(Transform(square, circle))
+        # self.play(FadeOut(square))
+        # self.wait()
+        # self.play(FadeOut(circle))
 
-        self.play(ShowCreation(square))
-        self.play(ShowCreation(circle))
-        self.play(Transform(square, circle))
-        self.play(FadeOut(square))
-        self.wait()
-        self.play(FadeOut(circle))
+        number = DecimalNumber(number=0)
+        self.play(ChangeDecimalToValue(number, 13))
         self.wait()
 
 

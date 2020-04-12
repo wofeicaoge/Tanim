@@ -1,11 +1,11 @@
+import inspect
+
 import numpy as np
 
 from corelib.animation.transform import Transform
 from corelib.constants import DEFAULT_POINTWISE_FUNCTION_RUN_TIME
 from corelib.constants import DEGREES
 from corelib.mobject.mobject import Group
-from corelib.utils.validity_check import *
-
 
 class ReplacementTransform(Transform):
     CONFIG = {
@@ -27,7 +27,7 @@ class CounterclockwiseTransform(Transform):
 
 class MoveToTarget(Transform):
     def __init__(self, mobject, **kwargs):
-        check_validity_of_attr(mobject, "target")
+        assert hasattr(mobject, "target")
         super().__init__(mobject, mobject.target, **kwargs)
 
 
@@ -41,7 +41,7 @@ class ApplyMethod(Transform):
 
         Relies on the fact that mobject methods return the mobject
         """
-        check_validity_of_method(method)
+        assert inspect.ismethod(method)
         self.method = method
         self.method_args = args
         super().__init__(method.__self__, **kwargs)
