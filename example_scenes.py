@@ -23,20 +23,12 @@ class SquareToCircle(Scene):
         circle.set_fill(PINK, opacity=0.5)
         circle.shift(LEFT*2)
 
-        # self.play(ShowCreation(square))
-        # self.play(ShowCreation(circle))
-        # self.play(Transform(square, circle))
-        # self.play(FadeOut(square))
-        # self.wait()
-        dot = Dot(color=RED)
-        anim = MoveAlongPath(
-            dot, Circle(),
-            run_time=5,
-            rate_func=linear
-        )
-
-        self.play(anim)
-
+        self.play(ShowCreation(square))
+        self.play(ShowCreation(circle))
+        self.play(Transform(square, circle))
+        self.play(FadeOut(square))
+        self.wait()
+        self.play(FadeOut(circle))
         self.wait()
 
 

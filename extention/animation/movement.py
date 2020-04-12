@@ -2,7 +2,7 @@ from corelib.animation.movement import *
 from corelib.utils.rate_functions import linear
 
 
-class Homotopy(Movement):
+class Homotopy(Move):
     CONFIG = {
         "run_time": 3
     }
@@ -34,7 +34,7 @@ class ComplexHomotopy(Homotopy):
         Homotopy.__init__(self, homotopy, mobject, **kwargs)
 
 
-class PhaseFlow(Movement):
+class PhaseFlow(Move):
     CONFIG = {
         "virtual_time": 1,
         "rate_func": linear,

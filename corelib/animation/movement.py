@@ -1,7 +1,7 @@
 from corelib.animation.animation import Animation
 
 
-class Movement(Animation):
+class Move(Animation):
     CONFIG = {
         "apply_function_kwargs": {},
     }
