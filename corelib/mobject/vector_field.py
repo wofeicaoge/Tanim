@@ -1,5 +1,3 @@
-import numpy as np
-import os
 import itertools as it
 from PIL import Image
 import random
@@ -7,7 +5,7 @@ import random
 from corelib.constants import *
 
 from extention.animation.animation_group import AnimationGroup
-from corelib.animation.indication import ShowPassingFlash
+from extention.animation.indication import ShowPassingFlash
 from corelib.mobject.geometry import Vector
 from corelib.mobject.types.vectorized_mobject import VGroup
 from corelib.mobject.types.vectorized_mobject import VMobject

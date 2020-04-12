@@ -22,8 +22,8 @@ from extention.animation.transform import *
 from extention.animation.specialized import *
 from extention.animation.fading import *
 from extention.animation.growing import *
+from extention.animation.indication import *
 
-from corelib.animation.indication import *
 from corelib.animation.movement import *
 from corelib.animation.numbers import *
 from corelib.animation.rotation import *
