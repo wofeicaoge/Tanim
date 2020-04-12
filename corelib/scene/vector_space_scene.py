@@ -2,7 +2,7 @@ from corelib.animation.animation import Animation
 from extention.animation.creation import ShowCreation
 from extention.animation.creation import Write
 from extention.animation.fading import FadeOut
-from corelib.animation.growing import GrowArrow
+from extention.animation.growing import GrowArrow
 from corelib.animation.transform import Transform
 from corelib.constants import *
 from corelib.mobject.coordinate_systems import Axes
