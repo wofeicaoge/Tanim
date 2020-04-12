@@ -41,7 +41,8 @@ class SceneFileWriter(object):
     def __init__(self, scene, **kwargs):
         digest_config(self, kwargs)
         self.scene = scene
-        self.stream_lock = False
+        self.stream_lock = False # If it's True, it indicates idle_stream thread is running
+        self.should_idle_update = False # If it's True, it indicates idle_stream is updating idle stream
         self.init_output_directories()
         self.init_audio()
 
@@ -173,9 +174,9 @@ class SceneFileWriter(object):
             if self.livestreaming:
                 if not self.stream_lock:
                     self.open_movie_pipe()
-                    print("open_movie_pipe")
             else:
                 self.open_movie_pipe()
+        self.should_idle_update = False
 
     def end_animation(self, allow_write=False):
         if self.livestreaming:
@@ -184,6 +185,7 @@ class SceneFileWriter(object):
                 thread.start_new_thread(self.idle_stream, ())
         elif self.write_to_movie and allow_write:
             self.close_movie_pipe()
+        self.should_idle_update = True
 
     def end_stream(self, allow_write=False):
         self.stream_lock = False
@@ -202,6 +204,10 @@ class SceneFileWriter(object):
 
     def idle_stream(self):
         while self.stream_lock:
+            frame_duration = 1 / self.scene.camera.frame_rate
+            if not self.should_idle_update:
+                sleep(frame_duration)
+                continue
             a = datetime.datetime.now()
             self.scene.update_frame()
             n_frames = 1
@@ -209,7 +215,6 @@ class SceneFileWriter(object):
             self.scene.add_frames(*[frame] * n_frames)
             b = datetime.datetime.now()
             time_diff = (b - a).total_seconds()
-            frame_duration = 1 / self.scene.camera.frame_rate
             if time_diff < frame_duration:
                 sleep(frame_duration - time_diff)
 
