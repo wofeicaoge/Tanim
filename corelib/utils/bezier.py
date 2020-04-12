@@ -57,12 +57,12 @@ def integer_interpolate(start, end, alpha):
     would return (4, 0.6).
     """
     if alpha >= 1:
-        return (end - 1, 1.0)
+        return end - 1, 1.0
     if alpha <= 0:
-        return (start, 0)
+        return start, 0
     value = int(interpolate(start, end, alpha))
     residue = ((end - start) * alpha) % 1
-    return (value, residue)
+    return value, residue
 
 
 def mid(start, end):

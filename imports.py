@@ -16,17 +16,17 @@ as a convenience for scripts creating scenes for videos.
 
 from corelib.constants import *
 
-from corelib.animation.animation import *
 from extention.animation.animation_group import *
-from corelib.animation.creation import *
+from extention.animation.creation import *
+from extention.animation.transform import *
+from extention.animation.specialized import *
+
 from corelib.animation.fading import *
 from corelib.animation.growing import *
 from corelib.animation.indication import *
 from corelib.animation.movement import *
 from corelib.animation.numbers import *
 from corelib.animation.rotation import *
-from extention.animation.specialized import *
-from corelib.animation.transform import *
 from corelib.animation.update import *
 
 from corelib.camera.camera import *
@@ -83,8 +83,6 @@ from corelib.utils.simple_functions import *
 from corelib.utils.sounds import *
 from corelib.utils.space_ops import *
 from corelib.utils.strings import *
-
-from extention.animation.transform import *
 
 # Non tanim libraries that are also nice to have without thinking
 

@@ -1,6 +1,6 @@
 import itertools as it
 
-from corelib.animation.creation import Write, DrawBorderThenFill, ShowCreation
+from extention.animation.creation import Write, DrawBorderThenFill, ShowCreation
 from corelib.animation.transform import Transform
 from corelib.animation.update import UpdateFromAlphaFunc
 from corelib.constants import *

@@ -1,7 +1,6 @@
 from corelib.animation.animation import Animation
 from extention.animation.animation_group import AnimationGroup
-from corelib.animation.creation import ShowCreation
-from corelib.animation.creation import ShowPartial
+from extention.animation.creation import ShowCreation
 from corelib.animation.fading import FadeOut
 from corelib.animation.movement import Homotopy
 from corelib.animation.transform import Transform
@@ -129,8 +128,9 @@ class CircleIndicate(Indicate):
         self.mobject.set_stroke(opacity=alpha)
 
 
-class ShowPassingFlash(ShowPartial):
+class ShowPassingFlash(ShowCreation):
     CONFIG = {
+        "lag_ratio": 0,
         "time_width": 0.1,
         "remover": True,
     }
@@ -141,7 +141,7 @@ class ShowPassingFlash(ShowPartial):
         lower = upper - tw
         upper = min(upper, 1)
         lower = max(lower, 0)
-        return (lower, upper)
+        return lower, upper
 
     def finish(self):
         super().finish()

@@ -6,7 +6,7 @@ import warnings
 from tqdm import tqdm as ProgressDisplay
 
 from corelib.animation.animation import Animation
-from corelib.animation.creation import Write
+from extention.animation.creation import Write
 from corelib.camera.camera import Camera
 from corelib.constants import *
 from corelib.container.container import Container
