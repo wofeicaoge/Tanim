@@ -1,5 +1,4 @@
 from corelib.animation.animation import Animation
-from corelib.animation.movement import Homotopy
 from corelib.animation.transform import Transform
 from corelib.constants import *
 from corelib.mobject.geometry import Circle
@@ -17,6 +16,7 @@ from extention.animation.animation_group import Succession
 from extention.animation.animation_group import AnimationGroup
 from extention.animation.creation import ShowCreation
 from extention.animation.fading import FadeOut
+from extention.animation.movement import Homotopy
 
 
 class FocusOn(Transform):
