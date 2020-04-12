@@ -2,3 +2,5 @@
 .idea
 *pyc
 media
+.ipynb_checkpoints
+*ipynb

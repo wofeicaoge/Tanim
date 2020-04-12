@@ -1,14 +1,9 @@
 from corelib.animation.animation import Animation
-from extention.animation.creation import ShowCreation
-from extention.animation.creation import Write
-from extention.animation.fading import FadeOut
-from extention.animation.growing import GrowArrow
 from corelib.animation.transform import Transform
 from corelib.constants import *
 from corelib.mobject.coordinate_systems import Axes
 from corelib.mobject.coordinate_systems import NumberPlane
 from corelib.mobject.geometry import Arrow
-from corelib.mobject.geometry import Dot
 from corelib.mobject.geometry import Line
 from corelib.mobject.geometry import Rectangle
 from corelib.mobject.geometry import Vector
@@ -19,14 +14,14 @@ from corelib.mobject.mobject import Mobject
 from corelib.mobject.svg.tex_mobject import TexMobject
 from corelib.mobject.svg.tex_mobject import TextMobject
 from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.types.vectorized_mobject import VMobject
 from corelib.scene.scene import Scene
-from corelib.utils.rate_functions import rush_from
-from corelib.utils.rate_functions import rush_into
 from corelib.utils.space_ops import angle_of_vector
 from corelib.utils.space_ops import get_norm
 
-
+from extention.animation.creation import ShowCreation
+from extention.animation.creation import Write
+from extention.animation.fading import FadeOut
+from extention.animation.growing import GrowArrow
 from extention.animation.transform import ApplyFunction
 from extention.animation.transform import ApplyPointwiseFunction
 
@@ -248,31 +243,6 @@ class VectorScene(Scene):
             self.clear()
             self.add(*starting_mobjects)
         return array, x_line, y_line
-
-    def show_ghost_movement(self, vector):
-        if isinstance(vector, Arrow):
-            vector = vector.get_end() - vector.get_start()
-        elif len(vector) == 2:
-            vector = np.append(np.array(vector), 0.0)
-        x_max = int(FRAME_X_RADIUS + abs(vector[0]))
-        y_max = int(FRAME_Y_RADIUS + abs(vector[1]))
-        dots = VMobject(*[
-            Dot(x * RIGHT + y * UP)
-            for x in range(-x_max, x_max)
-            for y in range(-y_max, y_max)
-        ])
-        dots.set_fill(BLACK, opacity=0)
-        dots_halfway = dots.copy().shift(vector / 2).set_fill(WHITE, 1)
-        dots_end = dots.copy().shift(vector)
-
-        self.play(Transform(
-            dots, dots_halfway, rate_func=rush_into
-        ))
-        self.play(Transform(
-            dots, dots_end, rate_func=rush_from
-        ))
-        self.remove(dots)
-
 
 class LinearTransformationScene(VectorScene):
     CONFIG = {

@@ -4,8 +4,6 @@ import os
 import subprocess
 
 import corelib.config
-import corelib.constants
-import corelib.constants
 import corelib.extract_scene
 from corelib.scene.scene import Scene
 
@@ -18,11 +16,11 @@ def main():
         corelib.extract_scene.main(conf)
     else:
         if not args.to_twitch:
-            FNULL = open(os.devnull, 'w')
+            fnull = open(os.devnull, 'w')
             subprocess.Popen(
                 [corelib.constants.STREAMING_CLIENT, corelib.constants.STREAMING_URL],
-                stdout=FNULL,
-                stderr=FNULL)
+                stdout=fnull,
+                stderr=fnull)
 
         variables = globals().copy()
         variables.update(locals())

@@ -16,6 +16,8 @@ as a convenience for scripts creating scenes for videos.
 
 from corelib.constants import *
 
+from corelib.config import *
+
 from extention.animation.animation_group import *
 from extention.animation.creation import *
 from extention.animation.transform import *
@@ -69,7 +71,6 @@ from corelib.scene.reconfigurable_scene import *
 from corelib.scene.scene import *
 from corelib.scene.sample_space_scene import *
 from corelib.scene.graph_scene import *
-from corelib.scene.scene_from_video import *
 from corelib.scene.three_d_scene import *
 from corelib.scene.vector_space_scene import *
 from corelib.scene.zoomed_scene import *
@@ -101,6 +102,7 @@ import string
 import sys
 import math
 import sympy as sp
+import subprocess
 
 from PIL import Image
 from colour import Color
