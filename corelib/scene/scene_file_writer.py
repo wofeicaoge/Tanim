@@ -169,17 +169,19 @@ class SceneFileWriter(object):
 
     # Writers
     def begin_animation(self, allow_write=False):
-        if self.livestreaming:
-            if not self.stream_lock:
-                if self.write_to_movie and allow_write:
+        if self.write_to_movie and allow_write:
+            if self.livestreaming:
+                if not self.stream_lock:
                     self.open_movie_pipe()
-        elif self.write_to_movie and allow_write:
-            self.open_movie_pipe()
+                    print("open_movie_pipe")
+            else:
+                self.open_movie_pipe()
 
     def end_animation(self, allow_write=False):
         if self.livestreaming:
-            self.stream_lock = True
-            thread.start_new_thread(self.idle_stream, ())
+            if not self.stream_lock:
+                self.stream_lock = True
+                thread.start_new_thread(self.idle_stream, ())
         elif self.write_to_movie and allow_write:
             self.close_movie_pipe()
 
