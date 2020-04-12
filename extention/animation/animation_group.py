@@ -2,12 +2,11 @@ import numpy as np
 
 from corelib.animation.animation import Animation
 from corelib.mobject.mobject import Group
-from corelib.utils.bezier import integer_interpolate
 from corelib.utils.bezier import interpolate
 from corelib.utils.config_ops import digest_config
 from corelib.utils.iterables import remove_list_redundancies
 from corelib.utils.rate_functions import linear
-
+from corelib.utils.bezier import integer_interpolate
 
 DEFAULT_LAGGED_START_LAG_RATIO = 0.05
 
@@ -42,7 +41,6 @@ class AnimationGroup(Animation):
     def begin(self):
         for anim in self.animations:
             anim.begin()
-        # self.init_run_time()
 
     def finish(self):
         for anim in self.animations:
@@ -76,7 +74,7 @@ class AnimationGroup(Animation):
         curr_time = 0
         for anim in self.animations:
             start_time = curr_time
-            end_time = start_time + anim.get_run_time()
+            end_time = start_time + anim.run_time
             self.anims_with_timings.append(
                 (anim, start_time, end_time)
             )
@@ -111,7 +109,7 @@ class Succession(AnimationGroup):
     }
 
     def begin(self):
-        assert(len(self.animations) > 0)
+        assert (len(self.animations) > 0)
         self.init_run_time()
         self.active_animation = self.animations[0]
         self.active_animation.begin()

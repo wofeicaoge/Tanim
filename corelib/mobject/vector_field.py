@@ -1,13 +1,11 @@
-import numpy as np
-import os
 import itertools as it
 from PIL import Image
 import random
 
 from corelib.constants import *
 
-from corelib.animation.composition import AnimationGroup
-from corelib.animation.indication import ShowPassingFlash
+from extention.animation.animation_group import AnimationGroup
+from extention.animation.indication import ShowPassingFlash
 from corelib.mobject.geometry import Vector
 from corelib.mobject.types.vectorized_mobject import VGroup
 from corelib.mobject.types.vectorized_mobject import VMobject
@@ -19,7 +17,6 @@ from corelib.utils.config_ops import digest_config
 from corelib.utils.rate_functions import linear
 from corelib.utils.simple_functions import sigmoid
 from corelib.utils.space_ops import get_norm
-# from corelib.utils.space_ops import normalize
 
 
 DEFAULT_SCALAR_FIELD_COLORS = [BLUE_E, GREEN, YELLOW, RED]

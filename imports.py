@@ -16,17 +16,21 @@ as a convenience for scripts creating scenes for videos.
 
 from corelib.constants import *
 
+from extention.animation.animation_group import *
+from extention.animation.creation import *
+from extention.animation.transform import *
+from extention.animation.specialized import *
+from extention.animation.fading import *
+from extention.animation.growing import *
+from extention.animation.indication import *
+from extention.animation.numbers import *
+from extention.animation.movement import *
+
 from corelib.animation.animation import *
-from corelib.animation.composition import *
 from corelib.animation.creation import *
-from corelib.animation.fading import *
-from corelib.animation.growing import *
-from corelib.animation.indication import *
-from corelib.animation.movement import *
-from corelib.animation.numbers import *
-from corelib.animation.rotation import *
-from corelib.animation.specialized import *
 from corelib.animation.transform import *
+from corelib.animation.movement import *
+from corelib.animation.rotation import *
 from corelib.animation.update import *
 
 from corelib.camera.camera import *

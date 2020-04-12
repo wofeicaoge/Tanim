@@ -1,21 +1,19 @@
 import inspect
+import platform
 import random
 import warnings
-import platform
 
 from tqdm import tqdm as ProgressDisplay
-import numpy as np
 
 from corelib.animation.animation import Animation
-from corelib.animation.creation import Write
-from corelib.animation.transform import MoveToTarget, ApplyMethod
+from extention.animation.creation import Write
 from corelib.camera.camera import Camera
 from corelib.constants import *
 from corelib.container.container import Container
 from corelib.mobject.mobject import Mobject
 from corelib.mobject.svg.tex_mobject import TextMobject
 from corelib.scene.scene_file_writer import SceneFileWriter
-from corelib.utils.iterables import list_update
+from extention.animation.transform import MoveToTarget, ApplyMethod
 
 
 class Scene(Container):

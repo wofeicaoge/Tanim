@@ -1,24 +1,22 @@
-import numpy as np
-
-from corelib.constants import *
 from corelib.animation.animation import Animation
-from corelib.animation.movement import Homotopy
-from corelib.animation.composition import AnimationGroup
-from corelib.animation.composition import Succession
-from corelib.animation.creation import ShowCreation
-from corelib.animation.creation import ShowPartial
-from corelib.animation.fading import FadeOut
 from corelib.animation.transform import Transform
-from corelib.mobject.types.vectorized_mobject import VMobject
+from corelib.constants import *
 from corelib.mobject.geometry import Circle
 from corelib.mobject.geometry import Dot
+from corelib.mobject.geometry import Line
 from corelib.mobject.shape_matchers import SurroundingRectangle
 from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.geometry import Line
+from corelib.mobject.types.vectorized_mobject import VMobject
 from corelib.utils.bezier import interpolate
 from corelib.utils.config_ops import digest_config
 from corelib.utils.rate_functions import there_and_back
 from corelib.utils.rate_functions import wiggle
+
+from extention.animation.animation_group import Succession
+from extention.animation.animation_group import AnimationGroup
+from extention.animation.creation import ShowCreation
+from extention.animation.fading import FadeOut
+from extention.animation.movement import Homotopy
 
 
 class FocusOn(Transform):
@@ -130,8 +128,9 @@ class CircleIndicate(Indicate):
         self.mobject.set_stroke(opacity=alpha)
 
 
-class ShowPassingFlash(ShowPartial):
+class ShowPassingFlash(ShowCreation):
     CONFIG = {
+        "lag_ratio": 0,
         "time_width": 0.1,
         "remover": True,
     }
@@ -142,7 +141,7 @@ class ShowPassingFlash(ShowPartial):
         lower = upper - tw
         upper = min(upper, 1)
         lower = max(lower, 0)
-        return (lower, upper)
+        return lower, upper
 
     def finish(self):
         super().finish()
@@ -233,7 +232,7 @@ class ApplyWave(Homotopy):
         def homotopy(x, y, z, t):
             alpha = (x - left_x) / (right_x - left_x)
             power = np.exp(2.0 * (alpha - 0.5))
-            nudge = there_and_back(t**power)
+            nudge = there_and_back(t ** power)
             return np.array([x, y, z]) + nudge * vect
 
         super().__init__(homotopy, mobject, **kwargs)

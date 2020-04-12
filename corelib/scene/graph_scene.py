@@ -1,8 +1,6 @@
 import itertools as it
 
-from corelib.animation.creation import Write, DrawBorderThenFill, ShowCreation
 from corelib.animation.transform import Transform
-from corelib.animation.update import UpdateFromAlphaFunc
 from corelib.constants import *
 from corelib.mobject.functions import ParametricFunction
 from corelib.mobject.geometry import Line
@@ -18,6 +16,9 @@ from corelib.utils.bezier import interpolate
 from corelib.utils.color import color_gradient
 from corelib.utils.color import invert_color
 from corelib.utils.space_ops import angle_of_vector
+
+from extention.animation.update import UpdateFromAlphaFunc
+from extention.animation.creation import Write, DrawBorderThenFill, ShowCreation
 
 # TODO, this should probably reimplemented entirely, especially so as to
 # better reuse code from corelib.mobject/coordinate_systems.

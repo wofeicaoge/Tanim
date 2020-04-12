@@ -76,7 +76,7 @@ def turn_animation_into_updater(animation, cycle=False, **kwargs):
     animation.total_time = 0
 
     def update(m, dt):
-        run_time = animation.get_run_time()
+        run_time = animation.run_time
         time_ratio = animation.total_time / run_time
         if cycle:
             alpha = time_ratio % 1

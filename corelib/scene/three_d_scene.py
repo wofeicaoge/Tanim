@@ -1,4 +1,3 @@
-from corelib.animation.transform import ApplyMethod
 from corelib.camera.three_d_camera import ThreeDCamera
 from corelib.constants import DEGREES
 from corelib.constants import PRODUCTION_QUALITY_CAMERA_CONFIG
@@ -10,6 +9,8 @@ from corelib.mobject.types.vectorized_mobject import VectorizedPoint
 from corelib.scene.scene import Scene
 from corelib.utils.config_ops import digest_config
 from corelib.utils.config_ops import merge_dicts_recursively
+
+from extention.animation.transform import ApplyMethod
 
 
 class ThreeDScene(Scene):
