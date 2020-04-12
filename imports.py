@@ -26,6 +26,10 @@ from extention.animation.indication import *
 from extention.animation.numbers import *
 from extention.animation.movement import *
 
+from corelib.animation.animation import *
+from corelib.animation.creation import *
+from corelib.animation.transform import *
+from corelib.animation.movement import *
 from corelib.animation.rotation import *
 from corelib.animation.update import *
 
