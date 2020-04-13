@@ -87,11 +87,6 @@ class SceneFileWriter(object):
                     scene_name, self.gif_file_extension
                 )
             )
-            self.partial_movie_directory = guarantee_existence(os.path.join(
-                movie_dir,
-                "partial_movie_files",
-                scene_name,
-            ))
 
     def get_default_module_directory(self):
         filename = os.path.basename(self.input_file_path)
@@ -114,16 +109,6 @@ class SceneFileWriter(object):
     # Directory getters
     def get_image_file_path(self):
         return self.image_file_path
-
-    def get_next_partial_movie_path(self):
-        result = os.path.join(
-            self.partial_movie_directory,
-            "{:05}{}".format(
-                self.scene.num_plays,
-                self.movie_file_extension,
-            )
-        )
-        return result
 
     def get_movie_file_path(self):
         return self.movie_file_path
@@ -169,28 +154,22 @@ class SceneFileWriter(object):
         self.add_audio_segment(new_segment, time, **kwargs)
 
     # Writers
-    def begin_animation(self, allow_write=False):
-        if self.livestreaming:
-            self.stop_update = True
-        elif self.write_to_movie and allow_write:
-            self.open_movie_pipe()
+    def pause_idle_update(self):
+        self.stop_update = True
 
-    def end_animation(self, allow_write=False):
-        if self.livestreaming:
-            self.stop_update = False
-        elif self.write_to_movie and allow_write:
-            self.close_movie_pipe()
+    def resume_idle_update(self):
+        self.stop_update = False
 
     def stop_stream_loop(self):
         self.loop_run = False
 
-    def begin_stream(self):
-        if self.write_to_movie:
+    def begin_stream(self, allow_write=True):
+        if self.write_to_movie and allow_write:
             self.open_movie_pipe()
         self.loop_run = True
 
-    def end_stream(self):
-        if self.write_to_movie:
+    def end_stream(self, allow_write=True):
+        if self.write_to_movie and allow_write:
             self.close_movie_pipe()
 
     def stream_loop(self):
@@ -201,7 +180,9 @@ class SceneFileWriter(object):
             if self.scene.has_frame():
                 frame = self.scene.fetch_frame()
                 self.write_frame(frame)
-            elif not self.stop_update:
+            # We only keep animation in non livestream
+            # and record every changes in livestream
+            elif self.livestreaming and not self.stop_update:
                 self.scene.update_frame()
                 frame = self.scene.get_frame()
                 self.scene.add_frames(frame)
@@ -209,6 +190,11 @@ class SceneFileWriter(object):
             time_diff = (b - a).total_seconds()
             if time_diff < frame_duration:
                 sleep(frame_duration - time_diff)
+
+        while self.scene.has_frame():
+            frame = self.scene.fetch_frame()
+            self.write_frame(frame)
+
         self.end_stream()
 
     def write_frame(self, frame):
@@ -223,21 +209,14 @@ class SceneFileWriter(object):
     def finish(self):
         if self.livestreaming:
             return
-        if self.write_to_movie:
-            if hasattr(self, "writing_process"):
-                self.writing_process.terminate()
-            self.combine_movie_files()
+        self.loop_run = False
+        if self.write_to_movie and self.includes_sound:
+            self.combine_sound()
         if self.save_last_frame:
             self.scene.update_frame(ignore_skipping=True)
             self.save_final_image(self.scene.get_image())
 
     def open_movie_pipe(self):
-        file_path = self.get_next_partial_movie_path()
-        temp_file_path = os.path.splitext(file_path)[0] + '_temp' + self.movie_file_extension
-
-        self.partial_movie_file_path = file_path
-        self.temp_partial_movie_file_path = temp_file_path
-
         fps = self.scene.camera.frame_rate
         height = self.scene.camera.get_pixel_height()
         width = self.scene.camera.get_pixel_width()
@@ -274,106 +253,47 @@ class SceneFileWriter(object):
                 command += ['-f', 'mpegts']
                 command += [STREAMING_PROTOCOL + '://' + STREAMING_IP + ':' + STREAMING_PORT]
         else:
-            command += [temp_file_path]
+            command += [self.movie_file_path]
         self.writing_process = subprocess.Popen(command, stdin=subprocess.PIPE)
 
     def close_movie_pipe(self):
         self.writing_process.stdin.close()
         self.writing_process.wait()
-        if self.livestreaming:
-            return True
-        shutil.move(
-            self.temp_partial_movie_file_path,
-            self.partial_movie_file_path,
-        )
 
-    def combine_movie_files(self):
-        # Manim renders the scene as many smaller movie files
-        # which are then concatenated to a larger one.  The reason
-        # for this is that sometimes video-editing is made easier when
-        # one works with the broken up scene, which effectively has
-        # cuts at all the places you might want.  But for viewing
-        # the scene as a whole, one of course wants to see it as a
-        # single piece.
-        kwargs = {
-            "remove_non_integer_files": True,
-            "extension": self.movie_file_extension,
-        }
-        if self.scene.start_at_animation_number is not None:
-            kwargs["min_index"] = self.scene.start_at_animation_number
-        if self.scene.end_at_animation_number is not None:
-            kwargs["max_index"] = self.scene.end_at_animation_number
-        else:
-            kwargs["remove_indices_greater_than"] = self.scene.num_plays - 1
-        partial_movie_files = get_sorted_integer_files(
-            self.partial_movie_directory,
-            **kwargs
-        )
-        if len(partial_movie_files) == 0:
-            print("No animations in this scene")
-            return
-
-        # Write a file partial_file_list.txt containing all
-        # partial movie files
-        file_list = os.path.join(
-            self.partial_movie_directory,
-            "partial_movie_file_list.txt"
-        )
-        with open(file_list, 'w') as fp:
-            for pf_path in partial_movie_files:
-                if os.name == 'nt':
-                    pf_path = pf_path.replace('\\', '/')
-                fp.write("file \'{}\'\n".format(pf_path))
-
+    def combine_sound(self):
         movie_file_path = self.get_movie_file_path()
+        sound_file_path = movie_file_path.replace(
+            self.movie_file_extension, ".wav"
+        )
+        # Makes sure sound file length will match video file
+        self.add_audio_segment(AudioSegment.silent(0))
+        self.audio_segment.export(
+            sound_file_path,
+            bitrate='312k',
+        )
+        temp_file_path = movie_file_path.replace(".", "_temp.")
         commands = [
-            FFMPEG_BIN,
+            "ffmpeg",
+            "-i", movie_file_path,
+            "-i", sound_file_path,
             '-y',  # overwrite output file if it exists
-            '-f', 'concat',
-            '-safe', '0',
-            '-i', file_list,
+            "-c:v", "copy",
+            "-c:a", "aac",
+            "-b:a", "320k",
+            # select video stream from first file
+            "-map", "0:v:0",
+            # select audio stream from second file
+            "-map", "1:a:0",
             '-loglevel', 'error',
-            '-c', 'copy',
-            movie_file_path
+            # "-shortest",
+            temp_file_path,
         ]
-        if not self.includes_sound:
-            commands.insert(-1, '-an')
-
-        combine_process = subprocess.Popen(commands)
-        combine_process.wait()
-
-        if self.includes_sound:
-            sound_file_path = movie_file_path.replace(
-                self.movie_file_extension, ".wav"
-            )
-            # Makes sure sound file length will match video file
-            self.add_audio_segment(AudioSegment.silent(0))
-            self.audio_segment.export(
-                sound_file_path,
-                bitrate='312k',
-            )
-            temp_file_path = movie_file_path.replace(".", "_temp.")
-            commands = [
-                "ffmpeg",
-                "-i", movie_file_path,
-                "-i", sound_file_path,
-                '-y',  # overwrite output file if it exists
-                "-c:v", "copy",
-                "-c:a", "aac",
-                "-b:a", "320k",
-                # select video stream from first file
-                "-map", "0:v:0",
-                # select audio stream from second file
-                "-map", "1:a:0",
-                '-loglevel', 'error',
-                # "-shortest",
-                temp_file_path,
-            ]
-            subprocess.call(commands)
-            shutil.move(temp_file_path, movie_file_path)
-            os.remove(sound_file_path)
+        subprocess.call(commands)
+        shutil.move(temp_file_path, movie_file_path)
+        os.remove(sound_file_path)
 
         self.print_file_ready_message(movie_file_path)
+
 
     def print_file_ready_message(self, file_path):
         print("\nFile ready at {}\n".format(file_path))

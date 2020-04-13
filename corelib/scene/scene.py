@@ -114,10 +114,9 @@ class Scene(Container):
             random.seed(self.random_seed)
             np.random.seed(self.random_seed)
 
-        if self.file_writer.livestreaming:
-            self.writer_thread = threading.Thread(target=self.file_writer.stream_loop)
-            self.writer_thread.daemon = True
-            self.writer_thread.start()
+        self.writer_thread = threading.Thread(target=self.file_writer.stream_loop)
+        self.writer_thread.daemon = True
+        self.writer_thread.start()
 
         self.setup()
         try:
@@ -296,20 +295,18 @@ class Scene(Container):
 
     def update_skipping_status(self):
         if self.start_at_animation_number:
-            if self.num_plays == self.start_at_animation_number:
-                self.skip_animations = False
+            self.skip_animations = (self.num_plays < self.start_at_animation_number)
         if self.end_at_animation_number:
-            if self.num_plays >= self.end_at_animation_number:
-                self.skip_animations = True
+            self.skip_animations = (self.num_plays > self.end_at_animation_number)
+            if self.num_plays > self.end_at_animation_number:
                 raise EndSceneEarlyException()
 
     def handle_play_like_call(func):
         def wrapper(self, *args, **kwargs):
             self.update_skipping_status()
-            allow_write = not self.skip_animations
-            self.file_writer.begin_animation(allow_write)
+            self.file_writer.pause_idle_update()
             func(self, *args, **kwargs)
-            self.file_writer.end_animation(allow_write)
+            self.file_writer.resume_idle_update()
             self.num_plays += 1
 
         return wrapper
