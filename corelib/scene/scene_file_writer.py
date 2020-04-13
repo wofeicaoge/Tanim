@@ -3,7 +3,7 @@ from pydub import AudioSegment
 import shutil
 import subprocess
 import os
-import _thread as thread
+import threading
 from time import sleep
 import datetime
 
@@ -182,7 +182,10 @@ class SceneFileWriter(object):
         if self.livestreaming:
             if not self.stream_lock:
                 self.stream_lock = True
-                thread.start_new_thread(self.idle_stream, ())
+                idle_thread = threading.Thread(target=self.idle_stream)
+                idle_thread.daemon = True
+                idle_thread.start()
+
         elif self.write_to_movie and allow_write:
             self.close_movie_pipe()
         self.should_idle_update = True
