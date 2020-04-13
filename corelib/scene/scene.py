@@ -1,6 +1,8 @@
 import inspect
 import platform
+import queue
 import random
+import threading
 import warnings
 
 from tqdm import tqdm as ProgressDisplay
@@ -104,12 +106,18 @@ class Scene(Container):
             self, **self.file_writer_config,
         )
 
+        self.frame_q = queue.Queue()
         self.num_plays = 0
         self.time = 0
         self.original_skipping_status = self.skip_animations
         if self.random_seed is not None:
             random.seed(self.random_seed)
             np.random.seed(self.random_seed)
+
+        if self.file_writer.livestreaming:
+            self.writer_thread = threading.Thread(target=self.file_writer.stream_loop)
+            self.writer_thread.daemon = True
+            self.writer_thread.start()
 
         self.setup()
         try:
@@ -142,6 +150,7 @@ class Scene(Container):
     def set_camera(self, camera):
         self.camera = camera
 
+    # change it to get_latest_frame
     def get_frame(self):
         return np.array(self.camera.get_pixel_array())
 
@@ -348,9 +357,8 @@ class Scene(Container):
         else:
             self.update_mobjects(0)
 
-    def end_stream(self):
-        allow_write = not self.skip_animations
-        self.file_writer.end_stream(allow_write)
+    def stop_stream(self):
+        self.file_writer.stop_stream_loop()
 
     @handle_play_like_call
     def play(self, *args, **kwargs):
@@ -434,13 +442,19 @@ class Scene(Container):
             self.skip_animations = self.original_skipping_status
         return self
 
+    def has_frame(self):
+        return not self.frame_q.empty()
+
+    def fetch_frame(self):
+        return self.frame_q.get()
+
     def add_frames(self, *frames):
         dt = 1 / self.camera.frame_rate
         self.increment_time(len(frames) * dt)
         if self.skip_animations:
             return
         for frame in frames:
-            self.file_writer.write_frame(frame)
+            self.frame_q.put(frame)
 
     def add_sound(self, sound_file, time_offset=0, gain=None, **kwargs):
         if self.skip_animations:

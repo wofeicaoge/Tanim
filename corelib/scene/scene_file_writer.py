@@ -41,8 +41,8 @@ class SceneFileWriter(object):
     def __init__(self, scene, **kwargs):
         digest_config(self, kwargs)
         self.scene = scene
-        self.stream_lock = False # If it's True, it indicates idle_stream thread is running
-        self.should_idle_update = False # If it's True, it indicates idle_stream is updating idle stream
+        self.loop_run = False  # This is for livestream
+        self.stop_update = False  # When doing the animation, we should stop updating the livestream idle stream
         self.init_output_directories()
         self.init_audio()
 
@@ -170,31 +170,46 @@ class SceneFileWriter(object):
 
     # Writers
     def begin_animation(self, allow_write=False):
-        if self.write_to_movie and allow_write:
-            if self.livestreaming:
-                if not self.stream_lock:
-                    self.open_movie_pipe()
-            else:
-                self.open_movie_pipe()
-        self.should_idle_update = False
+        if self.livestreaming:
+            self.stop_update = True
+        elif self.write_to_movie and allow_write:
+            self.open_movie_pipe()
 
     def end_animation(self, allow_write=False):
         if self.livestreaming:
-            if not self.stream_lock:
-                self.stream_lock = True
-                idle_thread = threading.Thread(target=self.idle_stream)
-                idle_thread.daemon = True
-                idle_thread.start()
-
+            self.stop_update = False
         elif self.write_to_movie and allow_write:
             self.close_movie_pipe()
-        self.should_idle_update = True
 
-    def end_stream(self, allow_write=False):
-        self.stream_lock = False
-        sleep(2) # wait for idle_stream to finish writing frames
-        if self.write_to_movie and allow_write:
+    def stop_stream_loop(self):
+        self.loop_run = False
+
+    def begin_stream(self):
+        if self.write_to_movie:
+            self.open_movie_pipe()
+        self.loop_run = True
+
+    def end_stream(self):
+        if self.write_to_movie:
             self.close_movie_pipe()
+
+    def stream_loop(self):
+        self.begin_stream()
+        frame_duration = 1 / self.scene.camera.frame_rate
+        while self.loop_run:
+            a = datetime.datetime.now()
+            if self.scene.has_frame():
+                frame = self.scene.fetch_frame()
+                self.write_frame(frame)
+            elif not self.stop_update:
+                self.scene.update_frame()
+                frame = self.scene.get_frame()
+                self.scene.add_frames(frame)
+            b = datetime.datetime.now()
+            time_diff = (b - a).total_seconds()
+            if time_diff < frame_duration:
+                sleep(frame_duration - time_diff)
+        self.end_stream()
 
     def write_frame(self, frame):
         if self.write_to_movie:
@@ -205,23 +220,9 @@ class SceneFileWriter(object):
         image.save(file_path)
         self.print_file_ready_message(file_path)
 
-    def idle_stream(self):
-        while self.stream_lock:
-            frame_duration = 1 / self.scene.camera.frame_rate
-            if not self.should_idle_update:
-                sleep(frame_duration)
-                continue
-            a = datetime.datetime.now()
-            self.scene.update_frame()
-            n_frames = 1
-            frame = self.scene.get_frame()
-            self.scene.add_frames(*[frame] * n_frames)
-            b = datetime.datetime.now()
-            time_diff = (b - a).total_seconds()
-            if time_diff < frame_duration:
-                sleep(frame_duration - time_diff)
-
     def finish(self):
+        if self.livestreaming:
+            return
         if self.write_to_movie:
             if hasattr(self, "writing_process"):
                 self.writing_process.terminate()
