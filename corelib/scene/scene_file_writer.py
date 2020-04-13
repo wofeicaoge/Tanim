@@ -1,11 +1,11 @@
-import numpy as np
-from pydub import AudioSegment
+import datetime
+import os
 import shutil
 import subprocess
-import os
-import threading
 from time import sleep
-import datetime
+
+import numpy as np
+from pydub import AudioSegment
 
 import corelib.constants as consts
 from corelib.constants import FFMPEG_BIN
@@ -13,9 +13,8 @@ from corelib.constants import STREAMING_IP
 from corelib.constants import STREAMING_PORT
 from corelib.constants import STREAMING_PROTOCOL
 from corelib.utils.config_ops import digest_config
-from corelib.utils.file_ops import guarantee_existence
 from corelib.utils.file_ops import add_extension_if_not_present
-from corelib.utils.file_ops import get_sorted_integer_files
+from corelib.utils.file_ops import guarantee_existence
 from corelib.utils.sounds import get_full_sound_file_path
 
 
@@ -41,8 +40,10 @@ class SceneFileWriter(object):
     def __init__(self, scene, **kwargs):
         digest_config(self, kwargs)
         self.scene = scene
-        self.loop_run = False  # This is for livestream
-        self.stop_update = False  # When doing the animation, we should stop updating the livestream idle stream
+        self.loop_run = True
+        # For livestreaming, if we don't stop idle stream updating,
+        # it could conflict with animation to cause flashing
+        self.stop_update = False
         self.init_output_directories()
         self.init_audio()
 
@@ -163,13 +164,12 @@ class SceneFileWriter(object):
     def stop_stream_loop(self):
         self.loop_run = False
 
-    def begin_stream(self, allow_write=True):
-        if self.write_to_movie and allow_write:
+    def begin_stream(self):
+        if self.write_to_movie:
             self.open_movie_pipe()
-        self.loop_run = True
 
-    def end_stream(self, allow_write=True):
-        if self.write_to_movie and allow_write:
+    def end_stream(self):
+        if self.write_to_movie:
             self.close_movie_pipe()
 
     def stream_loop(self):

@@ -304,9 +304,10 @@ class Scene(Container):
     def handle_play_like_call(func):
         def wrapper(self, *args, **kwargs):
             self.update_skipping_status()
-            self.file_writer.pause_idle_update()
-            func(self, *args, **kwargs)
-            self.file_writer.resume_idle_update()
+            if not self.skip_animations:
+                self.file_writer.pause_idle_update()
+                func(self, *args, **kwargs)
+                self.file_writer.resume_idle_update()
             self.num_plays += 1
 
         return wrapper
