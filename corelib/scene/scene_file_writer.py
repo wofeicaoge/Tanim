@@ -18,6 +18,10 @@ from corelib.utils.file_ops import guarantee_existence
 from corelib.utils.sounds import get_full_sound_file_path
 
 
+def print_file_ready_message(file_path):
+    print("\nFile ready at {}\n".format(file_path))
+
+
 class SceneFileWriter(object):
     CONFIG = {
         "write_to_movie": False,
@@ -184,7 +188,7 @@ class SceneFileWriter(object):
             # and record every changes in livestream
             elif self.livestreaming and not self.stop_update:
                 self.scene.update_frame()
-                frame = self.scene.get_frame()
+                frame = self.scene.get_latest_frame()
                 self.scene.add_frames(frame)
             b = datetime.datetime.now()
             time_diff = (b - a).total_seconds()
@@ -204,7 +208,7 @@ class SceneFileWriter(object):
     def save_final_image(self, image):
         file_path = self.get_image_file_path()
         image.save(file_path)
-        self.print_file_ready_message(file_path)
+        print_file_ready_message(file_path)
 
     def finish(self):
         if self.livestreaming:
@@ -292,8 +296,4 @@ class SceneFileWriter(object):
         shutil.move(temp_file_path, movie_file_path)
         os.remove(sound_file_path)
 
-        self.print_file_ready_message(movie_file_path)
-
-
-    def print_file_ready_message(self, file_path):
-        print("\nFile ready at {}\n".format(file_path))
+        print_file_ready_message(movie_file_path)

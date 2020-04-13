@@ -150,7 +150,7 @@ class Scene(Container):
         self.camera = camera
 
     # change it to get_latest_frame
-    def get_frame(self):
+    def get_latest_frame(self):
         return np.array(self.camera.get_pixel_array())
 
     def get_image(self):
@@ -189,7 +189,7 @@ class Scene(Container):
 
     def freeze_background(self):
         self.update_frame()
-        self.set_camera(Camera(background=self.get_frame()))
+        self.set_camera(Camera(background=self.get_latest_frame()))
         self.clear()
 
     ###
@@ -329,7 +329,7 @@ class Scene(Container):
         # have to be rendered every frame
         moving_mobjects = self.get_moving_mobjects(*animations)
         self.update_frame(excluded_mobjects=moving_mobjects)
-        static_image = self.get_frame()
+        static_image = self.get_latest_frame()
         last_t = 0
         for t in self.get_animation_time_progression(animations):
             dt = t - last_t
@@ -340,7 +340,7 @@ class Scene(Container):
                 animation.interpolate(alpha)
             self.update_mobjects(dt)
             self.update_frame(moving_mobjects, static_image)
-            self.add_frames(self.get_frame())
+            self.add_frames(self.get_latest_frame())
 
     def finish_animations(self, animations):
         for animation in animations:
@@ -413,7 +413,7 @@ class Scene(Container):
                 last_t = t
                 self.update_mobjects(dt)
                 self.update_frame()
-                self.add_frames(self.get_frame())
+                self.add_frames(self.get_latest_frame())
                 if stop_condition is not None and stop_condition():
                     time_progression.close()
                     break
@@ -423,7 +423,7 @@ class Scene(Container):
             self.update_frame()
             dt = 1 / self.camera.frame_rate
             n_frames = int(duration / dt)
-            frame = self.get_frame()
+            frame = self.get_latest_frame()
             self.add_frames(*[frame] * n_frames)
         return self
 
