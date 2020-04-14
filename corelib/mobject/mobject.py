@@ -530,7 +530,7 @@ class Mobject(Container):
 
     # Background rectangle
     def add_background_rectangle(self, color=BLACK, opacity=0.75, **kwargs):
-        from corelib.mobject.shape_matchers import BackgroundRectangle
+        from extention.mobject.shape_matchers import BackgroundRectangle
         self.background_rectangle = BackgroundRectangle(
             self, color=color,
             fill_opacity=opacity,

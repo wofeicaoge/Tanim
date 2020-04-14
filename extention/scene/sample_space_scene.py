@@ -2,8 +2,8 @@ from corelib.animation.animation import Animation
 from corelib.animation.transform import Transform
 from corelib.constants import *
 from corelib.scene.scene import Scene
-from corelib.mobject.probability import SampleSpace
-from corelib.mobject.types.vectorized_mobject import VGroup
+from extention.mobject.probability import SampleSpace
+from corelib.mobject.vectorized_mobject import VGroup
 
 from extention.animation.transform import MoveToTarget
 from extention.animation.update import UpdateFromFunc

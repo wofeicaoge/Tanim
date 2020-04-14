@@ -1,7 +1,7 @@
 from extention.camera.moving_camera import MovingCamera
 from extention.camera.multi_camera import MultiCamera
 from corelib.constants import *
-from corelib.mobject.types.image_mobject import ImageMobjectFromCamera
+from corelib.mobject.image_mobject import ImageMobjectFromCamera
 from extention.scene.moving_camera_scene import MovingCameraScene
 from corelib.utils.simple_functions import fdiv
 

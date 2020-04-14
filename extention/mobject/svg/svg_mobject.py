@@ -6,11 +6,11 @@ import warnings
 from xml.dom import minidom
 
 from corelib.constants import *
-from corelib.mobject.geometry import Circle
-from corelib.mobject.geometry import Rectangle
-from corelib.mobject.geometry import RoundedRectangle
-from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.types.vectorized_mobject import VMobject
+from extention.mobject.geometry import Circle
+from extention.mobject.geometry import Rectangle
+from extention.mobject.geometry import RoundedRectangle
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.color import *
 from corelib.utils.config_ops import digest_config
 from corelib.utils.config_ops import digest_locals

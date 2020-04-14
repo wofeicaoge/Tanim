@@ -1,7 +1,7 @@
 from corelib.constants import *
-from corelib.mobject.geometry import Square
-from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.types.vectorized_mobject import VMobject
+from extention.mobject.geometry import Square
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.iterables import tuplify
 from corelib.utils.space_ops import z_to_vector
 

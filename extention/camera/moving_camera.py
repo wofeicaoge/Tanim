@@ -3,8 +3,8 @@ from corelib.constants import FRAME_HEIGHT
 from corelib.constants import FRAME_WIDTH
 from corelib.constants import ORIGIN
 from corelib.constants import WHITE
-from corelib.mobject.frame import ScreenRectangle
-from corelib.mobject.types.vectorized_mobject import VGroup
+from extention.mobject.frame import ScreenRectangle
+from corelib.mobject.vectorized_mobject import VGroup
 from corelib.utils.config_ops import digest_config
 
 

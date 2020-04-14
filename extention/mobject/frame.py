@@ -1,5 +1,5 @@
 from corelib.constants import *
-from corelib.mobject.geometry import Rectangle
+from extention.mobject.geometry import Rectangle
 from corelib.utils.config_ops import digest_config
 
 

@@ -1,5 +1,5 @@
 from corelib.constants import *
-from corelib.mobject.types.vectorized_mobject import VMobject
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.config_ops import digest_config
 import math
 

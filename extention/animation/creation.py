@@ -5,7 +5,7 @@ import numpy as np
 from corelib.animation.animation import Animation
 from corelib.animation.creation import ShowCreation
 from corelib.mobject.mobject import Group
-from corelib.mobject.types.vectorized_mobject import VMobject
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.bezier import integer_interpolate
 from corelib.utils.config_ops import digest_config
 from corelib.utils.rate_functions import double_smooth

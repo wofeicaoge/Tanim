@@ -1,6 +1,6 @@
 from corelib.constants import BLACK
-from corelib.mobject.numbers import Integer
-from corelib.mobject.types.vectorized_mobject import VGroup
+from extention.mobject.numbers import Integer
+from corelib.mobject.vectorized_mobject import VGroup
 
 
 def print_family(mobject, n_tabs=0):

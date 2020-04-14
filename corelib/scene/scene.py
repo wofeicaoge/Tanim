@@ -13,7 +13,7 @@ from corelib.camera.camera import Camera
 from corelib.constants import *
 from corelib.container.container import Container
 from corelib.mobject.mobject import Mobject
-from corelib.mobject.svg.tex_mobject import TextMobject
+from extention.mobject.svg.tex_mobject import TextMobject
 from corelib.scene.scene_file_writer import SceneFileWriter
 from extention.animation.transform import MoveToTarget, ApplyMethod
 

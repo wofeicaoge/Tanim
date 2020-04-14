@@ -1,11 +1,10 @@
 import re
-import os
 import copy
 import hashlib
 import cairo
 import corelib.constants as consts
 from corelib.constants import *
-from corelib.mobject.svg.svg_mobject import SVGMobject
+from extention.mobject.svg.svg_mobject import SVGMobject
 from corelib.utils.config_ops import digest_config
 
 

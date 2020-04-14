@@ -1,11 +1,10 @@
 import warnings
-import numpy as np
 
 from corelib.constants import *
 from corelib.mobject.mobject import Mobject
-from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.types.vectorized_mobject import VMobject
-from corelib.mobject.types.vectorized_mobject import DashedVMobject
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
+from corelib.mobject.vectorized_mobject import DashedVMobject
 from corelib.utils.config_ops import digest_config
 from corelib.utils.iterables import adjacent_n_tuples
 from corelib.utils.iterables import adjacent_pairs

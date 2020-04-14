@@ -2,11 +2,11 @@ from functools import reduce
 import operator as op
 
 from corelib.constants import *
-from corelib.mobject.geometry import Line
-from corelib.mobject.svg.svg_mobject import SVGMobject
-from corelib.mobject.svg.svg_mobject import VMobjectFromSVGPathstring
-from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.types.vectorized_mobject import VectorizedPoint
+from extention.mobject.geometry import Line
+from extention.mobject.svg.svg_mobject import SVGMobject
+from extention.mobject.svg.svg_mobject import VMobjectFromSVGPathstring
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VectorizedPoint
 from corelib.utils.config_ops import digest_config
 from corelib.utils.strings import split_string_list_to_isolate_substrings
 from corelib.utils.tex_file_writing import tex_to_svg_file

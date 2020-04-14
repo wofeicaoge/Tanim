@@ -1,6 +1,6 @@
 from corelib.constants import *
-from corelib.mobject.svg.tex_mobject import SingleStringTexMobject
-from corelib.mobject.types.vectorized_mobject import VMobject
+from extention.mobject.svg.tex_mobject import SingleStringTexMobject
+from corelib.mobject.vectorized_mobject import VMobject
 
 
 class DecimalNumber(VMobject):

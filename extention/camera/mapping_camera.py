@@ -1,7 +1,7 @@
 import numpy as np
 
 from corelib.camera.camera import Camera
-from corelib.mobject.types.vectorized_mobject import VMobject
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.config_ops import DictAsObject
 from corelib.utils.config_ops import digest_config
 

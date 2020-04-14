@@ -1,7 +1,5 @@
-import warnings
-
 from corelib.animation.animation import Animation
-from corelib.mobject.numbers import DecimalNumber
+from extention.mobject.numbers import DecimalNumber
 from corelib.utils.bezier import interpolate
 
 

@@ -2,9 +2,9 @@ from extention.animation.animation_group import AnimationGroup
 from corelib.constants import *
 from extention.animation.fading import FadeIn
 from extention.animation.growing import GrowFromCenter
-from corelib.mobject.svg.tex_mobject import TexMobject
-from corelib.mobject.svg.tex_mobject import TextMobject
-from corelib.mobject.types.vectorized_mobject import VMobject
+from extention.mobject.svg.tex_mobject import TexMobject
+from extention.mobject.svg.tex_mobject import TextMobject
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.config_ops import digest_config
 from corelib.utils.space_ops import get_norm
 

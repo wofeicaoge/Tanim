@@ -1,10 +1,8 @@
-import numpy as np
-
 from PIL import Image
 
 from corelib.constants import *
 from corelib.mobject.mobject import Mobject
-from corelib.mobject.shape_matchers import SurroundingRectangle
+from extention.mobject.shape_matchers import SurroundingRectangle
 from corelib.utils.bezier import interpolate
 from corelib.utils.color import color_to_int_rgb
 from corelib.utils.config_ops import digest_config

@@ -1,15 +1,12 @@
-import numpy as np
-
 from corelib.camera.camera import Camera
 from corelib.constants import *
-from corelib.mobject.three_d_utils import get_3d_vmob_end_corner
-from corelib.mobject.three_d_utils import get_3d_vmob_end_corner_unit_normal
-from corelib.mobject.three_d_utils import get_3d_vmob_start_corner
-from corelib.mobject.three_d_utils import get_3d_vmob_start_corner_unit_normal
-from corelib.mobject.types.point_cloud_mobject import Point
-from corelib.mobject.value_tracker import ValueTracker
+from extention.mobject.three_d_utils import get_3d_vmob_end_corner
+from extention.mobject.three_d_utils import get_3d_vmob_end_corner_unit_normal
+from extention.mobject.three_d_utils import get_3d_vmob_start_corner
+from extention.mobject.three_d_utils import get_3d_vmob_start_corner_unit_normal
+from corelib.mobject.point_cloud_mobject import Point
+from extention.mobject.value_tracker import ValueTracker
 from corelib.utils.color import get_shaded_rgb
-from corelib.utils.simple_functions import clip_in_place
 from corelib.utils.space_ops import rotation_about_z
 from corelib.utils.space_ops import rotation_matrix
 

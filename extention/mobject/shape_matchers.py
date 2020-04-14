@@ -1,8 +1,8 @@
 from corelib.constants import *
-from corelib.mobject.geometry import Line
-from corelib.mobject.geometry import Rectangle
-from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.types.vectorized_mobject import VMobject
+from extention.mobject.geometry import Line
+from extention.mobject.geometry import Rectangle
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.color import Color
 from corelib.utils.config_ops import digest_config
 

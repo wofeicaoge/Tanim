@@ -6,9 +6,9 @@ from corelib.constants import *
 
 from extention.animation.animation_group import AnimationGroup
 from extention.animation.indication import ShowPassingFlash
-from corelib.mobject.geometry import Vector
-from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.mobject.types.vectorized_mobject import VMobject
+from extention.mobject.geometry import Vector
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.bezier import inverse_interpolate
 from corelib.utils.bezier import interpolate
 from corelib.utils.color import color_to_rgb

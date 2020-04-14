@@ -1,9 +1,9 @@
 import operator as op
 
 from corelib.constants import *
-from corelib.mobject.geometry import Line
-from corelib.mobject.numbers import DecimalNumber
-from corelib.mobject.types.vectorized_mobject import VGroup
+from extention.mobject.geometry import Line
+from extention.mobject.numbers import DecimalNumber
+from corelib.mobject.vectorized_mobject import VGroup
 from corelib.utils.bezier import interpolate
 from corelib.utils.config_ops import digest_config
 from corelib.utils.config_ops import merge_dicts_recursively

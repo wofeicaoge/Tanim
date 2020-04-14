@@ -2,9 +2,9 @@ import operator as op
 
 from corelib.constants import WHITE
 from corelib.constants import BLACK
-from corelib.mobject.geometry import Circle
-from corelib.mobject.svg.drawings import Car
-from corelib.mobject.types.vectorized_mobject import VGroup
+from extention.mobject.geometry import Circle
+from extention.mobject.svg.drawings import Car
+from corelib.mobject.vectorized_mobject import VGroup
 from corelib.utils.config_ops import digest_config
 from corelib.utils.space_ops import get_norm
 

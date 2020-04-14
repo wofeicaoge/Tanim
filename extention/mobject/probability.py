@@ -1,11 +1,11 @@
 from corelib.constants import *
-from corelib.mobject.geometry import Line
-from corelib.mobject.geometry import Rectangle
+from extention.mobject.geometry import Line
+from extention.mobject.geometry import Rectangle
 from corelib.mobject.mobject import Mobject
-from corelib.mobject.svg.brace import Brace
-from corelib.mobject.svg.tex_mobject import TexMobject
-from corelib.mobject.svg.tex_mobject import TextMobject
-from corelib.mobject.types.vectorized_mobject import VGroup
+from extention.mobject.svg.brace import Brace
+from extention.mobject.svg.tex_mobject import TexMobject
+from extention.mobject.svg.tex_mobject import TextMobject
+from corelib.mobject.vectorized_mobject import VGroup
 from corelib.utils.color import color_gradient
 from corelib.utils.iterables import tuplify
 

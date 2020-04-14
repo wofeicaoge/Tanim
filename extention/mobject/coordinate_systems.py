@@ -1,17 +1,16 @@
-import numpy as np
 import numbers
 
 from corelib.constants import *
-from corelib.mobject.functions import ParametricFunction
-from corelib.mobject.geometry import Arrow
-from corelib.mobject.geometry import Line
-from corelib.mobject.number_line import NumberLine
-from corelib.mobject.svg.tex_mobject import TexMobject
-from corelib.mobject.types.vectorized_mobject import VGroup
-from corelib.utils.config_ops import digest_config
+from extention.mobject.functions import ParametricFunction
+from extention.mobject.geometry import Arrow
+from extention.mobject.geometry import Line
+from extention.mobject.number_line import NumberLine
+from extention.mobject.svg.tex_mobject import TexMobject
+from corelib.mobject.vectorized_mobject import VGroup
 from corelib.utils.config_ops import merge_dicts_recursively
 from corelib.utils.simple_functions import binary_search
 from corelib.utils.space_ops import angle_of_vector
+
 
 # TODO: There should be much more code reuse between Axes, NumberPlane and GraphScene
 

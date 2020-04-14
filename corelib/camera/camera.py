@@ -7,19 +7,17 @@ import copy
 from PIL import Image
 from scipy.spatial.distance import pdist
 import cairo
-import numpy as np
 
 from corelib.constants import *
-from corelib.mobject.types.image_mobject import AbstractImageMobject
+from corelib.mobject.image_mobject import AbstractImageMobject
 from corelib.mobject.mobject import Mobject
-from corelib.mobject.types.point_cloud_mobject import PMobject
-from corelib.mobject.types.vectorized_mobject import VMobject
+from corelib.mobject.point_cloud_mobject import PMobject
+from corelib.mobject.vectorized_mobject import VMobject
 from corelib.utils.color import color_to_int_rgba
 from corelib.utils.config_ops import digest_config
 from corelib.utils.images import get_full_raster_image_path
 from corelib.utils.iterables import batch_by_property
 from corelib.utils.iterables import list_difference_update
-from corelib.utils.iterables import remove_list_redundancies
 from corelib.utils.simple_functions import fdiv
 from corelib.utils.space_ops import angle_of_vector
 from corelib.utils.space_ops import get_norm

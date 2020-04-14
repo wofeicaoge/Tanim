@@ -5,7 +5,7 @@ from colour import Color
 
 from corelib.constants import *
 from corelib.mobject.mobject import Mobject, Group
-from corelib.mobject.three_d_utils import get_3d_vmob_gradient_start_and_end_points
+from extention.mobject.three_d_utils import get_3d_vmob_gradient_start_and_end_points
 from corelib.utils.bezier import bezier
 from corelib.utils.bezier import get_smooth_handle_points
 from corelib.utils.bezier import integer_interpolate

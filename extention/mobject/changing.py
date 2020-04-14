@@ -1,6 +1,6 @@
 from corelib.constants import *
-from corelib.mobject.types.vectorized_mobject import VMobject
-from corelib.mobject.types.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
+from corelib.mobject.vectorized_mobject import VGroup
 from corelib.utils.rate_functions import smooth
 from corelib.utils.space_ops import get_norm
 
