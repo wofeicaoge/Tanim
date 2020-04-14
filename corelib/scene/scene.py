@@ -126,6 +126,7 @@ class Scene(Container):
         self.tear_down()
         self.file_writer.finish()
         self.print_end_message()
+        self.writer_thread.join()
 
     def __str__(self):
         return self.__class__.__name__
