@@ -6,6 +6,7 @@ import subprocess
 import utils.config
 import utils.extract_scene
 import utils.constants as consts
+from utils.file_ops import initialize_directories
 
 from corelib.scene.scene import Scene
 
@@ -13,7 +14,7 @@ from corelib.scene.scene import Scene
 def main():
     args = utils.config.parse_cli()
     conf = utils.config.get_configuration(args)
-    consts.initialize_directories(conf)
+    initialize_directories(conf)
     if not args.livestream:
         utils.extract_scene.main(conf)
     else:

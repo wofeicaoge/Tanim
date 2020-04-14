@@ -1,10 +1,51 @@
 import os
 import numpy as np
 
+import utils.constants as consts
+
+
+def initialize_directories(config):
+    video_path_specified = config["video_dir"] or config["video_output_dir"]
+
+    if not (video_path_specified and config["tex_dir"]):
+        if config["media_dir"]:
+            consts.MEDIA_DIR = config["media_dir"]
+        else:
+            consts.MEDIA_DIR = os.path.join(
+                os.path.expanduser('~'),
+                "media"
+            )
+        if not os.path.isdir(consts.MEDIA_DIR):
+            consts.MEDIA_DIR = "./media"
+        print(
+            f"Media will be written to {consts.MEDIA_DIR + os.sep}. You can change "
+            "this behavior with the --media_dir flag."
+        )
+    else:
+        if config["media_dir"]:
+            print(
+                "Ignoring --media_dir, since both --tex_dir and a video "
+                "directory were both passed"
+            )
+
+    consts.TEX_DIR = config["tex_dir"] or os.path.join(consts.MEDIA_DIR, "Tex")
+    consts.TEXT_DIR = os.path.join(consts.MEDIA_DIR, "texts")
+    if not video_path_specified:
+        consts.VIDEO_DIR = os.path.join(consts.MEDIA_DIR, "videos")
+        consts.VIDEO_OUTPUT_DIR = os.path.join(consts.MEDIA_DIR, "videos")
+    elif config["video_output_dir"]:
+        consts.VIDEO_OUTPUT_DIR = config["video_output_dir"]
+    else:
+        consts.VIDEO_DIR = config["video_dir"]
+
+    for folder in [consts.VIDEO_DIR, consts.VIDEO_OUTPUT_DIR, consts.TEX_DIR, consts.TEXT_DIR]:
+        if folder != "" and not os.path.exists(folder):
+            os.makedirs(folder)
+
 
 def add_extension_if_not_present(file_name, extension):
     # This could conceivably be smarter about handling existing differing extensions
-    if(file_name[-len(extension):] != extension):
+    if file_name[-len(extension):] != extension:
         return file_name + extension
     else:
         return file_name
