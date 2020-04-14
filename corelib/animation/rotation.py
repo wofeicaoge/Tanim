@@ -1,9 +1,10 @@
+from utils.constants import OUT
+from utils.constants import PI
+from utils.constants import TAU
+from utils.rate_functions import linear
+
 from corelib.animation.animation import Animation
 from corelib.animation.transform import Transform
-from extention.utils.constants import OUT
-from extention.utils.constants import PI
-from extention.utils.constants import TAU
-from extention.utils.rate_functions import linear
 
 
 class Rotating(Animation):

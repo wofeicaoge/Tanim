@@ -1,5 +1,6 @@
+from utils.iterables import list_difference_update
+
 from extention.camera.moving_camera import MovingCamera
-from extention.utils.iterables import list_difference_update
 
 
 class MultiCamera(MovingCamera):

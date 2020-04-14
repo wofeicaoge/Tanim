@@ -2,10 +2,10 @@ import re
 import copy
 import hashlib
 import cairo
-import extention.utils.constants as consts
-from extention.utils.constants import *
+import utils.constants as consts
+from utils.constants import *
 from extention.mobject.svg.svg_mobject import SVGMobject
-from extention.utils.config_ops import digest_config
+from utils.config_ops import digest_config
 
 
 class TextSetting(object):

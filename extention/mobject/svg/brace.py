@@ -1,12 +1,14 @@
-from extention.animation.animation_group import AnimationGroup
-from extention.utils.constants import *
+from utils.constants import *
+from utils.config_ops import digest_config
+from utils.space_ops import get_norm
+
+from corelib.mobject.vectorized_mobject import VMobject
+
 from extention.animation.fading import FadeIn
 from extention.animation.growing import GrowFromCenter
 from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
-from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.config_ops import digest_config
-from extention.utils.space_ops import get_norm
+from extention.animation.animation_group import AnimationGroup
 
 
 class Brace(TexMobject):

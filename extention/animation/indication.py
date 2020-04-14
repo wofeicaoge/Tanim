@@ -1,17 +1,18 @@
+from utils.constants import *
+from utils.bezier import interpolate
+from utils.config_ops import digest_config
+from utils.rate_functions import there_and_back
+from utils.rate_functions import wiggle
+
 from corelib.animation.animation import Animation
 from corelib.animation.transform import Transform
-from extention.utils.constants import *
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
+
 from extention.mobject.geometry import Circle
 from extention.mobject.geometry import Dot
 from extention.mobject.geometry import Line
 from extention.mobject.shape_matchers import SurroundingRectangle
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.bezier import interpolate
-from extention.utils.config_ops import digest_config
-from extention.utils.rate_functions import there_and_back
-from extention.utils.rate_functions import wiggle
-
 from extention.animation.animation_group import Succession
 from extention.animation.animation_group import AnimationGroup
 from extention.animation.creation import ShowCreation

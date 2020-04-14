@@ -1,14 +1,16 @@
 import operator as op
 
-from extention.utils.constants import *
+from utils.constants import *
+from utils.bezier import interpolate
+from utils.config_ops import digest_config
+from utils.config_ops import merge_dicts_recursively
+from utils.simple_functions import fdiv
+from utils.space_ops import normalize
+
+from corelib.mobject.vectorized_mobject import VGroup
+
 from extention.mobject.geometry import Line
 from extention.mobject.numbers import DecimalNumber
-from corelib.mobject.vectorized_mobject import VGroup
-from extention.utils.bezier import interpolate
-from extention.utils.config_ops import digest_config
-from extention.utils.config_ops import merge_dicts_recursively
-from extention.utils.simple_functions import fdiv
-from extention.utils.space_ops import normalize
 
 
 class NumberLine(Line):

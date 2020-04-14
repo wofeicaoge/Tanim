@@ -1,9 +1,24 @@
 import itertools as it
 import string
 
+from utils.constants import *
+from utils.bezier import interpolate
+from utils.config_ops import digest_config
+from utils.rate_functions import linear
+from utils.space_ops import angle_of_vector
+from utils.space_ops import complex_to_R3
+from utils.space_ops import rotate_vector
+
 from corelib.animation.animation import Animation
 from corelib.animation.rotation import Rotating
-from extention.utils.constants import *
+from corelib.mobject.mobject import Mobject
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
+from corelib.mobject.vectorized_mobject import VectorizedPoint
+from extention.mobject.svg.svg_mobject import SVGMobject
+from extention.mobject.svg.tex_mobject import TexMobject
+from extention.mobject.svg.tex_mobject import TextMobject
+from extention.mobject.three_dimensions import Cube
 from extention.mobject.geometry import AnnularSector
 from extention.mobject.geometry import Arc
 from extention.mobject.geometry import Circle
@@ -11,20 +26,6 @@ from extention.mobject.geometry import Line
 from extention.mobject.geometry import Polygon
 from extention.mobject.geometry import Rectangle
 from extention.mobject.geometry import Square
-from corelib.mobject.mobject import Mobject
-from extention.mobject.svg.svg_mobject import SVGMobject
-from extention.mobject.svg.tex_mobject import TexMobject
-from extention.mobject.svg.tex_mobject import TextMobject
-from extention.mobject.three_dimensions import Cube
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
-from corelib.mobject.vectorized_mobject import VectorizedPoint
-from extention.utils.bezier import interpolate
-from extention.utils.config_ops import digest_config
-from extention.utils.rate_functions import linear
-from extention.utils.space_ops import angle_of_vector
-from extention.utils.space_ops import complex_to_R3
-from extention.utils.space_ops import rotate_vector
 
 
 class Lightbulb(SVGMobject):

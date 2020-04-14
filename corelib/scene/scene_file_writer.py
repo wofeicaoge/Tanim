@@ -7,15 +7,11 @@ from time import sleep
 import numpy as np
 from pydub import AudioSegment
 
-import extention.utils.constants as consts
-from extention.utils.constants import FFMPEG_BIN
-from extention.utils.constants import STREAMING_IP
-from extention.utils.constants import STREAMING_PORT
-from extention.utils.constants import STREAMING_PROTOCOL
-from extention.utils.config_ops import digest_config
-from extention.utils.file_ops import add_extension_if_not_present
-from extention.utils.file_ops import guarantee_existence
-from extention.utils.sounds import get_full_sound_file_path
+import utils.constants as consts
+from utils.config_ops import digest_config
+from utils.file_ops import add_extension_if_not_present
+from utils.file_ops import guarantee_existence
+from utils.sounds import get_full_sound_file_path
 
 
 def print_file_ready_message(file_path):
@@ -226,7 +222,7 @@ class SceneFileWriter(object):
         width = self.scene.camera.get_pixel_width()
 
         command = [
-            FFMPEG_BIN,
+            consts.FFMPEG_BIN,
             '-y',  # overwrite output file if it exists
             '-f', 'rawvideo',
             '-s', '%dx%d' % (width, height),  # size of one frame
@@ -255,7 +251,7 @@ class SceneFileWriter(object):
                 command += ['rtmp://live.twitch.tv/app/' + self.twitch_key]
             else:
                 command += ['-f', 'mpegts']
-                command += [STREAMING_PROTOCOL + '://' + STREAMING_IP + ':' + STREAMING_PORT]
+                command += [consts.STREAMING_PROTOCOL + '://' + consts.STREAMING_IP + ':' + consts.STREAMING_PORT]
         else:
             command += [self.movie_file_path]
         self.writing_process = subprocess.Popen(command, stdin=subprocess.PIPE)

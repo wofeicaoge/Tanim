@@ -3,18 +3,19 @@ import code
 import os
 import subprocess
 
-import extention.utils.config
-import extention.utils.extract_scene
-import extention.utils.constants as consts
+import utils.config
+import utils.extract_scene
+import utils.constants as consts
+
 from corelib.scene.scene import Scene
 
 
 def main():
-    args = extention.utils.config.parse_cli()
-    conf = extention.utils.config.get_configuration(args)
+    args = utils.config.parse_cli()
+    conf = utils.config.get_configuration(args)
     consts.initialize_directories(conf)
     if not args.livestream:
-        extention.utils.extract_scene.main(conf)
+        utils.extract_scene.main(conf)
     else:
         if not args.to_twitch:
             fnull = open(os.devnull, 'w')

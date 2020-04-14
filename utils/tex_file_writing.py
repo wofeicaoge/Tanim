@@ -1,9 +1,9 @@
 import os
 import hashlib
 
-from extention.utils.constants import TEX_TEXT_TO_REPLACE
-from extention.utils.constants import TEX_USE_CTEX
-import extention.utils.constants as consts
+from utils.constants import TEX_TEXT_TO_REPLACE
+from utils.constants import TEX_USE_CTEX
+import utils.constants as consts
 
 
 def tex_hash(expression, template_tex_file_body):

@@ -5,15 +5,15 @@ import warnings
 
 from xml.dom import minidom
 
-from extention.utils.constants import *
+from utils.constants import *
 from extention.mobject.geometry import Circle
 from extention.mobject.geometry import Rectangle
 from extention.mobject.geometry import RoundedRectangle
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.color import *
-from extention.utils.config_ops import digest_config
-from extention.utils.config_ops import digest_locals
+from utils.color import *
+from utils.config_ops import digest_config
+from utils.config_ops import digest_locals
 
 
 def string_to_numbers(num_string):

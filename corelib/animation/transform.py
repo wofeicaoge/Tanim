@@ -1,7 +1,8 @@
+from utils.constants import OUT
+from utils.paths import path_along_arc
+from utils.paths import straight_path
+
 from corelib.animation.animation import Animation
-from extention.utils.constants import OUT
-from extention.utils.paths import path_along_arc
-from extention.utils.paths import straight_path
 
 
 class Transform(Animation):

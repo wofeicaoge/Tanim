@@ -1,7 +1,9 @@
-from extention.camera.moving_camera import MovingCamera
+from utils.iterables import list_update
+
 from corelib.mobject.mobject import Mobject
 from corelib.scene.scene import Scene
-from extention.utils.iterables import list_update
+
+from extention.camera.moving_camera import MovingCamera
 
 
 class MovingCameraScene(Scene):

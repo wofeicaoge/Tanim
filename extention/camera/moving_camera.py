@@ -1,11 +1,13 @@
+from utils.constants import FRAME_HEIGHT
+from utils.constants import FRAME_WIDTH
+from utils.constants import ORIGIN
+from utils.constants import WHITE
+from utils.config_ops import digest_config
+
 from corelib.camera.camera import Camera
-from extention.utils.constants import FRAME_HEIGHT
-from extention.utils.constants import FRAME_WIDTH
-from extention.utils.constants import ORIGIN
-from extention.utils.constants import WHITE
-from extention.mobject.frame import ScreenRectangle
 from corelib.mobject.vectorized_mobject import VGroup
-from extention.utils.config_ops import digest_config
+
+from extention.mobject.frame import ScreenRectangle
 
 
 # TODO, think about how to incorporate perspective

@@ -1,11 +1,13 @@
-from extention.utils.constants import *
+from utils.constants import *
+
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
+
 from extention.mobject.numbers import DecimalNumber
 from extention.mobject.numbers import Integer
 from extention.mobject.shape_matchers import BackgroundRectangle
 from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
 
 VECTOR_LABEL_SCALE_FACTOR = 0.8
 

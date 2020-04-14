@@ -1,8 +1,9 @@
 import inspect
 import numpy as np
 
-from extention.utils.constants import DEGREES
-from extention.utils.constants import RIGHT
+from utils.constants import DEGREES
+from utils.constants import RIGHT
+
 from corelib.mobject.mobject import Mobject
 
 

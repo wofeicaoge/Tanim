@@ -1,7 +1,16 @@
 import itertools as it
 
+from utils.constants import *
+from utils.bezier import interpolate
+from utils.color import color_gradient
+from utils.color import invert_color
+from utils.space_ops import angle_of_vector
+
 from corelib.animation.transform import Transform
-from extention.utils.constants import *
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VectorizedPoint
+from corelib.scene.scene import Scene
+
 from extention.mobject.functions import ParametricFunction
 from extention.mobject.geometry import Line
 from extention.mobject.geometry import Rectangle
@@ -9,14 +18,6 @@ from extention.mobject.geometry import RegularPolygon
 from extention.mobject.number_line import NumberLine
 from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VectorizedPoint
-from corelib.scene.scene import Scene
-from extention.utils.bezier import interpolate
-from extention.utils.color import color_gradient
-from extention.utils.color import invert_color
-from extention.utils.space_ops import angle_of_vector
-
 from extention.animation.update import UpdateFromAlphaFunc
 from extention.animation.creation import Write, DrawBorderThenFill, ShowCreation
 

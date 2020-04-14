@@ -3,21 +3,22 @@ import sys
 
 from colour import Color
 
-from extention.utils.constants import *
+from utils.constants import *
+from utils.three_d_shading_utils import get_3d_vmob_gradient_start_and_end_points
+from utils.bezier import bezier
+from utils.bezier import get_smooth_handle_points
+from utils.bezier import integer_interpolate
+from utils.bezier import interpolate
+from utils.bezier import partial_bezier_points
+from utils.color import color_to_rgba
+from utils.iterables import make_even
+from utils.iterables import stretch_array_to_length
+from utils.iterables import tuplify
+from utils.simple_functions import clip_in_place
+from utils.space_ops import get_norm
+from utils.space_ops import rotate_vector
+
 from corelib.mobject.mobject import Mobject, Group
-from extention.utils.three_d_utils import get_3d_vmob_gradient_start_and_end_points
-from extention.utils.bezier import bezier
-from extention.utils.bezier import get_smooth_handle_points
-from extention.utils.bezier import integer_interpolate
-from extention.utils.bezier import interpolate
-from extention.utils.bezier import partial_bezier_points
-from extention.utils.color import color_to_rgba
-from extention.utils.iterables import make_even
-from extention.utils.iterables import stretch_array_to_length
-from extention.utils.iterables import tuplify
-from extention.utils.simple_functions import clip_in_place
-from extention.utils.space_ops import get_norm
-from extention.utils.space_ops import rotate_vector
 
 
 # TODO

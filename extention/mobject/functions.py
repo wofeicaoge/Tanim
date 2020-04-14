@@ -1,7 +1,9 @@
-from extention.utils.constants import *
-from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.config_ops import digest_config
 import math
+
+from utils.constants import *
+from utils.config_ops import digest_config
+
+from corelib.mobject.vectorized_mobject import VMobject
 
 
 class ParametricFunction(VMobject):

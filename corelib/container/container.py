@@ -1,5 +1,5 @@
-from extention.utils.config_ops import digest_config
-from extention.utils.iterables import list_update
+from utils.config_ops import digest_config
+from utils.iterables import list_update
 
 
 # Currently, this is only used by both Scene and Mobject.

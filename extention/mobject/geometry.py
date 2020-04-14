@@ -1,21 +1,22 @@
 import warnings
 
-from extention.utils.constants import *
+from utils.constants import *
+from utils.config_ops import digest_config
+from utils.iterables import adjacent_n_tuples
+from utils.iterables import adjacent_pairs
+from utils.simple_functions import fdiv
+from utils.space_ops import angle_of_vector
+from utils.space_ops import angle_between_vectors
+from utils.space_ops import compass_directions
+from utils.space_ops import line_intersection
+from utils.space_ops import get_norm
+from utils.space_ops import normalize
+from utils.space_ops import rotate_vector
+
 from corelib.mobject.mobject import Mobject
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
 from corelib.mobject.vectorized_mobject import DashedVMobject
-from extention.utils.config_ops import digest_config
-from extention.utils.iterables import adjacent_n_tuples
-from extention.utils.iterables import adjacent_pairs
-from extention.utils.simple_functions import fdiv
-from extention.utils.space_ops import angle_of_vector
-from extention.utils.space_ops import angle_between_vectors
-from extention.utils.space_ops import compass_directions
-from extention.utils.space_ops import line_intersection
-from extention.utils.space_ops import get_norm
-from extention.utils.space_ops import normalize
-from extention.utils.space_ops import rotate_vector
 
 
 DEFAULT_DOT_RADIUS = 0.08

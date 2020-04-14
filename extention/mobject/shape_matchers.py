@@ -1,10 +1,12 @@
-from extention.utils.constants import *
-from extention.mobject.geometry import Line
-from extention.mobject.geometry import Rectangle
+from utils.constants import *
+from utils.color import Color
+from utils.config_ops import digest_config
+
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.color import Color
-from extention.utils.config_ops import digest_config
+
+from extention.mobject.geometry import Line
+from extention.mobject.geometry import Rectangle
 
 
 class SurroundingRectangle(Rectangle):

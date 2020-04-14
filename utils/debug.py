@@ -1,4 +1,4 @@
-from extention.utils.constants import BLACK
+from utils.constants import BLACK
 from extention.mobject.numbers import Integer
 from corelib.mobject.vectorized_mobject import VGroup
 

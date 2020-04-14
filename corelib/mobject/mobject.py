@@ -7,17 +7,17 @@ from functools import reduce
 
 from colour import Color
 
-import extention.utils.constants as consts
-from extention.utils.constants import *
+import utils.constants as consts
+from utils.color import color_gradient
+from utils.color import interpolate_color
+from utils.constants import *
+from utils.iterables import remove_list_redundancies
+from utils.paths import straight_path
+from utils.simple_functions import get_parameters
+from utils.space_ops import get_norm
+from utils.space_ops import rotation_matrix
+
 from corelib.container.container import *
-from extention.utils.color import color_gradient
-from extention.utils.color import interpolate_color
-from extention.utils.iterables import list_update
-from extention.utils.iterables import remove_list_redundancies
-from extention.utils.paths import straight_path
-from extention.utils.simple_functions import get_parameters
-from extention.utils.space_ops import get_norm
-from extention.utils.space_ops import rotation_matrix
 
 
 # TODO: Explain array_attrs

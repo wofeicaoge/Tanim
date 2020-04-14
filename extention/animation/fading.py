@@ -1,11 +1,11 @@
+from utils.constants import DOWN
+from utils.bezier import interpolate
+from utils.rate_functions import there_and_back
+
 from corelib.animation.animation import Animation
 from corelib.animation.animation import DEFAULT_ANIMATION_LAG_RATIO
 from corelib.animation.transform import Transform
-from extention.utils.constants import DOWN
 from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.bezier import interpolate
-from extention.utils.rate_functions import there_and_back
-
 
 DEFAULT_FADE_LAG_RATIO = 0
 

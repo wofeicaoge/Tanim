@@ -1,6 +1,13 @@
+from utils.constants import *
+from utils.space_ops import angle_of_vector
+from utils.space_ops import get_norm
+
 from corelib.animation.animation import Animation
 from corelib.animation.transform import Transform
-from extention.utils.constants import *
+from corelib.mobject.mobject import Mobject
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.scene.scene import Scene
+
 from extention.mobject.coordinate_systems import Axes
 from extention.mobject.coordinate_systems import NumberPlane
 from extention.mobject.geometry import Arrow
@@ -10,14 +17,8 @@ from extention.mobject.geometry import Vector
 from extention.mobject.matrix import Matrix
 from extention.mobject.matrix import VECTOR_LABEL_SCALE_FACTOR
 from extention.mobject.matrix import vector_coordinate_label
-from corelib.mobject.mobject import Mobject
 from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.scene.scene import Scene
-from extention.utils.space_ops import angle_of_vector
-from extention.utils.space_ops import get_norm
-
 from extention.animation.creation import ShowCreation
 from extention.animation.creation import Write
 from extention.animation.fading import FadeOut

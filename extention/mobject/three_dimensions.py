@@ -1,11 +1,11 @@
-from extention.utils.constants import *
-from extention.mobject.geometry import Square
+from utils.constants import *
+from utils.iterables import tuplify
+from utils.space_ops import z_to_vector
+
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.iterables import tuplify
-from extention.utils.space_ops import z_to_vector
 
-##############
+from extention.mobject.geometry import Square
 
 
 class ThreeDVMobject(VMobject):

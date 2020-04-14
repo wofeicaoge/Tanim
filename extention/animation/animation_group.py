@@ -1,12 +1,13 @@
 import numpy as np
 
+from utils.bezier import interpolate
+from utils.config_ops import digest_config
+from utils.iterables import remove_list_redundancies
+from utils.rate_functions import linear
+from utils.bezier import integer_interpolate
+
 from corelib.animation.animation import Animation
 from corelib.mobject.mobject import Group
-from extention.utils.bezier import interpolate
-from extention.utils.config_ops import digest_config
-from extention.utils.iterables import remove_list_redundancies
-from extention.utils.rate_functions import linear
-from extention.utils.bezier import integer_interpolate
 
 DEFAULT_LAGGED_START_LAG_RATIO = 0.05
 

@@ -7,9 +7,9 @@ import sys
 import traceback
 
 from corelib.scene.scene import Scene
-from extention.utils.sounds import play_error_sound
-from extention.utils.sounds import play_finish_sound
-import extention.utils.constants
+from utils.sounds import play_error_sound
+from utils.sounds import play_finish_sound
+import utils.constants
 
 
 def open_file_if_needed(file_writer, **config):
@@ -76,15 +76,15 @@ def prompt_user_for_choice(scene_classes):
         print("%d: %s" % (count, name))
         num_to_class[count] = scene_class
     try:
-        user_input = input(extention.utils.constants.CHOOSE_NUMBER_MESSAGE)
+        user_input = input(utils.constants.CHOOSE_NUMBER_MESSAGE)
         return [
             num_to_class[int(num_str)]
             for num_str in user_input.split(",")
         ]
     except KeyError:
-        print(extention.utils.constants.INVALID_NUMBER_MESSAGE)
+        print(utils.constants.INVALID_NUMBER_MESSAGE)
         sys.exit(2)
-        user_input = input(extention.utils.constants.CHOOSE_NUMBER_MESSAGE)
+        user_input = input(utils.constants.CHOOSE_NUMBER_MESSAGE)
         return [
             num_to_class[int(num_str)]
             for num_str in user_input.split(",")
@@ -95,7 +95,7 @@ def prompt_user_for_choice(scene_classes):
 
 def get_scenes_to_render(scene_classes, config):
     if len(scene_classes) == 0:
-        print(extention.utils.constants.NO_SCENE_MESSAGE)
+        print(utils.constants.NO_SCENE_MESSAGE)
         return []
     if config["write_all"]:
         return scene_classes
@@ -109,7 +109,7 @@ def get_scenes_to_render(scene_classes, config):
                 break
         if not found and (scene_name != ""):
             print(
-                extention.utils.constants.SCENE_NOT_FOUND_MESSAGE.format(
+                utils.constants.SCENE_NOT_FOUND_MESSAGE.format(
                     scene_name
                 ),
                 file=sys.stderr

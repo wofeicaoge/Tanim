@@ -1,6 +1,8 @@
+from utils.bezier import interpolate
+
 from corelib.animation.animation import Animation
+
 from extention.mobject.numbers import DecimalNumber
-from extention.utils.bezier import interpolate
 
 
 class ChangingDecimal(Animation):

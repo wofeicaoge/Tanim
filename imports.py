@@ -14,9 +14,9 @@ as a convenience for scripts creating scenes for videos.
 """
 
 
-from extention.utils.constants import *
+from utils.constants import *
 
-from extention.utils.config import *
+from utils.config import *
 
 from corelib.animation.animation import *
 from corelib.animation.creation import *
@@ -72,21 +72,21 @@ from extention.scene.three_d_scene import *
 from extention.scene.vector_space_scene import *
 from extention.scene.zoomed_scene import *
 
-from extention.utils.bezier import *
-from extention.utils.color import *
-from extention.utils.config_ops import *
-from extention.utils.debug import *
-from extention.utils.images import *
-from extention.utils.iterables import *
-from extention.utils.file_ops import *
-from extention.utils.paths import *
-from extention.utils.rate_functions import *
-from extention.utils.simple_functions import *
-from extention.utils.sounds import *
-from extention.utils.space_ops import *
-from extention.utils.strings import *
-from extention.utils.three_d_utils import *
-from extention.utils.mobject_update_utils import *
+from utils.bezier import *
+from utils.color import *
+from utils.config_ops import *
+from utils.debug import *
+from utils.images import *
+from utils.iterables import *
+from utils.file_ops import *
+from utils.paths import *
+from utils.rate_functions import *
+from utils.simple_functions import *
+from utils.sounds import *
+from utils.space_ops import *
+from utils.strings import *
+from utils.three_d_utils import *
+from utils.mobject_update_utils import *
 
 
 # Non tanim libraries that are also nice to have without thinking

@@ -1,14 +1,16 @@
+from utils.constants import *
+from utils.three_d_shading_utils import get_3d_vmob_end_corner
+from utils.three_d_shading_utils import get_3d_vmob_end_corner_unit_normal
+from utils.three_d_shading_utils import get_3d_vmob_start_corner
+from utils.three_d_shading_utils import get_3d_vmob_start_corner_unit_normal
+from utils.color import get_shaded_rgb
+from utils.space_ops import rotation_about_z
+from utils.space_ops import rotation_matrix
+
 from corelib.camera.camera import Camera
-from extention.utils.constants import *
-from extention.utils.three_d_utils import get_3d_vmob_end_corner
-from extention.utils.three_d_utils import get_3d_vmob_end_corner_unit_normal
-from extention.utils.three_d_utils import get_3d_vmob_start_corner
-from extention.utils.three_d_utils import get_3d_vmob_start_corner_unit_normal
 from corelib.mobject.point_cloud_mobject import Point
+
 from extention.mobject.value_tracker import ValueTracker
-from extention.utils.color import get_shaded_rgb
-from extention.utils.space_ops import rotation_about_z
-from extention.utils.space_ops import rotation_matrix
 
 
 class ThreeDCamera(Camera):

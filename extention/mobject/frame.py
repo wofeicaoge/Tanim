@@ -1,6 +1,7 @@
-from extention.utils.constants import *
+from utils.constants import *
+from utils.config_ops import digest_config
+
 from extention.mobject.geometry import Rectangle
-from extention.utils.config_ops import digest_config
 
 
 class ScreenRectangle(Rectangle):

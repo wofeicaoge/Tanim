@@ -1,9 +1,9 @@
 import numpy as np
 
-from extention.utils.constants import OUT
-from extention.utils.bezier import interpolate
-from extention.utils.space_ops import get_norm
-from extention.utils.space_ops import rotation_matrix
+from utils.constants import OUT
+from utils.bezier import interpolate
+from utils.space_ops import get_norm
+from utils.space_ops import rotation_matrix
 
 STRAIGHT_PATH_THRESHOLD = 0.01
 

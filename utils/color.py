@@ -3,11 +3,11 @@ import random
 from colour import Color
 import numpy as np
 
-from extention.utils.constants import PALETTE
-from extention.utils.constants import WHITE
-from extention.utils.bezier import interpolate
-from extention.utils.simple_functions import clip_in_place
-from extention.utils.space_ops import normalize
+from utils.constants import PALETTE
+from utils.constants import WHITE
+from utils.bezier import interpolate
+from utils.simple_functions import clip_in_place
+from utils.space_ops import normalize
 
 
 def color_to_rgb(color):

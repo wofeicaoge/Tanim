@@ -1,16 +1,17 @@
 import operator as op
 
-from extention.utils.constants import WHITE
-from extention.utils.constants import BLACK
-from extention.mobject.geometry import Circle
-from extention.mobject.svg.drawings import Car
+from utils.constants import WHITE
+from utils.constants import BLACK
+from utils.config_ops import digest_config
+from utils.space_ops import get_norm
+
 from corelib.mobject.vectorized_mobject import VGroup
-from extention.utils.config_ops import digest_config
-from extention.utils.space_ops import get_norm
 
 from extention.animation.transform import ApplyMethod
 from extention.animation.transform import Restore
 from extention.animation.animation_group import LaggedStart
+from extention.mobject.geometry import Circle
+from extention.mobject.svg.drawings import Car
 
 
 class MoveCar(ApplyMethod):

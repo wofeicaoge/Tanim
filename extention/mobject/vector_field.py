@@ -2,22 +2,22 @@ import itertools as it
 from PIL import Image
 import random
 
-from extention.utils.constants import *
+from utils.constants import *
+from utils.bezier import inverse_interpolate
+from utils.bezier import interpolate
+from utils.color import color_to_rgb
+from utils.color import rgb_to_color
+from utils.config_ops import digest_config
+from utils.rate_functions import linear
+from utils.simple_functions import sigmoid
+from utils.space_ops import get_norm
+
+from corelib.mobject.vectorized_mobject import VGroup
+from corelib.mobject.vectorized_mobject import VMobject
 
 from extention.animation.animation_group import AnimationGroup
 from extention.animation.indication import ShowPassingFlash
 from extention.mobject.geometry import Vector
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
-from extention.utils.bezier import inverse_interpolate
-from extention.utils.bezier import interpolate
-from extention.utils.color import color_to_rgb
-from extention.utils.color import rgb_to_color
-from extention.utils.config_ops import digest_config
-from extention.utils.rate_functions import linear
-from extention.utils.simple_functions import sigmoid
-from extention.utils.space_ops import get_norm
-
 
 DEFAULT_SCALAR_FIELD_COLORS = [BLUE_E, GREEN, YELLOW, RED]
 

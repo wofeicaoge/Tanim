@@ -1,6 +1,6 @@
 import os
-from extention.utils.file_ops import seek_full_path_from_defaults
-from extention.utils.constants import ASSETS_DIR
+from utils.file_ops import seek_full_path_from_defaults
+from utils.constants import ASSETS_DIR
 
 
 def play_chord(*nums):
