@@ -1,5 +1,5 @@
-from corelib.camera.moving_camera import MovingCamera
-from corelib.camera.multi_camera import MultiCamera
+from extention.camera.moving_camera import MovingCamera
+from extention.camera.multi_camera import MultiCamera
 from corelib.constants import *
 from corelib.mobject.types.image_mobject import ImageMobjectFromCamera
 from corelib.scene.moving_camera_scene import MovingCameraScene

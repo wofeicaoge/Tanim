@@ -1,4 +1,4 @@
-from corelib.camera.three_d_camera import ThreeDCamera
+from extention.camera.three_d_camera import ThreeDCamera
 from corelib.constants import DEGREES
 from corelib.constants import PRODUCTION_QUALITY_CAMERA_CONFIG
 from corelib.mobject.coordinate_systems import ThreeDAxes

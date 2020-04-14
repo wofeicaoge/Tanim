@@ -27,6 +27,9 @@ from extention.animation.growing import *
 from extention.animation.indication import *
 from extention.animation.numbers import *
 from extention.animation.movement import *
+from extention.camera.mapping_camera import *
+from extention.camera.moving_camera import *
+from extention.camera.three_d_camera import *
 
 from corelib.animation.animation import *
 from corelib.animation.creation import *
@@ -36,9 +39,6 @@ from corelib.animation.rotation import *
 from corelib.animation.update import *
 
 from corelib.camera.camera import *
-from corelib.camera.mapping_camera import *
-from corelib.camera.moving_camera import *
-from corelib.camera.three_d_camera import *
 
 from corelib.mobject.coordinate_systems import *
 from corelib.mobject.changing import *
