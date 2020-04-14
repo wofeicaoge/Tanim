@@ -1,6 +1,6 @@
 import numbers
 
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.functions import ParametricFunction
 from extention.mobject.geometry import Arrow
 from extention.mobject.geometry import Line

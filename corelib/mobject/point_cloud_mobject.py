@@ -1,4 +1,4 @@
-from corelib.constants import *
+from extention.utils.constants import *
 from corelib.mobject.mobject import Mobject, GroupContainer
 from extention.utils.bezier import interpolate
 from extention.utils.color import color_gradient

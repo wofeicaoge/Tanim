@@ -1,6 +1,6 @@
 import warnings
 
-from corelib.constants import *
+from extention.utils.constants import *
 from corelib.mobject.mobject import Mobject
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject

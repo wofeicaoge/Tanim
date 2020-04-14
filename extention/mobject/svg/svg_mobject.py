@@ -5,7 +5,7 @@ import warnings
 
 from xml.dom import minidom
 
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.geometry import Circle
 from extention.mobject.geometry import Rectangle
 from extention.mobject.geometry import RoundedRectangle

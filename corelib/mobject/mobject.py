@@ -7,8 +7,8 @@ from functools import reduce
 
 from colour import Color
 
-import corelib.constants as consts
-from corelib.constants import *
+import extention.utils.constants as consts
+from extention.utils.constants import *
 from corelib.container.container import *
 from extention.utils.color import color_gradient
 from extention.utils.color import interpolate_color

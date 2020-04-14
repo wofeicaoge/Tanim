@@ -10,7 +10,7 @@ from tqdm import tqdm as ProgressDisplay
 from corelib.animation.animation import Animation
 from extention.animation.creation import Write
 from corelib.camera.camera import Camera
-from corelib.constants import *
+from extention.utils.constants import *
 from corelib.container.container import Container
 from corelib.mobject.mobject import Mobject
 from extention.mobject.svg.tex_mobject import TextMobject

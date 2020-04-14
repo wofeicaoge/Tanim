@@ -1,5 +1,5 @@
 from corelib.animation.animation import Animation
-from corelib.constants import OUT
+from extention.utils.constants import OUT
 from extention.utils.paths import path_along_arc
 from extention.utils.paths import straight_path
 

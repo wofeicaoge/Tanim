@@ -3,8 +3,8 @@ import random
 from colour import Color
 import numpy as np
 
-from corelib.constants import PALETTE
-from corelib.constants import WHITE
+from extention.utils.constants import PALETTE
+from extention.utils.constants import WHITE
 from extention.utils.bezier import interpolate
 from extention.utils.simple_functions import clip_in_place
 from extention.utils.space_ops import normalize

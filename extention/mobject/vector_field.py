@@ -2,7 +2,7 @@ import itertools as it
 from PIL import Image
 import random
 
-from corelib.constants import *
+from extention.utils.constants import *
 
 from extention.animation.animation_group import AnimationGroup
 from extention.animation.indication import ShowPassingFlash

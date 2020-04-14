@@ -1,4 +1,4 @@
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.geometry import Square
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject

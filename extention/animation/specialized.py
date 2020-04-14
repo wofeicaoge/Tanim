@@ -1,7 +1,7 @@
 import operator as op
 
-from corelib.constants import WHITE
-from corelib.constants import BLACK
+from extention.utils.constants import WHITE
+from extention.utils.constants import BLACK
 from extention.mobject.geometry import Circle
 from extention.mobject.svg.drawings import Car
 from corelib.mobject.vectorized_mobject import VGroup

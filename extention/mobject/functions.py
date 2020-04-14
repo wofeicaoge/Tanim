@@ -1,4 +1,4 @@
-from corelib.constants import *
+from extention.utils.constants import *
 from corelib.mobject.vectorized_mobject import VMobject
 from extention.utils.config_ops import digest_config
 import math

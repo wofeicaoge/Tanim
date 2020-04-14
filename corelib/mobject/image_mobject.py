@@ -1,6 +1,6 @@
 from PIL import Image
 
-from corelib.constants import *
+from extention.utils.constants import *
 from corelib.mobject.mobject import Mobject
 from extention.mobject.shape_matchers import SurroundingRectangle
 from extention.utils.bezier import interpolate

@@ -1,5 +1,5 @@
 from extention.animation.animation_group import AnimationGroup
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.animation.fading import FadeIn
 from extention.animation.growing import GrowFromCenter
 from extention.mobject.svg.tex_mobject import TexMobject

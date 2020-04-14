@@ -1,4 +1,4 @@
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.geometry import Line
 from extention.mobject.geometry import Rectangle
 from corelib.mobject.mobject import Mobject

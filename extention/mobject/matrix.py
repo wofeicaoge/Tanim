@@ -1,4 +1,4 @@
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.numbers import DecimalNumber
 from extention.mobject.numbers import Integer
 from extention.mobject.shape_matchers import BackgroundRectangle

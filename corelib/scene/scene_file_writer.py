@@ -7,11 +7,11 @@ from time import sleep
 import numpy as np
 from pydub import AudioSegment
 
-import corelib.constants as consts
-from corelib.constants import FFMPEG_BIN
-from corelib.constants import STREAMING_IP
-from corelib.constants import STREAMING_PORT
-from corelib.constants import STREAMING_PROTOCOL
+import extention.utils.constants as consts
+from extention.utils.constants import FFMPEG_BIN
+from extention.utils.constants import STREAMING_IP
+from extention.utils.constants import STREAMING_PORT
+from extention.utils.constants import STREAMING_PROTOCOL
 from extention.utils.config_ops import digest_config
 from extention.utils.file_ops import add_extension_if_not_present
 from extention.utils.file_ops import guarantee_existence

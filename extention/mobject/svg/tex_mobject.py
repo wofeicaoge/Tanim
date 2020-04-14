@@ -1,7 +1,7 @@
 from functools import reduce
 import operator as op
 
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.geometry import Line
 from extention.mobject.svg.svg_mobject import SVGMobject
 from extention.mobject.svg.svg_mobject import VMobjectFromSVGPathstring

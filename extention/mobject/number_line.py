@@ -1,6 +1,6 @@
 import operator as op
 
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.geometry import Line
 from extention.mobject.numbers import DecimalNumber
 from corelib.mobject.vectorized_mobject import VGroup

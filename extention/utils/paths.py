@@ -1,6 +1,6 @@
 import numpy as np
 
-from corelib.constants import OUT
+from extention.utils.constants import OUT
 from extention.utils.bezier import interpolate
 from extention.utils.space_ops import get_norm
 from extention.utils.space_ops import rotation_matrix

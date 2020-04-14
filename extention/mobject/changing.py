@@ -1,8 +1,8 @@
-from corelib.constants import *
 from corelib.mobject.vectorized_mobject import VMobject
 from corelib.mobject.vectorized_mobject import VGroup
 from extention.utils.rate_functions import smooth
 from extention.utils.space_ops import get_norm
+from extention.utils.constants import *
 
 
 class AnimatedBoundary(VGroup):

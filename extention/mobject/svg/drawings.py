@@ -3,7 +3,7 @@ import string
 
 from corelib.animation.animation import Animation
 from corelib.animation.rotation import Rotating
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.geometry import AnnularSector
 from extention.mobject.geometry import Arc
 from extention.mobject.geometry import Circle

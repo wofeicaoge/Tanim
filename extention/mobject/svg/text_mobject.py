@@ -2,8 +2,8 @@ import re
 import copy
 import hashlib
 import cairo
-import corelib.constants as consts
-from corelib.constants import *
+import extention.utils.constants as consts
+from extention.utils.constants import *
 from extention.mobject.svg.svg_mobject import SVGMobject
 from extention.utils.config_ops import digest_config
 

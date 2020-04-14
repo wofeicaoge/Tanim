@@ -1,6 +1,6 @@
 from corelib.animation.animation import Animation
 from corelib.animation.transform import Transform
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.geometry import Circle
 from extention.mobject.geometry import Dot
 from extention.mobject.geometry import Line

@@ -1,6 +1,6 @@
 import numpy as np
 
-from corelib.constants import ORIGIN
+from extention.utils.constants import ORIGIN
 from extention.utils.space_ops import get_unit_normal
 
 

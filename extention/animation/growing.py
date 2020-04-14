@@ -1,6 +1,6 @@
 from corelib.animation.transform import Transform
 # from corelib.utils.paths import counterclockwise_path
-from corelib.constants import PI
+from extention.utils.constants import PI
 
 
 class GrowFromPoint(Transform):

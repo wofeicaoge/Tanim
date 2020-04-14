@@ -1,5 +1,4 @@
 from corelib.animation.transform import Transform
-from corelib.constants import *
 from corelib.mobject.mobject import Mobject
 from corelib.scene.scene import Scene
 

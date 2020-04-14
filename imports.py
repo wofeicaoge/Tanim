@@ -14,9 +14,9 @@ as a convenience for scripts creating scenes for videos.
 """
 
 
-from corelib.constants import *
+from extention.utils.constants import *
 
-from corelib.config import *
+from extention.utils.config import *
 
 from corelib.animation.animation import *
 from corelib.animation.creation import *

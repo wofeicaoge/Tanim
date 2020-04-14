@@ -8,7 +8,7 @@ from PIL import Image
 from scipy.spatial.distance import pdist
 import cairo
 
-from corelib.constants import *
+from extention.utils.constants import *
 from corelib.mobject.image_mobject import AbstractImageMobject
 from corelib.mobject.mobject import Mobject
 from corelib.mobject.point_cloud_mobject import PMobject

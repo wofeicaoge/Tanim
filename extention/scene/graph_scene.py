@@ -1,7 +1,7 @@
 import itertools as it
 
 from corelib.animation.transform import Transform
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.mobject.functions import ParametricFunction
 from extention.mobject.geometry import Line
 from extention.mobject.geometry import Rectangle

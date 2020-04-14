@@ -3,8 +3,8 @@ import inspect
 import numpy as np
 
 from corelib.animation.transform import Transform
-from corelib.constants import DEFAULT_POINTWISE_FUNCTION_RUN_TIME
-from corelib.constants import DEGREES
+from extention.utils.constants import DEFAULT_POINTWISE_FUNCTION_RUN_TIME
+from extention.utils.constants import DEGREES
 from corelib.mobject.mobject import Group
 
 class ReplacementTransform(Transform):

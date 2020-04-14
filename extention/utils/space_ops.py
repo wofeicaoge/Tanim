@@ -2,10 +2,10 @@ from functools import reduce
 
 import numpy as np
 
-from corelib.constants import OUT
-from corelib.constants import PI
-from corelib.constants import RIGHT
-from corelib.constants import TAU
+from extention.utils.constants import OUT
+from extention.utils.constants import PI
+from extention.utils.constants import RIGHT
+from extention.utils.constants import TAU
 from extention.utils.iterables import adjacent_pairs
 from extention.utils.simple_functions import fdiv
 

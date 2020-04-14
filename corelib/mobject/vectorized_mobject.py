@@ -3,7 +3,7 @@ import sys
 
 from colour import Color
 
-from corelib.constants import *
+from extention.utils.constants import *
 from corelib.mobject.mobject import Mobject, Group
 from extention.utils.three_d_utils import get_3d_vmob_gradient_start_and_end_points
 from extention.utils.bezier import bezier

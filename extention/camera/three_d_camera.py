@@ -1,5 +1,5 @@
 from corelib.camera.camera import Camera
-from corelib.constants import *
+from extention.utils.constants import *
 from extention.utils.three_d_utils import get_3d_vmob_end_corner
 from extention.utils.three_d_utils import get_3d_vmob_end_corner_unit_normal
 from extention.utils.three_d_utils import get_3d_vmob_start_corner
