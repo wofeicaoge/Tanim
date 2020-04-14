@@ -8,18 +8,7 @@ TEX_DIR = ""
 TEXT_DIR = ""
 ASSETS_DIR = os.path.join("./media", "assets")
 
-NOT_SETTING_FONT_MSG = '''
-Warning:
-You haven't set font.
-If you are not using English, this may cause text rendering problem.
-You set font like:
-text = Text('your text', font='your font')
-or:
-class MyText(Text):
-    CONFIG = {
-        'font': 'My Font'
-    }
-'''
+
 START_X = 30
 START_Y = 20
 NORMAL = 'NORMAL'
@@ -29,36 +18,6 @@ BOLD = 'BOLD'
 
 TEX_USE_CTEX = False
 TEX_TEXT_TO_REPLACE = "YourTextHere"
-
-HELP_MESSAGE = """
-   Usage:
-   python extract_scene.py <module> [<scene name>]
-   -p preview in low quality
-   -s show and save picture of last frame
-   -w write result to file [this is default if nothing else is stated]
-   -o <file_name> write to a different file_name
-   -l use low quality
-   -m use medium quality
-   -a run and save every scene in the script, or all args for the given scene
-   -q don't print progress
-   -f when writing to a movie file, export the frames in png sequence
-   -t use transperency when exporting images
-   -n specify the number of the animation to start from
-   -r specify a resolution
-   -c specify a background color
-"""
-SCENE_NOT_FOUND_MESSAGE = """
-   {} is not in the script
-"""
-CHOOSE_NUMBER_MESSAGE = """
-Choose number corresponding to desired scene/arguments.
-(Use comma separated list for multiple entries)
-Choice(s): """
-INVALID_NUMBER_MESSAGE = "Fine then, if you don't want to give a valid number I'll just quit"
-
-NO_SCENE_MESSAGE = """
-   There are no scenes inside that module
-"""
 
 # There might be other configuration than pixel shape later...
 PRODUCTION_QUALITY_CAMERA_CONFIG = {
@@ -204,6 +163,50 @@ PALETTE = list(COLOR_MAP.values())
 locals().update(COLOR_MAP)
 for name in [s for s in list(COLOR_MAP.keys()) if s.endswith("_C")]:
     locals()[name.replace("_C", "")] = locals()[name]
+
+NOT_SETTING_FONT_MSG = '''
+Warning:
+You haven't set font.
+If you are not using English, this may cause text rendering problem.
+You set font like:
+text = Text('your text', font='your font')
+or:
+class MyText(Text):
+    CONFIG = {
+        'font': 'My Font'
+    }
+'''
+
+HELP_MESSAGE = """
+   Usage:
+   python extract_scene.py <module> [<scene name>]
+   -p preview in low quality
+   -s show and save picture of last frame
+   -w write result to file [this is default if nothing else is stated]
+   -o <file_name> write to a different file_name
+   -l use low quality
+   -m use medium quality
+   -a run and save every scene in the script, or all args for the given scene
+   -q don't print progress
+   -f when writing to a movie file, export the frames in png sequence
+   -t use transperency when exporting images
+   -n specify the number of the animation to start from
+   -r specify a resolution
+   -c specify a background color
+"""
+SCENE_NOT_FOUND_MESSAGE = """
+   {} is not in the script
+"""
+CHOOSE_NUMBER_MESSAGE = """
+Choose number corresponding to desired scene/arguments.
+(Use comma separated list for multiple entries)
+Choice(s): """
+
+INVALID_NUMBER_MESSAGE = "Fine then, if you don't want to give a valid number I'll just quit"
+
+NO_SCENE_MESSAGE = """
+   There are no scenes inside that module
+"""
 
 # Streaming related configuration
 LIVE_STREAM_NAME = "LiveStream"
