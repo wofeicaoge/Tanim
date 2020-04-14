@@ -18,6 +18,12 @@ from corelib.constants import *
 
 from corelib.config import *
 
+from corelib.animation.animation import *
+from corelib.animation.creation import *
+from corelib.animation.transform import *
+from corelib.animation.movement import *
+from corelib.animation.rotation import *
+from corelib.animation.update import *
 from extention.animation.animation_group import *
 from extention.animation.creation import *
 from extention.animation.transform import *
@@ -27,18 +33,11 @@ from extention.animation.growing import *
 from extention.animation.indication import *
 from extention.animation.numbers import *
 from extention.animation.movement import *
+
+from corelib.camera.camera import *
 from extention.camera.mapping_camera import *
 from extention.camera.moving_camera import *
 from extention.camera.three_d_camera import *
-
-from corelib.animation.animation import *
-from corelib.animation.creation import *
-from corelib.animation.transform import *
-from corelib.animation.movement import *
-from corelib.animation.rotation import *
-from corelib.animation.update import *
-
-from corelib.camera.camera import *
 
 from corelib.mobject.coordinate_systems import *
 from corelib.mobject.changing import *
@@ -65,15 +64,15 @@ from corelib.mobject.mobject_update_utils import *
 from corelib.mobject.value_tracker import *
 from corelib.mobject.vector_field import *
 
-from corelib.scene.graph_scene import *
-from corelib.scene.moving_camera_scene import *
-from corelib.scene.reconfigurable_scene import *
 from corelib.scene.scene import *
-from corelib.scene.sample_space_scene import *
-from corelib.scene.graph_scene import *
-from corelib.scene.three_d_scene import *
-from corelib.scene.vector_space_scene import *
-from corelib.scene.zoomed_scene import *
+from extention.scene.graph_scene import *
+from extention.scene.moving_camera_scene import *
+from extention.scene.reconfigurable_scene import *
+from extention.scene.sample_space_scene import *
+from extention.scene.graph_scene import *
+from extention.scene.three_d_scene import *
+from extention.scene.vector_space_scene import *
+from extention.scene.zoomed_scene import *
 
 from corelib.utils.bezier import *
 from corelib.utils.color import *
