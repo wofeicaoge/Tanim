@@ -11,9 +11,9 @@ from extention.mobject.geometry import Rectangle
 from extention.mobject.geometry import RoundedRectangle
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.color import *
-from corelib.utils.config_ops import digest_config
-from corelib.utils.config_ops import digest_locals
+from extention.utils.color import *
+from extention.utils.config_ops import digest_config
+from extention.utils.config_ops import digest_locals
 
 
 def string_to_numbers(num_string):

@@ -7,10 +7,10 @@ from extention.mobject.geometry import Line
 from extention.mobject.shape_matchers import SurroundingRectangle
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.bezier import interpolate
-from corelib.utils.config_ops import digest_config
-from corelib.utils.rate_functions import there_and_back
-from corelib.utils.rate_functions import wiggle
+from extention.utils.bezier import interpolate
+from extention.utils.config_ops import digest_config
+from extention.utils.rate_functions import there_and_back
+from extention.utils.rate_functions import wiggle
 
 from extention.animation.animation_group import Succession
 from extention.animation.animation_group import AnimationGroup

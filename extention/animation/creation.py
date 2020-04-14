@@ -6,11 +6,11 @@ from corelib.animation.animation import Animation
 from corelib.animation.creation import ShowCreation
 from corelib.mobject.mobject import Group
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.bezier import integer_interpolate
-from corelib.utils.config_ops import digest_config
-from corelib.utils.rate_functions import double_smooth
-from corelib.utils.rate_functions import linear
-from corelib.utils.rate_functions import smooth
+from extention.utils.bezier import integer_interpolate
+from extention.utils.config_ops import digest_config
+from extention.utils.rate_functions import double_smooth
+from extention.utils.rate_functions import linear
+from extention.utils.rate_functions import smooth
 from extention.animation.animation_group import Succession
 
 

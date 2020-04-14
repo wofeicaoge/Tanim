@@ -7,8 +7,8 @@ import sys
 import traceback
 
 from corelib.scene.scene import Scene
-from corelib.utils.sounds import play_error_sound
-from corelib.utils.sounds import play_finish_sound
+from extention.utils.sounds import play_error_sound
+from extention.utils.sounds import play_finish_sound
 import corelib.constants
 
 

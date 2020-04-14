@@ -5,9 +5,9 @@ import numpy as np
 
 from corelib.constants import PALETTE
 from corelib.constants import WHITE
-from corelib.utils.bezier import interpolate
-from corelib.utils.simple_functions import clip_in_place
-from corelib.utils.space_ops import normalize
+from extention.utils.bezier import interpolate
+from extention.utils.simple_functions import clip_in_place
+from extention.utils.space_ops import normalize
 
 
 def color_to_rgb(color):

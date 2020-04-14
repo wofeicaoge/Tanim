@@ -13,14 +13,14 @@ from corelib.mobject.image_mobject import AbstractImageMobject
 from corelib.mobject.mobject import Mobject
 from corelib.mobject.point_cloud_mobject import PMobject
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.color import color_to_int_rgba
-from corelib.utils.config_ops import digest_config
-from corelib.utils.images import get_full_raster_image_path
-from corelib.utils.iterables import batch_by_property
-from corelib.utils.iterables import list_difference_update
-from corelib.utils.simple_functions import fdiv
-from corelib.utils.space_ops import angle_of_vector
-from corelib.utils.space_ops import get_norm
+from extention.utils.color import color_to_int_rgba
+from extention.utils.config_ops import digest_config
+from extention.utils.images import get_full_raster_image_path
+from extention.utils.iterables import batch_by_property
+from extention.utils.iterables import list_difference_update
+from extention.utils.simple_functions import fdiv
+from extention.utils.space_ops import angle_of_vector
+from extention.utils.space_ops import get_norm
 
 
 class Camera(object):

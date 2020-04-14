@@ -1,12 +1,12 @@
 from corelib.constants import *
 from corelib.mobject.mobject import Mobject, GroupContainer
-from corelib.utils.bezier import interpolate
-from corelib.utils.color import color_gradient
-from corelib.utils.color import color_to_rgba
-from corelib.utils.color import rgba_to_color
-from corelib.utils.config_ops import digest_config
-from corelib.utils.iterables import stretch_array_to_length
-from corelib.utils.space_ops import get_norm
+from extention.utils.bezier import interpolate
+from extention.utils.color import color_gradient
+from extention.utils.color import color_to_rgba
+from extention.utils.color import rgba_to_color
+from extention.utils.config_ops import digest_config
+from extention.utils.iterables import stretch_array_to_length
+from extention.utils.space_ops import get_norm
 
 
 class PMobject(Mobject):

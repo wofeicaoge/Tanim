@@ -1,5 +1,5 @@
 import os
-from corelib.utils.file_ops import seek_full_path_from_defaults
+from extention.utils.file_ops import seek_full_path_from_defaults
 from corelib.constants import ASSETS_DIR
 
 

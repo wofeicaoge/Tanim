@@ -1,7 +1,7 @@
 from scipy import linalg
 import numpy as np
 
-from corelib.utils.simple_functions import choose
+from extention.utils.simple_functions import choose
 
 CLOSED_THRESHOLD = 0.001
 

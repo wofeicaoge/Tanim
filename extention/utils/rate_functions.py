@@ -1,7 +1,7 @@
 import numpy as np
 
-from corelib.utils.bezier import bezier
-from corelib.utils.simple_functions import sigmoid
+from extention.utils.bezier import bezier
+from extention.utils.simple_functions import sigmoid
 
 
 def linear(t):

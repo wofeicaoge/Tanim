@@ -5,8 +5,8 @@ from extention.animation.growing import GrowFromCenter
 from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.config_ops import digest_config
-from corelib.utils.space_ops import get_norm
+from extention.utils.config_ops import digest_config
+from extention.utils.space_ops import get_norm
 
 
 class Brace(TexMobject):

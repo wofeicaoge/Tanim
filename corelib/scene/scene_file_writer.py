@@ -12,10 +12,10 @@ from corelib.constants import FFMPEG_BIN
 from corelib.constants import STREAMING_IP
 from corelib.constants import STREAMING_PORT
 from corelib.constants import STREAMING_PROTOCOL
-from corelib.utils.config_ops import digest_config
-from corelib.utils.file_ops import add_extension_if_not_present
-from corelib.utils.file_ops import guarantee_existence
-from corelib.utils.sounds import get_full_sound_file_path
+from extention.utils.config_ops import digest_config
+from extention.utils.file_ops import add_extension_if_not_present
+from extention.utils.file_ops import guarantee_existence
+from extention.utils.sounds import get_full_sound_file_path
 
 
 def print_file_ready_message(file_path):

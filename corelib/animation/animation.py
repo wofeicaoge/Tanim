@@ -2,8 +2,8 @@ from copy import deepcopy
 import numpy as np
 
 from corelib.mobject.mobject import Mobject
-from corelib.utils.config_ops import digest_config
-from corelib.utils.rate_functions import smooth
+from extention.utils.config_ops import digest_config
+from extention.utils.rate_functions import smooth
 
 
 DEFAULT_ANIMATION_RUN_TIME = 1.0

@@ -5,8 +5,8 @@ from corelib.constants import BLACK
 from extention.mobject.geometry import Circle
 from extention.mobject.svg.drawings import Car
 from corelib.mobject.vectorized_mobject import VGroup
-from corelib.utils.config_ops import digest_config
-from corelib.utils.space_ops import get_norm
+from extention.utils.config_ops import digest_config
+from extention.utils.space_ops import get_norm
 
 from extention.animation.transform import ApplyMethod
 from extention.animation.transform import Restore

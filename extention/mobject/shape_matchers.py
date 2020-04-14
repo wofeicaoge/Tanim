@@ -3,8 +3,8 @@ from extention.mobject.geometry import Line
 from extention.mobject.geometry import Rectangle
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.color import Color
-from corelib.utils.config_ops import digest_config
+from extention.utils.color import Color
+from extention.utils.config_ops import digest_config
 
 
 class SurroundingRectangle(Rectangle):

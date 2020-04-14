@@ -12,10 +12,10 @@ from extention.mobject.svg.tex_mobject import TextMobject
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VectorizedPoint
 from corelib.scene.scene import Scene
-from corelib.utils.bezier import interpolate
-from corelib.utils.color import color_gradient
-from corelib.utils.color import invert_color
-from corelib.utils.space_ops import angle_of_vector
+from extention.utils.bezier import interpolate
+from extention.utils.color import color_gradient
+from extention.utils.color import invert_color
+from extention.utils.space_ops import angle_of_vector
 
 from extention.animation.update import UpdateFromAlphaFunc
 from extention.animation.creation import Write, DrawBorderThenFill, ShowCreation

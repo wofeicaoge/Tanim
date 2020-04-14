@@ -1,6 +1,6 @@
 from corelib.constants import *
 from extention.mobject.geometry import Rectangle
-from corelib.utils.config_ops import digest_config
+from extention.utils.config_ops import digest_config
 
 
 class ScreenRectangle(Rectangle):

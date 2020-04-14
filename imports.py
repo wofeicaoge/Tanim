@@ -58,9 +58,7 @@ from extention.mobject.svg.drawings import *
 from extention.mobject.svg.svg_mobject import *
 from extention.mobject.svg.tex_mobject import *
 from extention.mobject.svg.text_mobject import *
-from extention.mobject.three_d_utils import *
 from extention.mobject.three_dimensions import *
-from extention.mobject.mobject_update_utils import *
 from extention.mobject.value_tracker import *
 from extention.mobject.vector_field import *
 
@@ -74,19 +72,22 @@ from extention.scene.three_d_scene import *
 from extention.scene.vector_space_scene import *
 from extention.scene.zoomed_scene import *
 
-from corelib.utils.bezier import *
-from corelib.utils.color import *
-from corelib.utils.config_ops import *
-from corelib.utils.debug import *
-from corelib.utils.images import *
-from corelib.utils.iterables import *
-from corelib.utils.file_ops import *
-from corelib.utils.paths import *
-from corelib.utils.rate_functions import *
-from corelib.utils.simple_functions import *
-from corelib.utils.sounds import *
-from corelib.utils.space_ops import *
-from corelib.utils.strings import *
+from extention.utils.bezier import *
+from extention.utils.color import *
+from extention.utils.config_ops import *
+from extention.utils.debug import *
+from extention.utils.images import *
+from extention.utils.iterables import *
+from extention.utils.file_ops import *
+from extention.utils.paths import *
+from extention.utils.rate_functions import *
+from extention.utils.simple_functions import *
+from extention.utils.sounds import *
+from extention.utils.space_ops import *
+from extention.utils.strings import *
+from extention.utils.three_d_utils import *
+from extention.utils.mobject_update_utils import *
+
 
 # Non tanim libraries that are also nice to have without thinking
 

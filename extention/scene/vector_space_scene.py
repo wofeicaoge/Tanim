@@ -15,8 +15,8 @@ from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.scene.scene import Scene
-from corelib.utils.space_ops import angle_of_vector
-from corelib.utils.space_ops import get_norm
+from extention.utils.space_ops import angle_of_vector
+from extention.utils.space_ops import get_norm
 
 from extention.animation.creation import ShowCreation
 from extention.animation.creation import Write

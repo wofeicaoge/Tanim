@@ -3,7 +3,7 @@ from corelib.animation.transform import Transform
 from corelib.constants import OUT
 from corelib.constants import PI
 from corelib.constants import TAU
-from corelib.utils.rate_functions import linear
+from extention.utils.rate_functions import linear
 
 
 class Rotating(Animation):

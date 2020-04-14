@@ -5,7 +5,7 @@ import cairo
 import corelib.constants as consts
 from corelib.constants import *
 from extention.mobject.svg.svg_mobject import SVGMobject
-from corelib.utils.config_ops import digest_config
+from extention.utils.config_ops import digest_config
 
 
 class TextSetting(object):

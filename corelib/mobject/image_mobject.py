@@ -3,10 +3,10 @@ from PIL import Image
 from corelib.constants import *
 from corelib.mobject.mobject import Mobject
 from extention.mobject.shape_matchers import SurroundingRectangle
-from corelib.utils.bezier import interpolate
-from corelib.utils.color import color_to_int_rgb
-from corelib.utils.config_ops import digest_config
-from corelib.utils.images import get_full_raster_image_path
+from extention.utils.bezier import interpolate
+from extention.utils.color import color_to_int_rgb
+from extention.utils.config_ops import digest_config
+from extention.utils.images import get_full_raster_image_path
 
 
 class AbstractImageMobject(Mobject):

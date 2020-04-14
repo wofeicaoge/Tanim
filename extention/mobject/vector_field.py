@@ -9,14 +9,14 @@ from extention.animation.indication import ShowPassingFlash
 from extention.mobject.geometry import Vector
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.bezier import inverse_interpolate
-from corelib.utils.bezier import interpolate
-from corelib.utils.color import color_to_rgb
-from corelib.utils.color import rgb_to_color
-from corelib.utils.config_ops import digest_config
-from corelib.utils.rate_functions import linear
-from corelib.utils.simple_functions import sigmoid
-from corelib.utils.space_ops import get_norm
+from extention.utils.bezier import inverse_interpolate
+from extention.utils.bezier import interpolate
+from extention.utils.color import color_to_rgb
+from extention.utils.color import rgb_to_color
+from extention.utils.config_ops import digest_config
+from extention.utils.rate_functions import linear
+from extention.utils.simple_functions import sigmoid
+from extention.utils.space_ops import get_norm
 
 
 DEFAULT_SCALAR_FIELD_COLORS = [BLUE_E, GREEN, YELLOW, RED]

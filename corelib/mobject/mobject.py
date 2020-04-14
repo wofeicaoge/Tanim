@@ -10,14 +10,14 @@ from colour import Color
 import corelib.constants as consts
 from corelib.constants import *
 from corelib.container.container import *
-from corelib.utils.color import color_gradient
-from corelib.utils.color import interpolate_color
-from corelib.utils.iterables import list_update
-from corelib.utils.iterables import remove_list_redundancies
-from corelib.utils.paths import straight_path
-from corelib.utils.simple_functions import get_parameters
-from corelib.utils.space_ops import get_norm
-from corelib.utils.space_ops import rotation_matrix
+from extention.utils.color import color_gradient
+from extention.utils.color import interpolate_color
+from extention.utils.iterables import list_update
+from extention.utils.iterables import remove_list_redundancies
+from extention.utils.paths import straight_path
+from extention.utils.simple_functions import get_parameters
+from extention.utils.space_ops import get_norm
+from extention.utils.space_ops import rotation_matrix
 
 
 # TODO: Explain array_attrs

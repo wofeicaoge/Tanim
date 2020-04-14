@@ -5,7 +5,7 @@ from corelib.constants import ORIGIN
 from corelib.constants import WHITE
 from extention.mobject.frame import ScreenRectangle
 from corelib.mobject.vectorized_mobject import VGroup
-from corelib.utils.config_ops import digest_config
+from extention.utils.config_ops import digest_config
 
 
 # TODO, think about how to incorporate perspective

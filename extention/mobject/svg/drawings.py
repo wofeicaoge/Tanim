@@ -19,12 +19,12 @@ from extention.mobject.three_dimensions import Cube
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VMobject
 from corelib.mobject.vectorized_mobject import VectorizedPoint
-from corelib.utils.bezier import interpolate
-from corelib.utils.config_ops import digest_config
-from corelib.utils.rate_functions import linear
-from corelib.utils.space_ops import angle_of_vector
-from corelib.utils.space_ops import complex_to_R3
-from corelib.utils.space_ops import rotate_vector
+from extention.utils.bezier import interpolate
+from extention.utils.config_ops import digest_config
+from extention.utils.rate_functions import linear
+from extention.utils.space_ops import angle_of_vector
+from extention.utils.space_ops import complex_to_R3
+from extention.utils.space_ops import rotate_vector
 
 
 class Lightbulb(SVGMobject):

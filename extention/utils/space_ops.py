@@ -6,8 +6,8 @@ from corelib.constants import OUT
 from corelib.constants import PI
 from corelib.constants import RIGHT
 from corelib.constants import TAU
-from corelib.utils.iterables import adjacent_pairs
-from corelib.utils.simple_functions import fdiv
+from extention.utils.iterables import adjacent_pairs
+from extention.utils.simple_functions import fdiv
 
 
 def get_norm(vect):

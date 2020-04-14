@@ -6,8 +6,8 @@ from extention.mobject.svg.brace import Brace
 from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
 from corelib.mobject.vectorized_mobject import VGroup
-from corelib.utils.color import color_gradient
-from corelib.utils.iterables import tuplify
+from extention.utils.color import color_gradient
+from extention.utils.iterables import tuplify
 
 EPSILON = 0.0001
 

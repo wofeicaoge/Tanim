@@ -1,6 +1,6 @@
 from corelib.constants import *
 from corelib.mobject.vectorized_mobject import VMobject
-from corelib.utils.config_ops import digest_config
+from extention.utils.config_ops import digest_config
 import math
 
 

@@ -7,8 +7,8 @@ from extention.mobject.three_dimensions import Sphere
 from corelib.mobject.vectorized_mobject import VGroup
 from corelib.mobject.vectorized_mobject import VectorizedPoint
 from corelib.scene.scene import Scene
-from corelib.utils.config_ops import digest_config
-from corelib.utils.config_ops import merge_dicts_recursively
+from extention.utils.config_ops import digest_config
+from extention.utils.config_ops import merge_dicts_recursively
 
 from extention.animation.transform import ApplyMethod
 

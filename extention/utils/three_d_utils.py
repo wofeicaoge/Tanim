@@ -1,7 +1,9 @@
 import numpy as np
 
 from corelib.constants import ORIGIN
-from corelib.utils.space_ops import get_unit_normal
+from corelib.constants import UP
+from extention.utils.space_ops import get_norm
+from extention.utils.space_ops import get_unit_normal
 
 
 def get_3d_vmob_gradient_start_and_end_points(vmob):
@@ -33,15 +35,18 @@ def get_3d_vmob_end_corner(vmob):
 
 def get_3d_vmob_unit_normal(vmob, point_index):
     n_points = vmob.get_num_points()
-    if vmob.get_num_points() == 0:
-        return np.array(ORIGIN)
+    if len(vmob.get_anchors()) <= 2:
+        return np.array(UP)
     i = point_index
-    im1 = i - 1 if i > 0 else (n_points - 2)
-    ip1 = i + 1 if i < (n_points - 1) else 1
-    return get_unit_normal(
-        vmob.points[ip1] - vmob.points[i],
-        vmob.points[im1] - vmob.points[i],
+    im3 = i - 3 if i > 2 else (n_points - 4)
+    ip3 = i + 3 if i < (n_points - 3) else 3
+    unit_normal = get_unit_normal(
+        vmob.points[ip3] - vmob.points[i],
+        vmob.points[im3] - vmob.points[i],
     )
+    if get_norm(unit_normal) == 0:
+        return np.array(UP)
+    return unit_normal
 
 
 def get_3d_vmob_start_corner_unit_normal(vmob):
