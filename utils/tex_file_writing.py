@@ -6,6 +6,20 @@ from utils.constants import TEX_USE_CTEX
 import utils.constants as consts
 
 
+def init_tex_template(is_text=False):
+    template_tex_file = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
+        "tex_template.tex" if not TEX_USE_CTEX else "ctex_template.tex"
+    )
+    with open(template_tex_file, "r") as infile:
+        template_text_body = infile.read()
+        template_tex_body = template_text_body.replace(
+            TEX_TEXT_TO_REPLACE,
+            "\\begin{align*}\n" + TEX_TEXT_TO_REPLACE + "\n\\end{align*}",
+        )
+    return template_text_body if is_text else template_tex_body
+
+
 def tex_hash(expression, template_tex_file_body):
     id_str = str(expression + template_tex_file_body)
     hasher = hashlib.sha256()
@@ -63,7 +77,7 @@ def tex_to_dvi(tex_file):
             log_file = tex_file.replace(".tex", ".log")
             raise Exception(
                 ("Latex error converting to dvi. " if not TEX_USE_CTEX
-                else "Xelatex error converting to xdv. ") +
+                 else "Xelatex error converting to xdv. ") +
                 "See log output above or the log file: %s" % log_file)
     return result
 
