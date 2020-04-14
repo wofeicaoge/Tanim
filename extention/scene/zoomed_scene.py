@@ -2,7 +2,7 @@ from extention.camera.moving_camera import MovingCamera
 from extention.camera.multi_camera import MultiCamera
 from corelib.constants import *
 from corelib.mobject.types.image_mobject import ImageMobjectFromCamera
-from corelib.scene.moving_camera_scene import MovingCameraScene
+from extention.scene.moving_camera_scene import MovingCameraScene
 from corelib.utils.simple_functions import fdiv
 
 from extention.animation.transform import ApplyMethod
