@@ -16,5 +16,6 @@ dependencies:
   - pydub==0.23.0
   - ffmpeg
   - sympy
+  - pytest
   - pip:
     - pyreadline
