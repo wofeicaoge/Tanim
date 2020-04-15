@@ -3,7 +3,7 @@ import inspect
 import numpy as np
 
 from corelib.animation.transform import Transform
-from corelib.mobject.mobject import Group
+from corelib.mobject.mobject import Group, Mobject
 
 from utils.constants import DEFAULT_POINTWISE_FUNCTION_RUN_TIME
 from utils.constants import DEGREES
