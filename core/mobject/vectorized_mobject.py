@@ -18,7 +18,7 @@ from utils.simple_functions import clip_in_place
 from utils.space_ops import get_norm
 from utils.space_ops import rotate_vector
 
-from corelib.mobject.mobject import Mobject, Group
+from core.mobject.mobject import Mobject, Group
 
 
 # TODO

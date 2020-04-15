@@ -7,8 +7,8 @@ from utils.constants import *
 from extention.mobject.geometry import Line
 from extention.mobject.svg.svg_mobject import SVGMobject
 from extention.mobject.svg.svg_mobject import VMobjectFromSVGPathstring
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VectorizedPoint
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VectorizedPoint
 from utils.config_ops import digest_config
 from utils.strings import split_string_list_to_isolate_substrings
 from utils.tex_file_writing import tex_to_svg_file, init_tex_template

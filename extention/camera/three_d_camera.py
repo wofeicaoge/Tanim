@@ -7,8 +7,8 @@ from utils.color import get_shaded_rgb
 from utils.space_ops import rotation_about_z
 from utils.space_ops import rotation_matrix
 
-from corelib.camera.camera import Camera
-from corelib.mobject.point_cloud_mobject import Point
+from core.camera.camera import Camera
+from core.mobject.point_cloud_mobject import Point
 
 from extention.mobject.value_tracker import ValueTracker
 

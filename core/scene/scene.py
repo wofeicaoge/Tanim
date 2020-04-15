@@ -9,11 +9,11 @@ from tqdm import tqdm as ProgressDisplay
 
 from utils.constants import *
 
-from corelib.animation.animation import Animation
-from corelib.camera.camera import Camera
-from corelib.container.container import Container
-from corelib.mobject.mobject import Mobject
-from corelib.scene.scene_file_writer import SceneFileWriter
+from core.animation.animation import Animation
+from core.camera.camera import Camera
+from core.container.container import Container
+from core.mobject.mobject import Mobject
+from core.scene.scene_file_writer import SceneFileWriter
 
 from extention.animation.creation import Write
 from extention.mobject.svg.tex_mobject import TextMobject

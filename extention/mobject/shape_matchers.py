@@ -3,8 +3,8 @@ from utils.color import Color
 from utils.constants import *
 from utils.config_ops import digest_config
 
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
 
 from extention.mobject.geometry import Line
 from extention.mobject.geometry import Rectangle

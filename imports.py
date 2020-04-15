@@ -18,12 +18,12 @@ from utils.constants import *
 
 from utils.config import *
 
-from corelib.animation.animation import *
-from corelib.animation.creation import *
-from corelib.animation.transform import *
-from corelib.animation.movement import *
-from corelib.animation.rotation import *
-from corelib.animation.update import *
+from core.animation.animation import *
+from core.animation.creation import *
+from core.animation.transform import *
+from core.animation.movement import *
+from core.animation.rotation import *
+from core.animation.update import *
 from extention.animation.animation_group import *
 from extention.animation.creation import *
 from extention.animation.transform import *
@@ -34,15 +34,15 @@ from extention.animation.indication import *
 from extention.animation.numbers import *
 from extention.animation.movement import *
 
-from corelib.camera.camera import *
+from core.camera.camera import *
 from extention.camera.mapping_camera import *
 from extention.camera.moving_camera import *
 from extention.camera.three_d_camera import *
 
-from corelib.mobject.mobject import *
-from corelib.mobject.image_mobject import *
-from corelib.mobject.point_cloud_mobject import *
-from corelib.mobject.vectorized_mobject import *
+from core.mobject.mobject import *
+from core.mobject.image_mobject import *
+from core.mobject.point_cloud_mobject import *
+from core.mobject.vectorized_mobject import *
 from extention.mobject.coordinate_systems import *
 from extention.mobject.changing import *
 from extention.mobject.frame import *
@@ -62,7 +62,7 @@ from extention.mobject.three_dimensions import *
 from extention.mobject.value_tracker import *
 from extention.mobject.vector_field import *
 
-from corelib.scene.scene import *
+from core.scene.scene import *
 from extention.scene.graph_scene import *
 from extention.scene.moving_camera_scene import *
 from extention.scene.reconfigurable_scene import *

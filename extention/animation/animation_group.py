@@ -6,8 +6,8 @@ from utils.iterables import remove_list_redundancies
 from utils.rate_functions import linear
 from utils.bezier import integer_interpolate
 
-from corelib.animation.animation import Animation
-from corelib.mobject.mobject import Group
+from core.animation.animation import Animation
+from core.mobject.mobject import Group
 
 DEFAULT_LAGGED_START_LAG_RATIO = 0.05
 

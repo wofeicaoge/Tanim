@@ -4,11 +4,11 @@ from utils.constants import *
 from utils.space_ops import angle_of_vector
 from utils.space_ops import get_norm
 
-from corelib.animation.animation import Animation
-from corelib.animation.transform import Transform
-from corelib.mobject.mobject import Mobject
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.scene.scene import Scene
+from core.animation.animation import Animation
+from core.animation.transform import Transform
+from core.mobject.mobject import Mobject
+from core.mobject.vectorized_mobject import VGroup
+from core.scene.scene import Scene
 
 from extention.mobject.coordinate_systems import Axes
 from extention.mobject.coordinate_systems import NumberPlane

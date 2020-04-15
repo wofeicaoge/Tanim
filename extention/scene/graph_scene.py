@@ -8,10 +8,10 @@ from utils.color import color_gradient
 from utils.color import invert_color
 from utils.space_ops import angle_of_vector
 
-from corelib.animation.transform import Transform
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VectorizedPoint
-from corelib.scene.scene import Scene
+from core.animation.transform import Transform
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VectorizedPoint
+from core.scene.scene import Scene
 
 from extention.mobject.functions import ParametricFunction
 from extention.mobject.geometry import Line

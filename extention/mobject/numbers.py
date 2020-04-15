@@ -1,6 +1,6 @@
 from utils.constants import *
 
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VMobject
 
 from extention.mobject.svg.tex_mobject import SingleStringTexMobject
 

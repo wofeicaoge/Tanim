@@ -3,9 +3,9 @@ from utils.constants import PRODUCTION_QUALITY_CAMERA_CONFIG
 from utils.config_ops import digest_config
 from utils.config_ops import merge_dicts_recursively
 
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VectorizedPoint
-from corelib.scene.scene import Scene
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VectorizedPoint
+from core.scene.scene import Scene
 
 from extention.camera.three_d_camera import ThreeDCamera
 from extention.mobject.coordinate_systems import ThreeDAxes

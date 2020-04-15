@@ -1,6 +1,6 @@
-from corelib.animation.transform import Transform
-from corelib.mobject.mobject import Mobject
-from corelib.scene.scene import Scene
+from core.animation.transform import Transform
+from core.mobject.mobject import Mobject
+from core.scene.scene import Scene
 
 
 class ReconfigurableScene(Scene):

@@ -5,7 +5,7 @@ from utils.color import Color
 from utils.constants import *
 from utils.config_ops import digest_config
 
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VMobject
 
 
 class ParametricFunction(VMobject):

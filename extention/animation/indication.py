@@ -6,10 +6,10 @@ from utils.config_ops import digest_config
 from utils.rate_functions import there_and_back
 from utils.rate_functions import wiggle
 
-from corelib.animation.animation import Animation
-from corelib.animation.transform import Transform
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
+from core.animation.animation import Animation
+from core.animation.transform import Transform
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
 
 from extention.mobject.geometry import Circle
 from extention.mobject.geometry import Dot

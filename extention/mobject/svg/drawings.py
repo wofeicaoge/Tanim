@@ -11,12 +11,12 @@ from utils.space_ops import angle_of_vector
 from utils.space_ops import complex_to_R3
 from utils.space_ops import rotate_vector
 
-from corelib.animation.animation import Animation
-from corelib.animation.rotation import Rotating
-from corelib.mobject.mobject import Mobject
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
-from corelib.mobject.vectorized_mobject import VectorizedPoint
+from core.animation.animation import Animation
+from core.animation.rotation import Rotating
+from core.mobject.mobject import Mobject
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VectorizedPoint
 from extention.mobject.svg.svg_mobject import SVGMobject
 from extention.mobject.svg.tex_mobject import TexMobject
 from extention.mobject.svg.tex_mobject import TextMobject
@@ -563,7 +563,7 @@ class Car(SVGMobject):
         self.set_stroke(color=Color('WHITE'), width=0)
         self.set_fill(self.color, opacity=1)
 
-        from corelib.for_3b1b_videos.pi_creature import Randolph
+        from core.for_3b1b_videos.pi_creature import Randolph
         randy = Randolph(mode="happy")
         randy.set_height(0.6 * self.get_height())
         randy.stretch(0.8, 0)
@@ -997,7 +997,7 @@ class PlayingCard(VGroup):
         return design
 
     def get_face_card_design(self, value, symbol):
-        from corelib.for_3b1b_videos.pi_creature import PiCreature
+        from core.for_3b1b_videos.pi_creature import PiCreature
         sub_rect = Rectangle(
             stroke_color=Color('BLACK'),
             fill_opacity=0,

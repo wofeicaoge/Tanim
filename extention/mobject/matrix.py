@@ -2,8 +2,8 @@ from utils.color import Color
 
 from utils.constants import *
 
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
 
 from extention.mobject.numbers import DecimalNumber
 from extention.mobject.numbers import Integer

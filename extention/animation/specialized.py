@@ -5,7 +5,7 @@ from utils.color import Color
 from utils.config_ops import digest_config
 from utils.space_ops import get_norm
 
-from corelib.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VGroup
 
 from extention.animation.transform import ApplyMethod
 from extention.animation.transform import Restore

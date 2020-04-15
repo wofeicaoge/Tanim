@@ -7,7 +7,7 @@ from utils.config_ops import merge_dicts_recursively
 from utils.simple_functions import binary_search
 from utils.space_ops import angle_of_vector
 
-from corelib.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VGroup
 
 from extention.mobject.functions import ParametricFunction
 from extention.mobject.geometry import Arrow

@@ -1,6 +1,6 @@
 from utils.rate_functions import linear
 
-from corelib.animation.movement import *
+from core.animation.movement import *
 
 
 class Homotopy(Move):

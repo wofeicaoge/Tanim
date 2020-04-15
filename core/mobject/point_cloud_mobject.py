@@ -9,7 +9,7 @@ from utils.config_ops import digest_config
 from utils.iterables import stretch_array_to_length
 from utils.space_ops import get_norm
 
-from corelib.mobject.mobject import Mobject, GroupContainer
+from core.mobject.mobject import Mobject, GroupContainer
 
 
 class PMobject(Mobject):

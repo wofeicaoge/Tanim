@@ -7,8 +7,7 @@ VIDEO_OUTPUT_DIR = ""
 TEX_DIR = ""
 TEXT_DIR = ""
 ASSETS_DIR = os.path.join("./media", "assets")
-RASTER_IMAGE_DIR=os.path.join(ASSETS_DIR, "raster")
-
+RASTER_IMAGE_DIR = os.path.join(ASSETS_DIR, "raster")
 
 START_X = 30
 START_Y = 20

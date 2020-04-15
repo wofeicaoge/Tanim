@@ -1,4 +1,4 @@
-from corelib.animation.animation import Animation
+from core.animation.animation import Animation
 
 
 class UpdateFromFunc(Animation):

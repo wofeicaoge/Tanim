@@ -13,8 +13,8 @@ from utils.rate_functions import linear
 from utils.simple_functions import sigmoid
 from utils.space_ops import get_norm
 
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
 
 from extention.animation.animation_group import AnimationGroup
 from extention.animation.indication import ShowPassingFlash

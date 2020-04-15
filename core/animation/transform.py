@@ -2,7 +2,7 @@ from utils.constants import OUT
 from utils.paths import path_along_arc
 from utils.paths import straight_path
 
-from corelib.animation.animation import Animation
+from core.animation.animation import Animation
 
 
 class Transform(Animation):

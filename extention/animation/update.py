@@ -1,7 +1,7 @@
 import operator as op
 
-from corelib.animation.animation import Animation
-from corelib.animation.update import UpdateFromFunc
+from core.animation.animation import Animation
+from core.animation.update import UpdateFromFunc
 
 
 class UpdateFromAlphaFunc(UpdateFromFunc):

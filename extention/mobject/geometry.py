@@ -14,10 +14,10 @@ from utils.space_ops import get_norm
 from utils.space_ops import normalize
 from utils.space_ops import rotate_vector
 
-from corelib.mobject.mobject import Mobject
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
-from corelib.mobject.vectorized_mobject import DashedVMobject
+from core.mobject.mobject import Mobject
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import DashedVMobject
 
 
 DEFAULT_DOT_RADIUS = 0.08

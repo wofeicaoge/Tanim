@@ -19,10 +19,10 @@ from utils.simple_functions import fdiv
 from utils.space_ops import angle_of_vector
 from utils.space_ops import get_norm
 
-from corelib.mobject.image_mobject import AbstractImageMobject
-from corelib.mobject.mobject import Mobject
-from corelib.mobject.point_cloud_mobject import PMobject
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.image_mobject import AbstractImageMobject
+from core.mobject.mobject import Mobject
+from core.mobject.point_cloud_mobject import PMobject
+from core.mobject.vectorized_mobject import VMobject
 
 
 class Camera(object):

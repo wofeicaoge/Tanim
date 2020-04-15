@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import corelib
+import core
 
 if __name__ == "__main__":
-    corelib.main()
+    core.main()

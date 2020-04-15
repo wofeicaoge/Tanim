@@ -17,7 +17,7 @@ from utils.simple_functions import get_parameters
 from utils.space_ops import get_norm
 from utils.space_ops import rotation_matrix
 
-from corelib.container.container import *
+from core.container.container import *
 
 
 # TODO: Explain array_attrs
@@ -79,7 +79,7 @@ class Mobject(Container):
 
     def get_image(self, camera=None):
         if camera is None:
-            from corelib.camera.camera import Camera
+            from core.camera.camera import Camera
             camera = Camera()
         camera.capture_mobject(self)
         return camera.get_image()

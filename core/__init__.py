@@ -8,7 +8,7 @@ import utils.extract_scene
 import utils.constants as consts
 from utils.file_ops import initialize_directories
 
-from corelib.scene.scene import Scene
+from core.scene.scene import Scene
 
 
 def main():

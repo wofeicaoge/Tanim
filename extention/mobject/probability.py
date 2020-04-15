@@ -4,8 +4,8 @@ from utils.constants import *
 from utils.color import color_gradient
 from utils.iterables import tuplify
 
-from corelib.mobject.mobject import Mobject
-from corelib.mobject.vectorized_mobject import VGroup
+from core.mobject.mobject import Mobject
+from core.mobject.vectorized_mobject import VGroup
 
 from extention.mobject.geometry import Line
 from extention.mobject.geometry import Rectangle

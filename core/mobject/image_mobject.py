@@ -7,7 +7,7 @@ from utils.color import color_to_int_rgb
 from utils.config_ops import digest_config
 from utils.images import get_full_raster_image_path
 
-from corelib.mobject.mobject import Mobject
+from core.mobject.mobject import Mobject
 
 from extention.mobject.shape_matchers import SurroundingRectangle
 

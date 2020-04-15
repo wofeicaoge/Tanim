@@ -6,7 +6,7 @@ import subprocess as sp
 import sys
 import traceback
 
-from corelib.scene.scene import Scene
+from core.scene.scene import Scene
 from utils.sounds import play_error_sound
 from utils.sounds import play_finish_sound
 import utils.constants

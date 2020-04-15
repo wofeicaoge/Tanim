@@ -3,8 +3,8 @@ import numpy as np
 from utils.config_ops import DictAsObject
 from utils.config_ops import digest_config
 
-from corelib.camera.camera import Camera
-from corelib.mobject.vectorized_mobject import VMobject
+from core.camera.camera import Camera
+from core.mobject.vectorized_mobject import VMobject
 
 # TODO: Add an attribute to mobjects under which they can specify that they should just
 # map their centers but remain otherwise undistorted (useful for labels, etc.)

@@ -5,8 +5,8 @@ from utils.constants import FRAME_WIDTH
 from utils.constants import ORIGIN
 from utils.config_ops import digest_config
 
-from corelib.camera.camera import Camera
-from corelib.mobject.vectorized_mobject import VGroup
+from core.camera.camera import Camera
+from core.mobject.vectorized_mobject import VGroup
 
 from extention.mobject.frame import ScreenRectangle
 

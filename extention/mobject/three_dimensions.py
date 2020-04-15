@@ -4,8 +4,8 @@ from utils.constants import *
 from utils.iterables import tuplify
 from utils.space_ops import z_to_vector
 
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
 
 from extention.mobject.geometry import Square
 

@@ -1,5 +1,5 @@
 from extention.mobject.numbers import Integer
-from corelib.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VGroup
 from utils.color import Color
 
 

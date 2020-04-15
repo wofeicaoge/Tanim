@@ -1,6 +1,6 @@
 import numpy as np
 
-from corelib.mobject.mobject import Mobject
+from core.mobject.mobject import Mobject
 
 
 class ValueTracker(Mobject):

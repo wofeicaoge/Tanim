@@ -3,8 +3,8 @@ from utils.constants import PI
 from utils.constants import TAU
 from utils.rate_functions import linear
 
-from corelib.animation.animation import Animation
-from corelib.animation.transform import Transform
+from core.animation.animation import Animation
+from core.animation.transform import Transform
 
 
 class Rotating(Animation):

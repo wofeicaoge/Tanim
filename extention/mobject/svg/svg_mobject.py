@@ -9,8 +9,8 @@ from utils.constants import *
 from extention.mobject.geometry import Circle
 from extention.mobject.geometry import Rectangle
 from extention.mobject.geometry import RoundedRectangle
-from corelib.mobject.vectorized_mobject import VGroup
-from corelib.mobject.vectorized_mobject import VMobject
+from core.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VMobject
 from utils.color import *
 from utils.config_ops import digest_config
 from utils.config_ops import digest_locals

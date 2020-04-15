@@ -1,7 +1,7 @@
 from utils.constants import *
 from utils.simple_functions import fdiv
 
-from corelib.mobject.image_mobject import ImageMobjectFromCamera
+from core.mobject.image_mobject import ImageMobjectFromCamera
 
 from extention.scene.moving_camera_scene import MovingCameraScene
 from extention.camera.moving_camera import MovingCamera

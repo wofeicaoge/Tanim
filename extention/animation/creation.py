@@ -7,10 +7,10 @@ from utils.rate_functions import double_smooth
 from utils.rate_functions import linear
 from utils.rate_functions import smooth
 
-from corelib.animation.animation import Animation
-from corelib.animation.creation import ShowCreation
-from corelib.mobject.mobject import Group
-from corelib.mobject.vectorized_mobject import VMobject
+from core.animation.animation import Animation
+from core.animation.creation import ShowCreation
+from core.mobject.mobject import Group
+from core.mobject.vectorized_mobject import VMobject
 
 from extention.animation.animation_group import Succession
 

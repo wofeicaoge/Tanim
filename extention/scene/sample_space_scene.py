@@ -1,9 +1,9 @@
 from utils.constants import *
 
-from corelib.animation.animation import Animation
-from corelib.animation.transform import Transform
-from corelib.scene.scene import Scene
-from corelib.mobject.vectorized_mobject import VGroup
+from core.animation.animation import Animation
+from core.animation.transform import Transform
+from core.scene.scene import Scene
+from core.mobject.vectorized_mobject import VGroup
 
 from extention.mobject.probability import SampleSpace
 from extention.animation.transform import MoveToTarget

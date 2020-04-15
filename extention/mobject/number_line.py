@@ -9,7 +9,7 @@ from utils.config_ops import merge_dicts_recursively
 from utils.simple_functions import fdiv
 from utils.space_ops import normalize
 
-from corelib.mobject.vectorized_mobject import VGroup
+from core.mobject.vectorized_mobject import VGroup
 
 from extention.mobject.geometry import Line
 from extention.mobject.numbers import DecimalNumber

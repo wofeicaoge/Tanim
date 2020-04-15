@@ -4,7 +4,7 @@ import numpy as np
 from utils.constants import DEGREES
 from utils.constants import RIGHT
 
-from corelib.mobject.mobject import Mobject
+from core.mobject.mobject import Mobject
 
 
 def assert_is_mobject_method(method):
