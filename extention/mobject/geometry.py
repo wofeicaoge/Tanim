@@ -1,4 +1,5 @@
 import warnings
+from utils.color import Color
 
 from utils.constants import *
 from utils.config_ops import digest_config
@@ -329,7 +330,7 @@ class CurvedDoubleArrow(CurvedArrow):
 
 class Circle(Arc):
     CONFIG = {
-        "color": RED,
+        "color": Color('RED'),
         "close_new_points": True,
         "anchors_span_full_range": False
     }
@@ -364,7 +365,7 @@ class Dot(Circle):
         "radius": DEFAULT_DOT_RADIUS,
         "stroke_width": 0,
         "fill_opacity": 1.0,
-        "color": WHITE
+        "color": Color('WHITE')
     }
 
     def __init__(self, point=ORIGIN, **kwargs):
@@ -397,7 +398,7 @@ class AnnularSector(Arc):
         "start_angle": 0,
         "fill_opacity": 1,
         "stroke_width": 0,
-        "color": WHITE,
+        "color": Color('WHITE'),
     }
 
     def generate_points(self):
@@ -430,7 +431,7 @@ class Annulus(Circle):
         "outer_radius": 2,
         "fill_opacity": 1,
         "stroke_width": 0,
-        "color": WHITE,
+        "color": Color('WHITE'),
         "mark_paths_closed": False,
     }
 
@@ -724,7 +725,7 @@ class CubicBezier(VMobject):
 
 class Polygon(VMobject):
     CONFIG = {
-        "color": BLUE,
+        "color": Color('BLUE'),
     }
 
     def __init__(self, *vertices, **kwargs):
@@ -826,7 +827,7 @@ class ArrowTip(Triangle):
 
 class Rectangle(Polygon):
     CONFIG = {
-        "color": WHITE,
+        "color": Color('WHITE'),
         "height": 2.0,
         "width": 4.0,
         "mark_paths_closed": True,

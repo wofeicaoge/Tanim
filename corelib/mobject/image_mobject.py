@@ -1,4 +1,5 @@
 from PIL import Image
+from utils.color import Color
 
 from utils.constants import *
 from utils.bezier import interpolate
@@ -113,7 +114,7 @@ class ImageMobjectFromCamera(AbstractImageMobject):
     CONFIG = {
         "default_display_frame_config": {
             "stroke_width": 3,
-            "stroke_color": WHITE,
+            "stroke_color": Color('WHITE'),
             "buff": 0,
         }
     }

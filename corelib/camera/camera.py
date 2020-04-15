@@ -7,6 +7,7 @@ import copy
 from PIL import Image
 from scipy.spatial.distance import pdist
 import cairo
+from utils.color import Color
 
 from utils.constants import *
 from utils.color import color_to_int_rgba
@@ -35,7 +36,7 @@ class Camera(object):
         "frame_height": FRAME_HEIGHT,
         "frame_width": FRAME_WIDTH,
         "frame_center": ORIGIN,
-        "background_color": BLACK,
+        "background_color": Color('BLACK'),
         "background_opacity": 1,
         # Points in vectorized mobjects with norm greater
         # than this value will be rescaled.

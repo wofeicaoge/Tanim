@@ -1,6 +1,7 @@
 import itertools as it
 from PIL import Image
 import random
+from utils.color import Color
 
 from utils.constants import *
 from utils.bezier import inverse_interpolate
@@ -19,7 +20,7 @@ from extention.animation.animation_group import AnimationGroup
 from extention.animation.indication import ShowPassingFlash
 from extention.mobject.geometry import Vector
 
-DEFAULT_SCALAR_FIELD_COLORS = [BLUE_E, GREEN, YELLOW, RED]
+DEFAULT_SCALAR_FIELD_COLORS = [Color('BLUE_E'), Color('GREEN'), Color('YELLOW'), Color('RED')]
 
 
 def get_colored_background_image(scalar_field_func,
@@ -46,7 +47,7 @@ def get_colored_background_image(scalar_field_func,
 
 
 def get_rgb_gradient_function(min_value=0, max_value=1,
-                              colors=[BLUE, RED],
+                              colors=[Color('BLUE'), Color('RED')],
                               flip_alphas=True,  # Why?
                               ):
     rgbs = np.array(list(map(color_to_rgb, colors)))
@@ -202,7 +203,7 @@ class StreamLines(VGroup):
         "virtual_time": 3,
         "n_anchors_per_line": 100,
         "stroke_width": 1,
-        "stroke_color": WHITE,
+        "stroke_color": Color('WHITE'),
         "color_by_arc_length": True,
         # Min and max arc lengths meant to define
         # the color range, should color_by_arc_length be True

@@ -1,3 +1,5 @@
+from utils.color import Color
+
 from utils.constants import *
 from utils.iterables import tuplify
 from utils.space_ops import z_to_vector
@@ -22,10 +24,10 @@ class ParametricSurface(VGroup):
         "v_max": 1,
         "resolution": 32,
         "surface_piece_config": {},
-        "fill_color": BLUE_D,
+        "fill_color": Color('BLUE_D'),
         "fill_opacity": 1.0,
-        "checkerboard_colors": [BLUE_D, BLUE_E],
-        "stroke_color": LIGHT_GREY,
+        "checkerboard_colors": [Color('BLUE_D'), Color('BLUE_E')],
+        "stroke_color": Color('LIGHT_GREY'),
         "stroke_width": 0.5,
         "should_make_jagged": False,
         "pre_function_handle_to_anchor_scale_factor": 0.00001,
@@ -127,7 +129,7 @@ class Sphere(ParametricSurface):
 class Cube(VGroup):
     CONFIG = {
         "fill_opacity": 0.75,
-        "fill_color": BLUE,
+        "fill_color": Color('BLUE'),
         "stroke_width": 0,
         "side_length": 2,
     }

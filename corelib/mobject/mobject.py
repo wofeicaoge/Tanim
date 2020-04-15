@@ -5,7 +5,7 @@ import random
 import sys
 from functools import reduce
 
-from colour import Color
+from utils.color import Color
 
 import utils.constants as consts
 from utils.color import color_gradient
@@ -27,7 +27,7 @@ class Mobject(Container):
     Mathematical Object
     """
     CONFIG = {
-        "color": WHITE,
+        "color": Color('WHITE'),
         "name": None,
         "dim": 3,
         "target": None,
@@ -529,7 +529,7 @@ class Mobject(Container):
         return self
 
     # Background rectangle
-    def add_background_rectangle(self, color=BLACK, opacity=0.75, **kwargs):
+    def add_background_rectangle(self, color=Color('BLACK'), opacity=0.75, **kwargs):
         from extention.mobject.shape_matchers import BackgroundRectangle
         self.background_rectangle = BackgroundRectangle(
             self, color=color,
@@ -551,7 +551,7 @@ class Mobject(Container):
 
     # Color functions
 
-    def set_color(self, color=YELLOW_C, family=True):
+    def set_color(self, color=Color('YELLOW_C'), family=True):
         """
         Condition is function which takes in one arguments, (x, y, z).
         Here it just recurses to submobjects, but in subclasses this
@@ -568,7 +568,7 @@ class Mobject(Container):
         self.set_submobject_colors_by_gradient(*colors)
         return self
 
-    def set_colors_by_radial_gradient(self, center=None, radius=1, inner_color=WHITE, outer_color=BLACK):
+    def set_colors_by_radial_gradient(self, center=None, radius=1, inner_color=Color('WHITE'), outer_color=Color('BLACK')):
         self.set_submobject_colors_by_radial_gradient(
             center, radius, inner_color, outer_color)
         return self
@@ -586,7 +586,7 @@ class Mobject(Container):
             mob.set_color(color, family=False)
         return self
 
-    def set_submobject_colors_by_radial_gradient(self, center=None, radius=1, inner_color=WHITE, outer_color=BLACK):
+    def set_submobject_colors_by_radial_gradient(self, center=None, radius=1, inner_color=Color('WHITE'), outer_color=Color('BLACK')):
         if center is None:
             center = self.get_center()
 

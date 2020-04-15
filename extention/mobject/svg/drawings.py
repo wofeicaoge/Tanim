@@ -1,6 +1,8 @@
 import itertools as it
 import string
 
+from utils.color import Color
+
 from utils.constants import *
 from utils.bezier import interpolate
 from utils.config_ops import digest_config
@@ -32,9 +34,9 @@ class Lightbulb(SVGMobject):
     CONFIG = {
         "file_name": "lightbulb",
         "height": 1,
-        "stroke_color": YELLOW,
+        "stroke_color": Color('YELLOW'),
         "stroke_width": 3,
-        "fill_color": YELLOW,
+        "fill_color": Color('YELLOW'),
         "fill_opacity": 0,
     }
 
@@ -44,7 +46,7 @@ class BitcoinLogo(SVGMobject):
         "file_name": "Bitcoin_logo",
         "height": 1,
         "fill_color": "#f7931a",
-        "inner_color": WHITE,
+        "inner_color": Color('WHITE'),
         "fill_opacity": 1,
         "stroke_width": 0,
     }
@@ -59,9 +61,9 @@ class Guitar(SVGMobject):
     CONFIG = {
         "file_name": "guitar",
         "height": 2.5,
-        "fill_color": DARK_GREY,
+        "fill_color": Color('GREY'),
         "fill_opacity": 1,
-        "stroke_color": WHITE,
+        "stroke_color": Color('WHITE'),
         "stroke_width": 0.5,
     }
 
@@ -74,8 +76,8 @@ class SunGlasses(SVGMobject):
 
     def __init__(self, pi_creature, **kwargs):
         SVGMobject.__init__(self, **kwargs)
-        self.set_stroke(WHITE, width=0)
-        self.set_fill(GREY, 1)
+        self.set_stroke(Color('WHITE'), width=0)
+        self.set_fill(Color('GREY'), 1)
         self.set_width(
             self.glasses_width_to_eyes_width * pi_creature.eyes.get_width()
         )
@@ -89,7 +91,7 @@ class Speedometer(VMobject):
         "tick_length": 0.2,
         "needle_width": 0.1,
         "needle_height": 0.8,
-        "needle_color": YELLOW,
+        "needle_color": Color('YELLOW'),
     }
 
     def generate_points(self):
@@ -157,8 +159,8 @@ class AoPSLogo(SVGMobject):
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
-        self.set_stroke(WHITE, width=0)
-        colors = [BLUE_E, "#008445", GREEN_B]
+        self.set_stroke(Color('WHITE'), width=0)
+        colors = [Color('BLUE_E'), Color(hex_l='#008445'), Color('GREEN_B')]
         index_lists = [
             (10, 11, 12, 13, 14, 21, 22, 23, 24, 27, 28, 29, 30),
             (0, 1, 2, 3, 4, 15, 16, 17, 26),
@@ -179,9 +181,9 @@ class PartyHat(SVGMobject):
         "pi_creature": None,
         "stroke_width": 0,
         "fill_opacity": 1,
-        "frills_colors": [MAROON_B, PURPLE],
-        "cone_color": GREEN,
-        "dots_colors": [YELLOW],
+        "frills_colors": [Color('MAROON_B'), Color('PURPLE')],
+        "cone_color": Color('GREEN'),
+        "dots_colors": [Color('YELLOW')],
     }
     NUM_FRILLS = 7
     NUM_DOTS = 6
@@ -211,13 +213,13 @@ class Laptop(VGroup):
         "screen_width_to_screen_plate_width": 0.9,
         "key_color_kwargs": {
             "stroke_width": 0,
-            "fill_color": BLACK,
+            "fill_color": Color('BLACK'),
             "fill_opacity": 1,
         },
         "fill_opacity": 1,
         "stroke_width": 0,
-        "body_color": LIGHT_GREY,
-        "shaded_body_color": GREY,
+        "body_color": Color('GREY'),
+        "shaded_body_color": Color('GREY'),
         "open_angle": np.pi / 4,
     }
 
@@ -252,7 +254,7 @@ class Laptop(VGroup):
                              self.body_dimensions[2], dim=2)
         screen = Rectangle(
             stroke_width=0,
-            fill_color=BLACK,
+            fill_color=Color('BLACK'),
             fill_opacity=1,
         )
         screen.replace(screen_plate, stretch=True)
@@ -270,7 +272,7 @@ class Laptop(VGroup):
         axis = Line(
             body.get_corner(UP + LEFT + OUT),
             body.get_corner(UP + RIGHT + OUT),
-            color=BLACK,
+            color=Color('BLACK'),
             stroke_width=2
         )
         self.axis = axis
@@ -284,7 +286,7 @@ class PatreonLogo(SVGMobject):
     CONFIG = {
         "file_name": "patreon_logo",
         "fill_color": "#F96854",
-        # "fill_color" : WHITE,
+        # "fill_color" : Color('WHITE'),
         "fill_opacity": 1,
         "stroke_width": 0,
         "width": 4,
@@ -306,14 +308,14 @@ class VideoIcon(SVGMobject):
         SVGMobject.__init__(self, **kwargs)
         self.center()
         self.set_width(self.width)
-        self.set_stroke(color=WHITE, width=0)
-        self.set_fill(color=WHITE, opacity=1)
+        self.set_stroke(color=Color('WHITE'), width=0)
+        self.set_fill(color=Color('WHITE'), opacity=1)
 
 
 class VideoSeries(VGroup):
     CONFIG = {
         "num_videos": 11,
-        "gradient_colors": [BLUE_B, BLUE_D],
+        "gradient_colors": [Color('BLUE_B'), Color('BLUE_D')],
     }
 
     def __init__(self, **kwargs):
@@ -330,7 +332,7 @@ class Headphones(SVGMobject):
         "file_name": "headphones",
         "height": 2,
         "y_stretch_factor": 0.5,
-        "color": GREY,
+        "color": Color('GREY'),
     }
 
     def __init__(self, pi_creature=None, **kwargs):
@@ -351,7 +353,7 @@ class Clock(VGroup):
     CONFIG = {}
 
     def __init__(self, **kwargs):
-        circle = Circle(color=WHITE)
+        circle = Circle(color=Color('WHITE'))
         ticks = []
         for x in range(12):
             alpha = x / 12.
@@ -418,9 +420,9 @@ class Bubble(SVGMobject):
         "width": 8,
         "bubble_center_adjustment_factor": 1. / 8,
         "file_name": None,
-        "fill_color": BLACK,
+        "fill_color": Color('BLACK'),
         "fill_opacity": 0.8,
-        "stroke_color": WHITE,
+        "stroke_color": Color('WHITE'),
         "stroke_width": 3,
     }
 
@@ -541,8 +543,8 @@ class Car(SVGMobject):
     CONFIG = {
         "file_name": "Car",
         "height": 1,
-        "color": LIGHT_GREY,
-        "light_colors": [BLACK, BLACK],
+        "color": Color('GREY'),
+        "light_colors": [Color('BLACK'), Color('BLACK')],
     }
 
     def __init__(self, **kwargs):
@@ -558,7 +560,7 @@ class Car(SVGMobject):
             path.add(part)
 
         self.set_height(self.height)
-        self.set_stroke(color=WHITE, width=0)
+        self.set_stroke(color=Color('WHITE'), width=0)
         self.set_fill(self.color, opacity=1)
 
         from corelib.for_3b1b_videos.pi_creature import Randolph
@@ -604,7 +606,7 @@ class Car(SVGMobject):
             tred = Line(
                 0.7 * radius * RIGHT, 1.1 * radius * RIGHT,
                 stroke_width=2,
-                color=BLACK
+                color=Color('BLACK')
             )
             tred.rotate(PI / 5, about_point=tred.get_end())
             for theta in np.arange(0, 2 * np.pi, np.pi / 4):
@@ -631,16 +633,16 @@ class VectorizedEarth(SVGMobject):
     CONFIG = {
         "file_name": "earth",
         "height": 1.5,
-        "fill_color": BLACK,
+        "fill_color": Color('BLACK'),
     }
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
         circle = Circle(
             stroke_width=3,
-            stroke_color=GREEN,
+            stroke_color=Color('GREEN'),
             fill_opacity=1,
-            fill_color=BLUE_C,
+            fill_color=Color('BLUE_C'),
         )
         circle.replace(self)
         self.add_to_back(circle)
@@ -656,13 +658,13 @@ class Logo(VMobject):
             "#528EA3",
             "#3E6576",
             "#224C5B",
-            BLACK,
+            Color('BLACK'),
         ],
         "brown_spike_colors": [
             "#754C24",
             "#603813",
             "#42210b",
-            BLACK,
+            Color('BLACK'),
         ],
         "n_spike_layers": 4,
         "n_spikes": 28,
@@ -784,7 +786,7 @@ class Logo(VMobject):
     def add_pupil(self):
         self.pupil = Circle(
             radius=self.pupil_radius,
-            fill_color=BLACK,
+            fill_color=Color('BLACK'),
             fill_opacity=1,
             stroke_width=0,
             sheen=0.0,
@@ -814,7 +816,7 @@ class Logo(VMobject):
             self.cut_pupil()
         # circle = Circle()
         # circle.set_stroke(width=0)
-        # circle.set_fill(BLACK, opacity=1)
+        # circle.set_fill(Color('BLACK'), opacity=1)
         # circle.match_width(self)
         # circle.move_to(self)
         blue_part = VGroup(
@@ -858,7 +860,7 @@ class PlayingCard(VGroup):
         "card_height_to_symbol_height": 7,
         "card_width_to_corner_num_width": 10,
         "card_height_to_corner_num_height": 10,
-        "color": LIGHT_GREY,
+        "color": Color('GREY'),
         "turned_over": False,
         "possible_suits": ["hearts", "diamonds", "spades", "clubs"],
         "possible_values": list(map(str, list(range(2, 11)))) + ["J", "Q", "K", "A"],
@@ -871,14 +873,14 @@ class PlayingCard(VGroup):
         self.add(Rectangle(
             height=self.height,
             width=self.height / self.height_to_width,
-            stroke_color=WHITE,
+            stroke_color=Color('WHITE'),
             stroke_width=2,
             fill_color=self.color,
             fill_opacity=1,
         ))
         if self.turned_over:
-            self.set_fill(DARK_GREY)
-            self.set_stroke(LIGHT_GREY)
+            self.set_fill(Color('GREY'))
+            self.set_stroke(Color('GREY'))
             contents = VectorizedPoint(self.get_center())
         else:
             value = self.get_value()
@@ -997,7 +999,7 @@ class PlayingCard(VGroup):
     def get_face_card_design(self, value, symbol):
         from corelib.for_3b1b_videos.pi_creature import PiCreature
         sub_rect = Rectangle(
-            stroke_color=BLACK,
+            stroke_color=Color('BLACK'),
             fill_opacity=0,
             height=0.9 * self.get_height(),
             width=0.6 * self.get_width(),
@@ -1020,7 +1022,7 @@ class PlayingCard(VGroup):
             prefix = "king" if value == "K" else "queen"
             crown = SVGMobject(file_name=prefix + "_crown")
             crown.set_stroke(width=0)
-            crown.set_fill(YELLOW, 1)
+            crown.set_fill(Color('YELLOW'), 1)
             crown.stretch_to_fit_width(0.5 * sub_rect.get_width())
             crown.stretch_to_fit_height(0.17 * sub_rect.get_height())
             crown.move_to(pi_creature.eyes.get_center(), DOWN)
@@ -1068,7 +1070,7 @@ class SuitSymbol(SVGMobject):
         "fill_opacity": 1,
         "stroke_width": 0,
         "red": "#D02028",
-        "black": BLACK,
+        "black": Color('BLACK'),
     }
 
     def __init__(self, suit_name, **kwargs):

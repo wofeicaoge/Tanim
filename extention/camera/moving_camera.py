@@ -1,7 +1,8 @@
+from utils.color import Color
+
 from utils.constants import FRAME_HEIGHT
 from utils.constants import FRAME_WIDTH
 from utils.constants import ORIGIN
-from utils.constants import WHITE
 from utils.config_ops import digest_config
 
 from corelib.camera.camera import Camera
@@ -29,7 +30,7 @@ class MovingCamera(Camera):
 
     CONFIG = {
         "fixed_dimension": 0,  # width
-        "default_frame_stroke_color": WHITE,
+        "default_frame_stroke_color": Color('WHITE'),
         "default_frame_stroke_width": 0,
     }
 

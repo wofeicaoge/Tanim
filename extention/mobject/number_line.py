@@ -1,5 +1,7 @@
 import operator as op
 
+from utils.color import Color
+
 from utils.constants import *
 from utils.bezier import interpolate
 from utils.config_ops import digest_config
@@ -15,7 +17,7 @@ from extention.mobject.numbers import DecimalNumber
 
 class NumberLine(Line):
     CONFIG = {
-        "color": LIGHT_GREY,
+        "color": Color('GREY'),
         "x_min": -FRAME_X_RADIUS,
         "x_max": FRAME_X_RADIUS,
         "unit_size": 1,

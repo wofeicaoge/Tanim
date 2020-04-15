@@ -1,3 +1,5 @@
+from utils.color import Color
+
 from utils.constants import *
 from utils.space_ops import angle_of_vector
 from utils.space_ops import get_norm
@@ -26,9 +28,9 @@ from extention.animation.growing import GrowArrow
 from extention.animation.transform import ApplyFunction
 from extention.animation.transform import ApplyPointwiseFunction
 
-X_COLOR = GREEN_C
-Y_COLOR = RED_C
-Z_COLOR = BLUE_D
+X_COLOR = Color('GREEN_C')
+Y_COLOR = Color('RED_C')
+Z_COLOR = Color('BLUE_D')
 
 
 # TODO: Much of this scene type seems dependent on the coordinate system chosen.
@@ -49,7 +51,7 @@ class VectorScene(Scene):
         self.add(plane)
         return plane
 
-    def add_axes(self, animate=False, color=WHITE, **kwargs):
+    def add_axes(self, animate=False, color=Color('WHITE'), **kwargs):
         axes = Axes(color=color, tick_frequency=1)
         if animate:
             self.play(ShowCreation(axes))
@@ -60,7 +62,7 @@ class VectorScene(Scene):
         plane = self.add_plane()
         axes = plane.get_axes()
         plane.fade(dimness)
-        axes.set_color(WHITE)
+        axes.set_color(Color('WHITE'))
         axes.fade(axes_dimness)
         self.add(axes)
         self.freeze_background()
@@ -73,7 +75,7 @@ class VectorScene(Scene):
             **kwargs
         )
 
-    def add_vector(self, vector, color=YELLOW, animate=True, **kwargs):
+    def add_vector(self, vector, color=Color('YELLOW'), animate=True, **kwargs):
         if not isinstance(vector, Arrow):
             vector = Vector(vector, color=color, **kwargs)
         if animate:
@@ -257,15 +259,15 @@ class LinearTransformationScene(VectorScene):
             "faded_line_ratio": 0
         },
         "background_plane_kwargs": {
-            "color": GREY,
+            "color": Color('GREY'),
             "axis_config": {
-                "stroke_color": LIGHT_GREY,
+                "stroke_color": Color('GREY'),
             },
             "axis_config": {
-                "color": GREY,
+                "color": Color('GREY'),
             },
             "background_line_style": {
-                "stroke_color": GREY,
+                "stroke_color": Color('GREY'),
                 "stroke_width": 1,
             },
         },
@@ -331,7 +333,7 @@ class LinearTransformationScene(VectorScene):
         mobject.target = target_mobject
         self.add_special_mobjects(self.moving_mobjects, mobject)
 
-    def get_unit_square(self, color=YELLOW, opacity=0.3, stroke_width=3):
+    def get_unit_square(self, color=Color('YELLOW'), opacity=0.3, stroke_width=3):
         square = self.square = Rectangle(
             color=color,
             width=self.plane.get_x_unit_size(),
@@ -356,7 +358,7 @@ class LinearTransformationScene(VectorScene):
         self.square = square
         return self
 
-    def add_vector(self, vector, color=YELLOW, **kwargs):
+    def add_vector(self, vector, color=Color('YELLOW'), **kwargs):
         vector = VectorScene.add_vector(
             self, vector, color=color, **kwargs
         )

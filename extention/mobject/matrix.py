@@ -1,3 +1,5 @@
+from utils.color import Color
+
 from utils.constants import *
 
 from corelib.mobject.vectorized_mobject import VGroup
@@ -31,7 +33,7 @@ def matrix_to_mobject(matrix):
 
 
 def vector_coordinate_label(vector_mob, integer_labels=True,
-                            n_dim=2, color=WHITE):
+                            n_dim=2, color=Color('WHITE')):
     vect = np.array(vector_mob.get_end())
     if integer_labels:
         vect = np.round(vect).astype(int)

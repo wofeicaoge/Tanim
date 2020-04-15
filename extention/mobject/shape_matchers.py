@@ -1,4 +1,4 @@
-from colour import Color
+from utils.color import Color
 
 from utils.constants import *
 from utils.config_ops import digest_config
@@ -12,7 +12,7 @@ from extention.mobject.geometry import Rectangle
 
 class SurroundingRectangle(Rectangle):
     CONFIG = {
-        "color": YELLOW,
+        "color": Color('YELLOW'),
         "buff": SMALL_BUFF,
     }
 
@@ -26,7 +26,7 @@ class SurroundingRectangle(Rectangle):
 
 class BackgroundRectangle(SurroundingRectangle):
     CONFIG = {
-        "color": BLACK,
+        "color": Color('BLACK'),
         "stroke_width": 0,
         "stroke_opacity": 0,
         "fill_opacity": 0.75
@@ -50,9 +50,9 @@ class BackgroundRectangle(SurroundingRectangle):
         # Unchangable style, except for fill_opacity
         VMobject.set_style_data(
             self,
-            stroke_color=BLACK,
+            stroke_color=Color('BLACK'),
             stroke_width=0,
-            fill_color=BLACK,
+            fill_color=Color('BLACK'),
             fill_opacity=fill_opacity
         )
         return self
@@ -63,7 +63,7 @@ class BackgroundRectangle(SurroundingRectangle):
 
 class Cross(VGroup):
     CONFIG = {
-        "stroke_color": RED,
+        "stroke_color": Color('RED'),
         "stroke_width": 6,
     }
 

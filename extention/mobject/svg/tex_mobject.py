@@ -1,6 +1,8 @@
 from functools import reduce
 import operator as op
 
+from utils.color import Color
+
 from utils.constants import *
 from extention.mobject.geometry import Line
 from extention.mobject.svg.svg_mobject import SVGMobject
@@ -26,7 +28,7 @@ class SingleStringTexMobject(SVGMobject):
         "stroke_width": 0,
         "fill_opacity": 1.0,
         "background_stroke_width": 1,
-        "background_stroke_color": BLACK,
+        "background_stroke_color": Color('BLACK'),
         "should_center": True,
         "height": None,
         "organize_left_to_right": False,

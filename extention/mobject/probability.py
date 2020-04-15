@@ -1,3 +1,5 @@
+from utils.color import Color
+
 from utils.constants import *
 from utils.color import color_gradient
 from utils.iterables import tuplify
@@ -18,10 +20,10 @@ class SampleSpace(Rectangle):
     CONFIG = {
         "height": 3,
         "width": 3,
-        "fill_color": DARK_GREY,
+        "fill_color": Color('DARK_GREY'),
         "fill_opacity": 1,
         "stroke_width": 0.5,
-        "stroke_color": LIGHT_GREY,
+        "stroke_color": Color('LIGHT_GREY'),
         ##
         "default_label_scale_val": 1,
     }
@@ -63,14 +65,14 @@ class SampleSpace(Rectangle):
 
     def get_horizontal_division(
         self, p_list,
-        colors=[GREEN_E, BLUE_E],
+        colors=[Color('GREEN_E'), Color('BLUE_E')],
         vect=DOWN
     ):
         return self.get_division_along_dimension(p_list, 1, colors, vect)
 
     def get_vertical_division(
         self, p_list,
-        colors=[MAROON_B, YELLOW],
+        colors=[Color('MAROON_B'), Color('YELLOW')],
         vect=RIGHT
     ):
         return self.get_division_along_dimension(p_list, 0, colors, vect)
@@ -155,7 +157,7 @@ class BarChart(VGroup):
         "label_y_axis": True,
         "y_axis_label_height": 0.25,
         "max_value": 1,
-        "bar_colors": [BLUE, YELLOW],
+        "bar_colors": [Color('BLUE'), Color('YELLOW')],
         "bar_fill_opacity": 0.8,
         "bar_stroke_width": 3,
         "bar_names": [],

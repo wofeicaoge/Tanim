@@ -1,3 +1,5 @@
+from utils.color import Color
+
 from utils.constants import *
 from utils.bezier import interpolate
 from utils.config_ops import digest_config
@@ -23,7 +25,7 @@ from extention.animation.movement import Homotopy
 class FocusOn(Transform):
     CONFIG = {
         "opacity": 0.2,
-        "color": GREY,
+        "color": Color('GREY'),
         "run_time": 2,
         "remover": True,
     }
@@ -55,7 +57,7 @@ class Indicate(Transform):
     CONFIG = {
         "rate_func": there_and_back,
         "scale_factor": 1.2,
-        "color": YELLOW,
+        "color": Color('YELLOW'),
     }
 
     def create_target(self):
@@ -74,7 +76,7 @@ class Flash(AnimationGroup):
         "run_time": 1,
     }
 
-    def __init__(self, point, color=YELLOW, **kwargs):
+    def __init__(self, point, color=Color('YELLOW'), **kwargs):
         self.point = point
         self.color = color
         digest_config(self, kwargs)
@@ -110,7 +112,7 @@ class CircleIndicate(Indicate):
         "rate_func": there_and_back,
         "remover": True,
         "circle_config": {
-            "color": YELLOW,
+            "color": Color('YELLOW'),
         },
     }
 

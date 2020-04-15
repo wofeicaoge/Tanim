@@ -2,6 +2,8 @@ import re
 import copy
 import hashlib
 import cairo
+from utils.color import Color
+
 import utils.constants as consts
 from utils.constants import *
 from extention.mobject.svg.svg_mobject import SVGMobject
@@ -21,7 +23,7 @@ class TextSetting(object):
 class Text(SVGMobject):
     CONFIG = {
         # Mobject
-        'color': consts.WHITE,
+        'color': Color('WHITE'),
         'height': None,
         # Text
         'font': '',

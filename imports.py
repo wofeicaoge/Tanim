@@ -105,4 +105,4 @@ import sympy as sp
 import subprocess
 
 from PIL import Image
-from colour import Color
+from utils.color import Color

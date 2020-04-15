@@ -1,5 +1,7 @@
 import math
 
+from utils.color import Color
+
 from utils.constants import *
 from utils.config_ops import digest_config
 
@@ -81,7 +83,7 @@ class ParametricFunction(VMobject):
 
 class FunctionGraph(ParametricFunction):
     CONFIG = {
-        "color": YELLOW,
+        "color": Color('YELLOW'),
         "x_min": -FRAME_X_RADIUS,
         "x_max": FRAME_X_RADIUS,
     }

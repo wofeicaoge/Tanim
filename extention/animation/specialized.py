@@ -1,7 +1,7 @@
 import operator as op
 
-from utils.constants import WHITE
-from utils.constants import BLACK
+from utils.color import Color
+
 from utils.config_ops import digest_config
 from utils.space_ops import get_norm
 
@@ -56,7 +56,7 @@ class Broadcast(LaggedStart):
         "big_radius": 5,
         "n_circles": 5,
         "start_stroke_width": 8,
-        "color": WHITE,
+        "color": Color('WHITE'),
         "remover": True,
         "lag_ratio": 0.2,
         "run_time": 3,
@@ -69,7 +69,7 @@ class Broadcast(LaggedStart):
         for x in range(self.n_circles):
             circle = Circle(
                 radius=self.big_radius,
-                stroke_color=BLACK,
+                stroke_color=Color('BLACK'),
                 stroke_width=0,
             )
             circle.add_updater(

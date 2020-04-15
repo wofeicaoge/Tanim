@@ -1,5 +1,7 @@
 import numbers
 
+from utils.color import Color
+
 from utils.constants import *
 from utils.config_ops import merge_dicts_recursively
 from utils.simple_functions import binary_search
@@ -130,7 +132,7 @@ class CoordinateSystem():
 class Axes(VGroup, CoordinateSystem):
     CONFIG = {
         "axis_config": {
-            "color": LIGHT_GREY,
+            "color": Color('GREY'),
             "include_tip": True,
             "exclude_zero_from_default_numbers": True,
         },
@@ -260,7 +262,7 @@ class ThreeDAxes(Axes):
 class NumberPlane(Axes):
     CONFIG = {
         "axis_config": {
-            "stroke_color": WHITE,
+            "stroke_color": Color('WHITE'),
             "stroke_width": 2,
             "include_ticks": False,
             "include_tip": False,
@@ -272,7 +274,7 @@ class NumberPlane(Axes):
             "label_direction": DR,
         },
         "background_line_style": {
-            "stroke_color": BLUE_D,
+            "stroke_color": Color('BLUE_D'),
             "stroke_width": 2,
             "stroke_opacity": 1,
         },
@@ -381,7 +383,7 @@ class NumberPlane(Axes):
 
 class ComplexPlane(NumberPlane):
     CONFIG = {
-        "color": BLUE,
+        "color": Color('BLUE'),
         "line_frequency": 1,
     }
 

@@ -1,4 +1,3 @@
-from utils.constants import BLACK
 from extention.mobject.numbers import Integer
 from corelib.mobject.vectorized_mobject import VGroup
 
@@ -16,6 +15,6 @@ def get_submobject_index_labels(mobject, label_height=0.15):
         label = Integer(n)
         label.set_height(label_height)
         label.move_to(submob)
-        label.set_stroke(BLACK, 5, background=True)
+        label.set_stroke(Color('BLACK'), 5, background=True)
         labels.add(label)
     return labels

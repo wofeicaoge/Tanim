@@ -1,3 +1,5 @@
+from utils.color import Color
+
 from utils.constants import *
 from utils.config_ops import digest_config
 
@@ -27,7 +29,7 @@ class FullScreenRectangle(ScreenRectangle):
 class FullScreenFadeRectangle(FullScreenRectangle):
     CONFIG = {
         "stroke_width": 0,
-        "fill_color": BLACK,
+        "fill_color": Color('BLACK'),
         "fill_opacity": 0.7,
     }
 

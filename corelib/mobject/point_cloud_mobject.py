@@ -1,3 +1,5 @@
+from utils.color import Color
+
 from utils.constants import *
 from utils.bezier import interpolate
 from utils.color import color_gradient
@@ -43,7 +45,7 @@ class PMobject(Mobject):
         self.rgbas = np.append(self.rgbas, rgbas, axis=0)
         return self
 
-    def set_color(self, color=YELLOW_C, family=True):
+    def set_color(self, color=Color('YELLOW_C'), family=True):
         rgba = color_to_rgba(color)
         mobs = self.family_members_with_points() if family else [self]
         for mob in mobs:
@@ -77,7 +79,7 @@ class PMobject(Mobject):
             ])
         return self
 
-    def set_colors_by_radial_gradient(self, center=None, radius=1, inner_color=WHITE, outer_color=BLACK):
+    def set_colors_by_radial_gradient(self, center=None, radius=1, inner_color=Color('WHITE'), outer_color=Color('BLACK')):
         start_rgba, end_rgba = list(map(color_to_rgba, [start_color, end_color]))
         if center is None:
             center = self.get_center()
@@ -235,7 +237,7 @@ class PointCloudDot(Mobject1D):
         "radius": 0.075,
         "stroke_width": 2,
         "density": DEFAULT_POINT_DENSITY_1D,
-        "color": YELLOW,
+        "color": Color('YELLOW'),
     }
 
     def __init__(self, center=ORIGIN, **kwargs):
@@ -252,7 +254,7 @@ class PointCloudDot(Mobject1D):
 
 class Point(PMobject):
     CONFIG = {
-        "color": BLACK,
+        "color": Color('BLACK'),
     }
 
     def __init__(self, location=ORIGIN, **kwargs):

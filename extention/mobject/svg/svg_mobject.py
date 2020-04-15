@@ -36,7 +36,7 @@ class SVGMobject(VMobject):
         "unpack_groups": True,  # if False, creates a hierarchy of VGroups
         "stroke_width": DEFAULT_STROKE_WIDTH,
         "fill_opacity": 1.0,
-        # "fill_color" : LIGHT_GREY,
+        # "fill_color" : Color('GREY'),
     }
 
     def __init__(self, file_name=None, **kwargs):
@@ -174,16 +174,16 @@ class SVGMobject(VMobject):
         corner_radius = rect_element.getAttribute("rx")
 
         # input preprocessing
-        if fill_color in ["", "none", "#FFF", "#FFFFFF"] or Color(fill_color) == Color(WHITE):
+        if fill_color in ["", "none", "#FFF", "#FFFFFF"] or Color(fill_color) == Color(Color('WHITE')):
             opacity = 0
-            fill_color = BLACK  # shdn't be necessary but avoids error msgs
+            fill_color = Color('BLACK')  # shdn't be necessary but avoids error msgs
         if fill_color in ["#000", "#000000"]:
-            fill_color = WHITE
-        if stroke_color in ["", "none", "#FFF", "#FFFFFF"] or Color(stroke_color) == Color(WHITE):
+            fill_color = Color('WHITE')
+        if stroke_color in ["", "none", "#FFF", "#FFFFFF"] or Color(stroke_color) == Color(Color('WHITE')):
             stroke_width = 0
-            stroke_color = BLACK
+            stroke_color = Color('BLACK')
         if stroke_color in ["#000", "#000000"]:
-            stroke_color = WHITE
+            stroke_color = Color('WHITE')
         if stroke_width in ["", "none", "0"]:
             stroke_width = 0
 

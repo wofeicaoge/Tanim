@@ -1,5 +1,7 @@
 import itertools as it
 
+from utils.color import Color
+
 from utils.constants import *
 from utils.bezier import interpolate
 from utils.color import color_gradient
@@ -43,14 +45,14 @@ class GraphScene(Scene):
         "y_bottom_tick": None,  # Change if different from y_min
         "y_labeled_nums": None,
         "y_axis_label": "$y$",
-        "axes_color": GREY,
+        "axes_color": Color('GREY'),
         "graph_origin": 2.5 * DOWN + 4 * LEFT,
         "exclude_zero_label": True,
-        "default_graph_colors": [BLUE, GREEN, YELLOW],
-        "default_derivative_color": GREEN,
-        "default_input_color": YELLOW,
-        "default_riemann_start_color": BLUE,
-        "default_riemann_end_color": GREEN,
+        "default_graph_colors": [Color('BLUE'), Color('GREEN'), Color('YELLOW')],
+        "default_derivative_color": Color('GREEN'),
+        "default_input_color": Color('YELLOW'),
+        "default_riemann_start_color": Color('BLUE'),
+        "default_riemann_end_color": Color('GREEN'),
         "area_opacity": 0.8,
         "num_rects": 50,
     }
@@ -229,7 +231,7 @@ class GraphScene(Scene):
         dx=0.1,
         input_sample_type="left",
         stroke_width=1,
-        stroke_color=BLACK,
+        stroke_color=Color('BLACK'),
         fill_opacity=1,
         start_color=None,
         end_color=None,
@@ -439,7 +441,7 @@ class GraphScene(Scene):
 
         return group
 
-    def add_T_label(self, x_val, side=RIGHT, label=None, color=WHITE, animated=False, **kwargs):
+    def add_T_label(self, x_val, side=RIGHT, label=None, color=Color('WHITE'), animated=False, **kwargs):
         triangle = RegularPolygon(n=3, start_angle=np.pi / 2)
         triangle.set_height(MED_SMALL_BUFF)
         triangle.move_to(self.coords_to_point(x_val, 0), UP)
@@ -453,7 +455,7 @@ class GraphScene(Scene):
         T_label.next_to(triangle, DOWN)
         v_line = self.get_vertical_line_to_graph(
             x_val, self.v_graph,
-            color=YELLOW
+            color=Color('YELLOW')
         )
 
         if animated:
