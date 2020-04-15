@@ -1,4 +1,5 @@
 # Tanim
-Tanim, short for teaching animation. 
 
-The is based on Manim and will do some extentions to make it more powerful.
+![license](https://img.shields.io/github/license/wofeicaoge/Tanim)
+
+Tanim is a animation engine based on manim.
