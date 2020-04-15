@@ -1,6 +1,6 @@
 import random
 
-from colour import Color
+import colour
 import numpy as np
 
 from utils.constants import PALETTE
@@ -12,8 +12,8 @@ from utils.space_ops import normalize
 
 def color_to_rgb(color):
     if isinstance(color, str):
-        return hex_to_rgb(color)
-    elif isinstance(color, Color):
+        return np.array(colour.hex2rgb(color))
+    elif isinstance(color, colour.Color):
         return np.array(color.get_rgb())
     else:
         raise Exception("Invalid color type")
@@ -25,27 +25,13 @@ def color_to_rgba(color, alpha=1):
 
 def rgb_to_color(rgb):
     try:
-        return Color(rgb=rgb)
+        return colour.Color(rgb=rgb)
     except:
-        return Color(WHITE)
+        return colour.Color(WHITE)
 
 
 def rgba_to_color(rgba):
     return rgb_to_color(rgba[:3])
-
-
-def rgb_to_hex(rgb):
-    return "#" + "".join('%02x' % int(255 * x) for x in rgb)
-
-
-def hex_to_rgb(hex_code):
-    hex_part = hex_code[1:]
-    if len(hex_part) == 3:
-        "".join([2 * c for c in hex_part])
-    return np.array([
-        int(hex_part[i:i + 2], 16) / 255
-        for i in range(0, 6, 2)
-    ])
 
 
 def invert_color(color):
@@ -94,7 +80,7 @@ def random_bright_color():
     new_rgb = interpolate(
         curr_rgb, np.ones(len(curr_rgb)), 0.5
     )
-    return Color(rgb=new_rgb)
+    return colour.Color(rgb=new_rgb)
 
 
 def random_color():
@@ -103,7 +89,7 @@ def random_color():
 
 def get_shaded_rgb(rgb, point, unit_normal_vect, light_source):
     to_sun = normalize(light_source - point)
-    factor = 0.5 * np.dot(unit_normal_vect, to_sun)**3
+    factor = 0.5 * np.dot(unit_normal_vect, to_sun) ** 3
     if factor < 0:
         factor *= 0.5
     result = rgb + factor
