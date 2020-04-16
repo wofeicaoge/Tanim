@@ -84,11 +84,6 @@ def prompt_user_for_choice(scene_classes):
     except KeyError:
         print(consts.INVALID_NUMBER_MESSAGE)
         sys.exit(2)
-        user_input = input(tanim.utils.constants.consts.CHOOSE_NUMBER_MESSAGE)
-        return [
-            num_to_class[int(num_str)]
-            for num_str in user_input.split(",")
-        ]
     except EOFError:
         sys.exit(1)
 

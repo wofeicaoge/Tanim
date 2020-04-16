@@ -2,11 +2,9 @@ import inspect
 
 import numpy as np
 
+import tanim.utils.constants as consts
 from tanim.core.animation.transform import Transform
 from tanim.core.mobject.mobject import Group, Mobject
-
-import tanim.utils.constants as consts
-import tanim.utils.constants as consts
 
 
 class ReplacementTransform(Transform):

@@ -80,7 +80,7 @@ class Broadcast(LaggedStart):
             circle.set_stroke(self.color, self.start_stroke_width)
             circles.add(circle)
             animations = [
-            Restore(circle)
-            for circle in circles
-        ]
+                Restore(circle)
+                for circle in circles
+            ]
         super().__init__(*animations, **kwargs)

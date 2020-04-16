@@ -1,17 +1,14 @@
 import tanim.utils.constants as consts
-import tanim.utils.constants as consts
-from tanim.utils.config_ops import digest_config
-from tanim.utils.config_ops import merge_dicts_recursively
-
 from tanim.core.mobject.vectorized_mobject import VGroup
 from tanim.core.mobject.vectorized_mobject import VectorizedPoint
 from tanim.core.scene.scene import Scene
-
+from tanim.extention.animation.transform import ApplyMethod
 from tanim.extention.camera.three_d_camera import ThreeDCamera
 from tanim.extention.mobject.coordinate_systems import ThreeDAxes
 from tanim.extention.mobject.geometry import Line
 from tanim.extention.mobject.three_dimensions import Sphere
-from tanim.extention.animation.transform import ApplyMethod
+from tanim.utils.config_ops import digest_config
+from tanim.utils.config_ops import merge_dicts_recursively
 
 
 class ThreeDScene(Scene):

@@ -37,7 +37,7 @@ class SingleStringTexMobject(SVGMobject):
     def __init__(self, tex_string, **kwargs):
         digest_config(self, kwargs)
         self.template_tex_file_body = init_tex_template(isinstance(self, TextMobject))
-        assert(isinstance(tex_string, str))
+        assert (isinstance(tex_string, str))
         self.tex_string = tex_string
         file_name = tex_to_svg_file(
             self.get_modified_expression(tex_string),
@@ -163,7 +163,7 @@ class TexMobject(SingleStringTexMobject):
         )
         if self.arg_separator == ' ':
             split_list = [str(x).strip() for x in split_list]
-        #split_list = list(map(str.strip, split_list))
+        # split_list = list(map(str.strip, split_list))
         split_list = [s for s in split_list if s != '']
         return split_list
 

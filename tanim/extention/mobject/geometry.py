@@ -54,7 +54,7 @@ class TipableVMobject(VMobject):
             "stroke_width": 0,
         }
     }
-    
+
     # Adding, Creating, Modifying tips
 
     def add_tip(self, tip_length=None, at_start=False):
@@ -140,7 +140,6 @@ class TipableVMobject(VMobject):
 
     def has_start_tip(self):
         return hasattr(self, "start_tip") and self.start_tip in self
-
 
     # Getters
 
@@ -347,7 +346,7 @@ class Circle(Arc):
         self.replace(mobject, dim_to_match, stretch)
 
         self.set_width(
-            np.sqrt(mobject.get_width()**2 + mobject.get_height()**2)
+            np.sqrt(mobject.get_width() ** 2 + mobject.get_height() ** 2)
         )
         self.scale(buffer_factor)
 

@@ -3,9 +3,6 @@ from functools import reduce
 import numpy as np
 
 import tanim.utils.constants as consts
-import tanim.utils.constants as consts
-import tanim.utils.constants as consts
-import tanim.utils.constants as consts
 from tanim.utils.iterables import adjacent_pairs
 from tanim.utils.simple_functions import fdiv
 

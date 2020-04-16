@@ -1,10 +1,7 @@
 import tanim.utils.constants as consts
-import tanim.utils.constants as consts
-import tanim.utils.constants as consts
-from tanim.utils.rate_functions import linear
-
 from tanim.core.animation.animation import Animation
 from tanim.core.animation.transform import Transform
+from tanim.utils.rate_functions import linear
 
 
 class Rotating(Animation):

@@ -49,9 +49,23 @@ class SVGMobject(VMobject):
         if self.file_name is None:
             raise Exception("Must specify file for SVGMobject")
         possible_paths = [
-            os.path.join(os.path.join(consts.ASSETS_DIR, "svg_images"), self.file_name),
-            os.path.join(os.path.join(consts.ASSETS_DIR, "svg_images"), self.file_name + ".svg"),
-            os.path.join(os.path.join(consts.ASSETS_DIR, "svg_images"), self.file_name + ".xdv"),
+            os.path.join(
+                os.path.join(
+                    consts.ASSETS_DIR,
+                    "svg_images"),
+                self.file_name),
+            os.path.join(
+                os.path.join(
+                    consts.ASSETS_DIR,
+                    "svg_images"),
+                self.file_name +
+                ".svg"),
+            os.path.join(
+                os.path.join(
+                    consts.ASSETS_DIR,
+                    "svg_images"),
+                self.file_name +
+                ".xdv"),
             self.file_name,
         ]
         for path in possible_paths:
@@ -164,7 +178,15 @@ class SVGMobject(VMobject):
             else 0.0
             for key in ("cx", "cy", "rx", "ry")
         ]
-        return Circle().scale(rx * consts.RIGHT + ry * consts.UP).shift(x * consts.RIGHT + y * consts.DOWN)
+        return Circle().scale(
+            rx *
+            consts.RIGHT +
+            ry *
+            consts.UP).shift(
+            x *
+            consts.RIGHT +
+            y *
+            consts.DOWN)
 
     def rect_to_mobject(self, rect_element):
         fill_color = rect_element.getAttribute("fill")
@@ -173,12 +195,15 @@ class SVGMobject(VMobject):
         corner_radius = rect_element.getAttribute("rx")
 
         # input preprocessing
-        if fill_color in ["", "none", "#FFF", "#FFFFFF"] or Color(fill_color) == Color('WHITE'):
+        if fill_color in ["", "none", "#FFF", "#FFFFFF"] or Color(
+                fill_color) == Color('WHITE'):
             opacity = 0
-            fill_color = Color('BLACK')  # shdn't be necessary but avoids error msgs
+            # shdn't be necessary but avoids error msgs
+            fill_color = Color('BLACK')
         if fill_color in ["#000", "#000000"]:
             fill_color = Color('WHITE')
-        if stroke_color in ["", "none", "#FFF", "#FFFFFF"] or Color(stroke_color) == Color('WHITE'):
+        if stroke_color in ["", "none", "#FFF", "#FFFFFF"] or Color(
+                stroke_color) == Color('WHITE'):
             stroke_width = 0
             stroke_color = Color('BLACK')
         if stroke_color in ["#000", "#000000"]:
@@ -229,7 +254,7 @@ class SVGMobject(VMobject):
             # Flip y
             y = -self.attribute_to_float(element.getAttribute('y'))
             mobject.shift(x * consts.RIGHT + y * consts.UP)
-        except:
+        except BaseException:
             pass
 
         transform = element.getAttribute('transform')
@@ -237,7 +262,8 @@ class SVGMobject(VMobject):
         try:  # transform matrix
             prefix = "matrix("
             suffix = ")"
-            if not transform.startswith(prefix) or not transform.endswith(suffix):
+            if not transform.startswith(
+                    prefix) or not transform.endswith(suffix):
                 raise Exception()
             transform = transform[len(prefix):-len(suffix)]
             transform = string_to_numbers(transform)
@@ -252,34 +278,38 @@ class SVGMobject(VMobject):
             for mob in mobject.family_members_with_points():
                 mob.points = np.dot(mob.points, matrix)
             mobject.shift(x * consts.RIGHT + y * consts.UP)
-        except:
+        except BaseException:
             pass
 
         try:  # transform scale
             prefix = "scale("
             suffix = ")"
-            if not transform.startswith(prefix) or not transform.endswith(suffix):
+            if not transform.startswith(
+                    prefix) or not transform.endswith(suffix):
                 raise Exception()
             transform = transform[len(prefix):-len(suffix)]
             scale_values = string_to_numbers(transform)
             if len(scale_values) == 2:
                 scale_x, scale_y = scale_values
-                mobject.scale(np.array([scale_x, scale_y, 1]), about_point=consts.ORIGIN)
+                mobject.scale(
+                    np.array([scale_x, scale_y, 1]), about_point=consts.ORIGIN)
             elif len(scale_values) == 1:
                 scale = scale_values[0]
-                mobject.scale(np.array([scale, scale, 1]), about_point=consts.ORIGIN)
-        except:
+                mobject.scale(np.array([scale, scale, 1]),
+                              about_point=consts.ORIGIN)
+        except BaseException:
             pass
 
         try:  # transform translate
             prefix = "translate("
             suffix = ")"
-            if not transform.startswith(prefix) or not transform.endswith(suffix):
+            if not transform.startswith(
+                    prefix) or not transform.endswith(suffix):
                 raise Exception()
             transform = transform[len(prefix):-len(suffix)]
             x, y = string_to_numbers(transform)
             mobject.shift(x * consts.RIGHT + y * consts.DOWN)
-        except:
+        except BaseException:
             pass
         # TODO, ...
 
@@ -303,7 +333,8 @@ class SVGMobject(VMobject):
         return self.flatten([e for e in all_childNodes_have_id if e])
 
     def update_ref_to_element(self, defs):
-        new_refs = dict([(e.getAttribute('id'), e) for e in self.get_all_childNodes_have_id(defs)])
+        new_refs = dict([(e.getAttribute('id'), e)
+                         for e in self.get_all_childNodes_have_id(defs)])
         self.ref_to_element.update(new_refs)
 
     def move_into_position(self):
@@ -415,7 +446,7 @@ class VMobjectFromSVGPathstring(VMobject):
                 if isLower:
                     new_points[i:i + 3] -= points[-1]
                     new_points[i:i + 3] += new_points[i - 1]
-                self.add_cubic_bezier_curve_to(*new_points[i:i+3])
+                self.add_cubic_bezier_curve_to(*new_points[i:i + 3])
 
     def string_to_points(self, coord_string):
         numbers = string_to_numbers(coord_string)

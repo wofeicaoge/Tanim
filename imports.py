@@ -67,7 +67,6 @@ from tanim.extention.scene.graph_scene import *
 from tanim.extention.scene.moving_camera_scene import *
 from tanim.extention.scene.reconfigurable_scene import *
 from tanim.extention.scene.sample_space_scene import *
-from tanim.extention.scene.graph_scene import *
 from tanim.extention.scene.three_d_scene import *
 from tanim.extention.scene.vector_space_scene import *
 from tanim.extention.scene.zoomed_scene import *

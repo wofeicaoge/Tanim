@@ -1,10 +1,12 @@
 from PIL import Image
 from tanim.utils.color import Color
+import numpy as np
 
 from tanim.utils.bezier import interpolate
 from tanim.utils.color import color_to_int_rgb
 from tanim.utils.config_ops import digest_config
 from tanim.utils.images import get_full_raster_image_path
+import tanim.utils.constants as consts
 
 from tanim.core.mobject.mobject import Mobject
 

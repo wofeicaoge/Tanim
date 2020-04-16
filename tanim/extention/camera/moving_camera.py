@@ -1,14 +1,9 @@
-from tanim.utils.color import Color
-
 import tanim.utils.constants as consts
-import tanim.utils.constants as consts
-import tanim.utils.constants as consts
-from tanim.utils.config_ops import digest_config
-
 from tanim.core.camera.camera import Camera
 from tanim.core.mobject.vectorized_mobject import VGroup
-
 from tanim.extention.mobject.frame import ScreenRectangle
+from tanim.utils.color import Color
+from tanim.utils.config_ops import digest_config
 
 
 # TODO, think about how to incorporate perspective

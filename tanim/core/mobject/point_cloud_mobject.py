@@ -1,5 +1,6 @@
-from tanim.utils.color import Color
+import numpy as np
 
+from tanim.utils.color import Color
 from tanim.utils.bezier import interpolate
 from tanim.utils.color import color_gradient
 from tanim.utils.color import color_to_rgba
@@ -62,7 +63,6 @@ class PMobject(Mobject):
             mob.stroke_width = width
         return self
 
-    # def set_color_by_gradient(self, start_color, end_color):
     def set_color_by_gradient(self, *colors):
         self.rgbas = np.array(list(map(
             color_to_rgba,
@@ -70,17 +70,8 @@ class PMobject(Mobject):
         )))
         return self
 
-        start_rgba, end_rgba = list(map(color_to_rgba, [start_color, end_color]))
-        for mob in self.family_members_with_points():
-            num_points = mob.get_num_points()
-            mob.rgbas = np.array([
-                interpolate(start_rgba, end_rgba, alpha)
-                for alpha in np.arange(num_points) / float(num_points)
-            ])
-        return self
-
     def set_colors_by_radial_gradient(self, center=None, radius=1, inner_color=Color('WHITE'), outer_color=Color('BLACK')):
-        start_rgba, end_rgba = list(map(color_to_rgba, [start_color, end_color]))
+        start_rgba, end_rgba = list(map(color_to_rgba, [inner_color, outer_color]))
         if center is None:
             center = self.get_center()
         for mob in self.family_members_with_points():

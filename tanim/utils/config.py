@@ -7,6 +7,7 @@ import types
 
 import tanim
 
+
 def parse_cli():
     try:
         parser = argparse.ArgumentParser()

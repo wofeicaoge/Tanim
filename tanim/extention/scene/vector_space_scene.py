@@ -7,7 +7,7 @@ import tanim.utils.constants as consts
 
 from tanim.core.animation.animation import Animation
 from tanim.core.animation.transform import Transform
-from tanim.core.mobject.mobject import Mobject
+from tanim.core.mobject.mobject import Mobject, Group
 from tanim.core.mobject.vectorized_mobject import VGroup
 from tanim.core.scene.scene import Scene
 
@@ -243,6 +243,7 @@ class VectorScene(Scene):
             self.add(*starting_mobjects)
         return array, x_line, y_line
 
+
 class LinearTransformationScene(VectorScene):
     CONFIG = {
         "include_background_plane": True,
@@ -468,14 +469,14 @@ class LinearTransformationScene(VectorScene):
         if "run_time" not in kwargs:
             kwargs["run_time"] = 3
         anims = [
-            ApplyPointwiseFunction(function, t_mob)
-            for t_mob in self.transformable_mobjects
-        ] + [
-            self.get_vector_movement(function),
-            self.get_transformable_label_movement(),
-            self.get_moving_mobject_movement(function),
-        ] + [
-            Animation(f_mob)
-            for f_mob in self.submobjects
-        ] + added_anims
+                    ApplyPointwiseFunction(function, t_mob)
+                    for t_mob in self.transformable_mobjects
+                ] + [
+                    self.get_vector_movement(function),
+                    self.get_transformable_label_movement(),
+                    self.get_moving_mobject_movement(function),
+                ] + [
+                    Animation(f_mob)
+                    for f_mob in self.submobjects
+                ] + added_anims
         self.play(*anims, **kwargs)

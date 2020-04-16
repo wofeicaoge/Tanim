@@ -67,7 +67,10 @@ class Mobject(Container):
         Ensures all attributes which are mobjects are included
         in the submobjects list.
         """
-        mobject_attrs = [x for x in list(self.__dict__.values()) if isinstance(x, Mobject)]
+        mobject_attrs = [
+            x for x in list(
+                self.__dict__.values()) if isinstance(
+                x, Mobject)]
         self.submobjects = list_update(self.submobjects, mobject_attrs)
         return self
 
@@ -106,7 +109,9 @@ class Mobject(Container):
         copy_mobject.updaters = list(self.updaters)
         family = self.get_family()
         for attr, value in list(self.__dict__.items()):
-            if isinstance(value, Mobject) and value in family and value is not self:
+            if isinstance(
+                    value,
+                    Mobject) and value in family and value is not self:
                 setattr(copy_mobject, attr, value.copy())
             if isinstance(value, np.ndarray):
                 setattr(copy_mobject, attr, np.array(value))
@@ -334,7 +339,8 @@ class Mobject(Container):
     # Note, much of these are now redundant with default behavior of
     # above methods
 
-    def apply_points_function_about_point(self, func, about_point=None, about_edge=None):
+    def apply_points_function_about_point(
+            self, func, about_point=None, about_edge=None):
         if about_point is None:
             if about_edge is None:
                 about_edge = consts.ORIGIN
@@ -367,22 +373,30 @@ class Mobject(Container):
         self.shift(-self.get_center())
         return self
 
-    def align_on_border(self, direction, buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
+    def align_on_border(
+            self,
+            direction,
+            buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
         """
         Direction just needs to be a vector pointing towards side or
         corner in the 2d plane.
         """
-        target_point = np.sign(direction) * (consts.FRAME_X_RADIUS, consts.FRAME_Y_RADIUS, 0)
+        target_point = np.sign(direction) * \
+            (consts.FRAME_X_RADIUS, consts.FRAME_Y_RADIUS, 0)
         point_to_align = self.get_critical_point(direction)
         shift_val = target_point - point_to_align - buff * np.array(direction)
         shift_val = shift_val * abs(np.sign(direction))
         self.shift(shift_val)
         return self
 
-    def to_corner(self, corner=consts.LEFT + consts.DOWN, buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
+    def to_corner(self, corner=consts.LEFT + consts.DOWN,
+                  buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
         return self.align_on_border(corner, buff)
 
-    def to_edge(self, edge=consts.LEFT, buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
+    def to_edge(
+            self,
+            edge=consts.LEFT,
+            buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
         return self.align_on_border(edge, buff)
 
     def next_to(self, mobject_or_point,
@@ -530,7 +544,11 @@ class Mobject(Container):
         return self
 
     # Background rectangle
-    def add_background_rectangle(self, color=Color('BLACK'), opacity=0.75, **kwargs):
+    def add_background_rectangle(
+            self,
+            color=Color('BLACK'),
+            opacity=0.75,
+            **kwargs):
         from tanim.extention.mobject.shape_matchers import BackgroundRectangle
         self.background_rectangle = BackgroundRectangle(
             self, color=color,
@@ -569,7 +587,12 @@ class Mobject(Container):
         self.set_submobject_colors_by_gradient(*colors)
         return self
 
-    def set_colors_by_radial_gradient(self, center=None, radius=1, inner_color=Color('WHITE'), outer_color=Color('BLACK')):
+    def set_colors_by_radial_gradient(
+            self,
+            center=None,
+            radius=1,
+            inner_color=Color('WHITE'),
+            outer_color=Color('BLACK')):
         self.set_submobject_colors_by_radial_gradient(
             center, radius, inner_color, outer_color)
         return self
@@ -587,7 +610,12 @@ class Mobject(Container):
             mob.set_color(color, family=False)
         return self
 
-    def set_submobject_colors_by_radial_gradient(self, center=None, radius=1, inner_color=Color('WHITE'), outer_color=Color('BLACK')):
+    def set_submobject_colors_by_radial_gradient(
+            self,
+            center=None,
+            radius=1,
+            inner_color=Color('WHITE'),
+            outer_color=Color('BLACK')):
         if center is None:
             center = self.get_center()
 
@@ -745,8 +773,8 @@ class Mobject(Container):
 
     def length_over_dim(self, dim):
         return (
-                self.reduce_across_dimension(np.max, np.max, dim) -
-                self.reduce_across_dimension(np.min, np.min, dim)
+            self.reduce_across_dimension(np.max, np.max, dim) -
+            self.reduce_across_dimension(np.min, np.min, dim)
         )
 
     def get_width(self):
@@ -847,7 +875,11 @@ class Mobject(Container):
     def match_z(self, mobject, direction=consts.ORIGIN):
         return self.match_coord(mobject, 2, direction)
 
-    def align_to(self, mobject_or_point, direction=consts.ORIGIN, alignment_vect=consts.UP):
+    def align_to(
+            self,
+            mobject_or_point,
+            direction=consts.ORIGIN,
+            alignment_vect=consts.UP):
         """
         Examples:
         mob1.align_to(mob2, consts.UP) moves mob1 vertically so that its
@@ -937,7 +969,7 @@ class Mobject(Container):
 
     def sort(self, point_to_num_func=lambda p: p[0], submob_func=None):
         if submob_func is None:
-            submob_func = lambda m: point_to_num_func(m.get_center())
+            def submob_func(m): return point_to_num_func(m.get_center())
         self.submobjects.sort(key=submob_func)
         return self
 

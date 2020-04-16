@@ -440,7 +440,8 @@ class Bubble(SVGMobject):
 
     def get_tip(self):
         # TODO, find a better way
-        return self.get_corner(consts.DOWN + self.direction) - 0.6 * self.direction
+        return self.get_corner(
+            consts.DOWN + self.direction) - 0.6 * self.direction
 
     def get_bubble_center(self):
         factor = self.bubble_center_adjustment_factor
@@ -898,7 +899,7 @@ class PlayingCard(VGroup):
         }
         try:
             self.numerical_value = int(value)
-        except:
+        except BaseException:
             self.numerical_value = face_card_to_value[value]
         return value
 
@@ -991,9 +992,13 @@ class PlayingCard(VGroup):
         value_mob.set_width(width)
         value_mob.stretch_to_fit_height(height)
         value_mob.next_to(
-            self.get_corner(consts.UP + consts.LEFT), consts.DOWN + consts.RIGHT,
-            buff=consts.MED_LARGE_BUFF * width
-        )
+            self.get_corner(
+                consts.UP +
+                consts.LEFT),
+            consts.DOWN +
+            consts.RIGHT,
+            buff=consts.MED_LARGE_BUFF *
+            width)
         value_mob.set_color(symbol.get_color())
         corner_symbol = symbol.copy()
         corner_symbol.set_width(width)
