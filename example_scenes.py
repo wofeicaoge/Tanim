@@ -18,10 +18,10 @@ class SquareToCircle(Scene):
     def construct(self):
         circle = Circle()
         square = Square()
-        square.flip(RIGHT)
-        square.rotate(-3 * TAU / 8)
+        square.flip(consts.RIGHT)
+        square.rotate(-3 * consts.TAU / 8)
         circle.set_fill(Color('PINK'), opacity=0.5)
-        circle.shift(LEFT*2)
+        circle.shift(consts.LEFT*2)
 
         self.play(ShowCreation(square))
         self.play(ShowCreation(circle))
@@ -52,8 +52,8 @@ class WriteStuff(Scene):
             "\\sum_{k=1}^\\infty {1 \\over k^2} = {\\pi^2 \\over 6}",
         )
         group = VGroup(example_text, example_tex)
-        group.arrange(DOWN)
-        group.set_width(FRAME_WIDTH - 2 * LARGE_BUFF)
+        group.arrange(consts.DOWN)
+        group.set_width(consts.FRAME_WIDTH - 2 * consts.LARGE_BUFF)
 
         self.play(Write(example_text))
         self.play(Write(example_tex))
@@ -68,13 +68,13 @@ class UpdatersExample(Scene):
             num_decimal_places=3,
             include_sign=True,
         )
-        square = Square().to_edge(UP)
+        square = Square().to_edge(consts.UP)
 
-        decimal.add_updater(lambda d: d.next_to(square, RIGHT))
+        decimal.add_updater(lambda d: d.next_to(square, consts.RIGHT))
         decimal.add_updater(lambda d: d.set_value(square.get_center()[1]))
         self.add(square, decimal)
         self.play(
-            square.to_edge, DOWN,
+            square.to_edge, consts.DOWN,
             rate_func=there_and_back,
             run_time=5,
         )

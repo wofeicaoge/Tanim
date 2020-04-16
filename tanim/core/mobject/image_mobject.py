@@ -30,9 +30,9 @@ class AbstractImageMobject(Mobject):
     def reset_points(self):
         # Corresponding corners of image are fixed to these 3 points
         self.points = np.array([
-            UP + LEFT,
-            UP + RIGHT,
-            DOWN + LEFT,
+            consts.UP + consts.LEFT,
+            consts.UP + consts.RIGHT,
+            consts.DOWN + consts.LEFT,
         ])
         self.center()
         h, w = self.get_pixel_array().shape[:2]

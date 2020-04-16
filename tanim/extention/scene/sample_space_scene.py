@@ -6,7 +6,7 @@ from tanim.core.mobject.vectorized_mobject import VGroup
 from tanim.extention.mobject.probability import SampleSpace
 from tanim.extention.animation.transform import MoveToTarget
 from tanim.core.animation.update import UpdateFromFunc
-from tanim.utils.constants import DOWN, RIGHT, MED_LARGE_BUFF, SMALL_BUFF
+import tanim.utils.constants as consts
 
 
 class SampleSpaceScene(Scene):
@@ -29,7 +29,7 @@ class SampleSpaceScene(Scene):
         p_list = sample_space.complete_p_list(p_list)
         space_copy = sample_space.copy()
 
-        vect = DOWN if dimension == 1 else RIGHT
+        vect = consts.DOWN if dimension == 1 else consts.RIGHT
         parts.generate_target()
         for part, p in zip(parts.target, p_list):
             part.replace(space_copy, stretch=True)
@@ -92,7 +92,7 @@ class SampleSpaceScene(Scene):
             for i in range(2)
         ])
 
-    def get_posterior_rectangles(self, buff=MED_LARGE_BUFF):
+    def get_posterior_rectangles(self, buff=consts.MED_LARGE_BUFF):
         prior_rects = self.get_prior_rectangles()
         areas = [
             rect.get_width() * rect.get_height()
@@ -107,14 +107,14 @@ class SampleSpaceScene(Scene):
             rect.stretch_to_fit_width(
                 area / rect.get_height()
             )
-        post_rects.arrange(DOWN, buff=0)
+        post_rects.arrange(consts.DOWN, buff=0)
         post_rects.next_to(
-            self.sample_space, RIGHT, buff
+            self.sample_space, consts.RIGHT, buff
         )
         return post_rects
 
     def get_posterior_rectangle_braces_and_labels(
-        self, post_rects, labels, direction=RIGHT, **kwargs
+        self, post_rects, labels, direction=consts.RIGHT, **kwargs
     ):
         return self.sample_space.get_subdivision_braces_and_labels(
             post_rects, labels, direction, **kwargs
@@ -125,8 +125,8 @@ class SampleSpaceScene(Scene):
         labels = post_rects.labels
         for rect, brace, label in zip(post_rects, braces, labels):
             brace.stretch_to_fit_height(rect.get_height())
-            brace.next_to(rect, RIGHT, SMALL_BUFF)
-            label.next_to(brace, RIGHT, SMALL_BUFF)
+            brace.next_to(rect, consts.RIGHT, consts.SMALL_BUFF)
+            label.next_to(brace, consts.RIGHT, consts.SMALL_BUFF)
 
     def get_posterior_rectangle_change_anims(self, post_rects):
         def update_rects(rects):

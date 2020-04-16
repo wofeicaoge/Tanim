@@ -6,8 +6,9 @@ import threading
 import warnings
 
 from tqdm import tqdm as ProgressDisplay
+import numpy as np
 
-from tanim.utils.constants import np, DEFAULT_WAIT_TIME, UP
+import tanim.utils.constants as consts
 
 from tanim.core.animation.animation import Animation
 from tanim.core.camera.camera import Camera
@@ -405,7 +406,7 @@ class Scene(Container):
         return time_progression
 
     @handle_play_like_call
-    def wait(self, duration=DEFAULT_WAIT_TIME, stop_condition=None):
+    def wait(self, duration=consts.DEFAULT_WAIT_TIME, stop_condition=None):
         self.update_mobjects(dt=0)  # Any problems with this?
         if self.should_update_mobjects():
             time_progression = self.get_wait_time_progression(duration, stop_condition)
@@ -475,7 +476,7 @@ class Scene(Container):
         eq = TextMobject(latex)
         anims = [Write(eq)]
         for mobject in self.submobjects:
-            anims.append(ApplyMethod(mobject.shift, 2 * UP))
+            anims.append(ApplyMethod(mobject.shift, 2 * consts.UP))
         self.play(*anims)
 
     def add_mobjects_among(self, values):

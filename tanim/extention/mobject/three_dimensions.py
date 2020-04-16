@@ -1,7 +1,7 @@
 import numpy as np
 
 from tanim.utils.color import Color
-from tanim.utils.constants import PI, TAU, IN, OUT, LEFT, RIGHT, UP, DOWN
+import tanim.utils.constants as consts
 from tanim.utils.iterables import tuplify
 from tanim.utils.space_ops import z_to_vector
 from tanim.core.mobject.vectorized_mobject import VGroup
@@ -106,9 +106,9 @@ class Sphere(ParametricSurface):
         "resolution": (12, 24),
         "radius": 1,
         "u_min": 0.001,
-        "u_max": PI - 0.001,
+        "u_max": consts.PI - 0.001,
         "v_min": 0,
-        "v_max": TAU,
+        "v_max": consts.TAU,
     }
 
     def __init__(self, **kwargs):
@@ -134,13 +134,13 @@ class Cube(VGroup):
     }
 
     def generate_points(self):
-        for vect in IN, OUT, LEFT, RIGHT, UP, DOWN:
+        for vect in consts.IN, consts.OUT, consts.LEFT, consts.RIGHT, consts.UP, consts.DOWN:
             face = Square(
                 side_length=self.side_length,
                 shade_in_3d=True,
             )
             face.flip()
-            face.shift(self.side_length * OUT / 2.0)
+            face.shift(self.side_length * consts.OUT / 2.0)
             face.apply_matrix(z_to_vector(vect))
 
             self.add(face)

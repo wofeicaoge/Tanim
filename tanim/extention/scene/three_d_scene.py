@@ -1,5 +1,5 @@
-from tanim.utils.constants import DEGREES
-from tanim.utils.constants import PRODUCTION_QUALITY_CAMERA_CONFIG
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
 from tanim.utils.config_ops import digest_config
 from tanim.utils.config_ops import merge_dicts_recursively
 
@@ -19,8 +19,8 @@ class ThreeDScene(Scene):
         "camera_class": ThreeDCamera,
         "ambient_camera_rotation": None,
         "default_angled_camera_orientation_kwargs": {
-            "phi": 70 * DEGREES,
-            "theta": -135 * DEGREES,
+            "phi": 70 * consts.DEGREES,
+            "theta": -135 * consts.DEGREES,
         }
     }
 
@@ -123,8 +123,8 @@ class SpecialThreeDScene(ThreeDScene):
             "resolution": (24, 48),
         },
         "default_angled_camera_position": {
-            "phi": 70 * DEGREES,
-            "theta": -110 * DEGREES,
+            "phi": 70 * consts.DEGREES,
+            "theta": -110 * consts.DEGREES,
         },
         # When scene is extracted with -l flag, this
         # configuration will override the above configuration.
@@ -143,7 +143,7 @@ class SpecialThreeDScene(ThreeDScene):
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
-        if self.camera_config["pixel_width"] == PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_width"]:
+        if self.camera_config["pixel_width"] == consts.PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_width"]:
             config = {}
         else:
             config = self.low_quality_config

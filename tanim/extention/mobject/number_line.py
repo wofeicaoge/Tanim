@@ -6,7 +6,7 @@ from tanim.utils.color import Color
 from tanim.utils.bezier import interpolate
 from tanim.utils.config_ops import digest_config
 from tanim.utils.config_ops import merge_dicts_recursively
-from tanim.utils.constants import FRAME_X_RADIUS, DOWN, MED_SMALL_BUFF, RIGHT, UP
+import tanim.utils.constants as consts
 from tanim.utils.simple_functions import fdiv
 from tanim.utils.space_ops import normalize
 
@@ -19,8 +19,8 @@ from tanim.extention.mobject.numbers import DecimalNumber
 class NumberLine(Line):
     CONFIG = {
         "color": Color('GREY'),
-        "x_min": -FRAME_X_RADIUS,
-        "x_max": FRAME_X_RADIUS,
+        "x_min": -consts.FRAME_X_RADIUS,
+        "x_max": consts.FRAME_X_RADIUS,
         "unit_size": 1,
         "include_ticks": True,
         "tick_size": 0.1,
@@ -35,8 +35,8 @@ class NumberLine(Line):
         "longer_tick_multiple": 2,
         "number_at_center": 0,
         "number_scale_val": 0.75,
-        "label_direction": DOWN,
-        "line_to_number_buff": MED_SMALL_BUFF,
+        "label_direction": consts.DOWN,
+        "line_to_number_buff": consts.MED_SMALL_BUFF,
         "include_tip": False,
         "tip_width": 0.25,
         "tip_height": 0.25,
@@ -48,8 +48,8 @@ class NumberLine(Line):
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
-        start = self.unit_size * self.x_min * RIGHT
-        end = self.unit_size * self.x_max * RIGHT
+        start = self.unit_size * self.x_min * consts.RIGHT
+        end = self.unit_size * self.x_max * consts.RIGHT
         Line.__init__(self, start, end, **kwargs)
         self.shift(-self.number_to_point(self.number_at_center))
 
@@ -87,7 +87,7 @@ class NumberLine(Line):
     def get_tick(self, x, size=None):
         if size is None:
             size = self.tick_size
-        result = Line(size * DOWN, size * UP)
+        result = Line(size * consts.DOWN, size * consts.UP)
         result.rotate(self.get_angle())
         result.move_to(self.number_to_point(x))
         result.match_style(self)

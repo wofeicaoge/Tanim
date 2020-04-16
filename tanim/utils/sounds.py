@@ -1,6 +1,6 @@
 import os
 from tanim.utils.file_ops import seek_full_path_from_defaults
-from tanim.utils.constants import ASSETS_DIR
+import tanim.utils.constants as consts
 
 
 def play_chord(*nums):
@@ -35,6 +35,6 @@ def play_finish_sound():
 def get_full_sound_file_path(sound_file_name):
     return seek_full_path_from_defaults(
         sound_file_name,
-        default_dir=os.path.join(ASSETS_DIR, "sounds"),
+        default_dir=os.path.join(consts.ASSETS_DIR, "sounds"),
         extensions=[".wav", ".mp3"]
     )

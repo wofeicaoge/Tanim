@@ -5,8 +5,8 @@ import numpy as np
 from tanim.core.animation.transform import Transform
 from tanim.core.mobject.mobject import Group, Mobject
 
-from tanim.utils.constants import DEFAULT_POINTWISE_FUNCTION_RUN_TIME
-from tanim.utils.constants import DEGREES
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
 
 
 class ReplacementTransform(Transform):
@@ -64,7 +64,7 @@ class ApplyMethod(Transform):
 
 class ApplyPointwiseFunction(ApplyMethod):
     CONFIG = {
-        "run_time": DEFAULT_POINTWISE_FUNCTION_RUN_TIME
+        "run_time": consts.DEFAULT_POINTWISE_FUNCTION_RUN_TIME
     }
 
     def __init__(self, function, mobject, **kwargs):
@@ -150,7 +150,7 @@ class ApplyComplexFunction(ApplyMethod):
 
 class CyclicReplace(Transform):
     CONFIG = {
-        "path_arc": 90 * DEGREES,
+        "path_arc": 90 * consts.DEGREES,
     }
 
     def __init__(self, *mobjects, **kwargs):

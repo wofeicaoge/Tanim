@@ -3,7 +3,7 @@ from tanim.utils.color import Color
 from tanim.utils.config_ops import digest_config
 
 from tanim.extention.mobject.geometry import Rectangle
-from tanim.utils.constants import FRAME_HEIGHT
+import tanim.utils.constants as consts
 
 
 class ScreenRectangle(Rectangle):
@@ -22,7 +22,7 @@ class ScreenRectangle(Rectangle):
 
 class FullScreenRectangle(ScreenRectangle):
     CONFIG = {
-        "height": FRAME_HEIGHT,
+        "height": consts.FRAME_HEIGHT,
     }
 
 

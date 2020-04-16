@@ -12,8 +12,7 @@ from tanim.utils.bezier import interpolate
 from tanim.utils.color import color_to_rgb
 from tanim.utils.color import rgb_to_color
 from tanim.utils.config_ops import digest_config
-from tanim.utils.constants import DEFAULT_PIXEL_HEIGHT, DEFAULT_PIXEL_WIDTH, FRAME_WIDTH, FRAME_HEIGHT, \
-    RASTER_IMAGE_DIR, RIGHT, UP
+import tanim.utils.constants as consts
 from tanim.utils.rate_functions import linear
 from tanim.utils.simple_functions import sigmoid
 from tanim.utils.space_ops import get_norm
@@ -30,12 +29,12 @@ DEFAULT_SCALAR_FIELD_COLORS = [Color('BLUE_E'), Color('GREEN'), Color('YELLOW'),
 
 def get_colored_background_image(scalar_field_func,
                                  number_to_rgb_func,
-                                 pixel_height=DEFAULT_PIXEL_HEIGHT,
-                                 pixel_width=DEFAULT_PIXEL_WIDTH):
+                                 pixel_height=consts.DEFAULT_PIXEL_HEIGHT,
+                                 pixel_width=consts.DEFAULT_PIXEL_WIDTH):
     ph = pixel_height
     pw = pixel_width
-    fw = FRAME_WIDTH
-    fh = FRAME_HEIGHT
+    fw = consts.FRAME_WIDTH
+    fh = consts.FRAME_HEIGHT
     points_array = np.zeros((ph, pw, 3))
     x_array = np.linspace(-fw / 2, fw / 2, pw)
     x_array = x_array.reshape((1, len(x_array)))
@@ -86,7 +85,7 @@ def get_color_field_image_file(scalar_func,
         str(min_value) + str(max_value) + str(colors) + str(sample_outputs)
     )
     file_name = "%d.png" % func_hash
-    full_path = os.path.join(RASTER_IMAGE_DIR, file_name)
+    full_path = os.path.join(consts.RASTER_IMAGE_DIR, file_name)
     if not os.path.exists(full_path):
         print("Rendering color field image " + str(func_hash))
         rgb_gradient_func = get_rgb_gradient_function(
@@ -112,7 +111,7 @@ def move_submobjects_along_vector_field(mobject, func):
     def apply_nudge(mob, dt):
         for submob in mob:
             x, y = submob.get_center()[:2]
-            if abs(x) < FRAME_WIDTH and abs(y) < FRAME_HEIGHT:
+            if abs(x) < consts.FRAME_WIDTH and abs(y) < consts.FRAME_HEIGHT:
                 submob.shift(func(submob.get_center()) * dt)
 
     mobject.add_updater(apply_nudge)
@@ -134,10 +133,10 @@ class VectorField(VGroup):
     CONFIG = {
         "delta_x": 0.5,
         "delta_y": 0.5,
-        "x_min": int(np.floor(-FRAME_WIDTH / 2)),
-        "x_max": int(np.ceil(FRAME_WIDTH / 2)),
-        "y_min": int(np.floor(-FRAME_HEIGHT / 2)),
-        "y_max": int(np.ceil(FRAME_HEIGHT / 2)),
+        "x_min": int(np.floor(-consts.FRAME_WIDTH / 2)),
+        "x_max": int(np.ceil(consts.FRAME_WIDTH / 2)),
+        "y_min": int(np.floor(-consts.FRAME_HEIGHT / 2)),
+        "y_max": int(np.ceil(consts.FRAME_HEIGHT / 2)),
         "min_magnitude": 0,
         "max_magnitude": 2,
         "colors": DEFAULT_SCALAR_FIELD_COLORS,
@@ -167,7 +166,7 @@ class VectorField(VGroup):
             self.delta_y
         )
         for x, y in it.product(x_range, y_range):
-            point = x * RIGHT + y * UP
+            point = x * consts.RIGHT + y * consts.UP
             self.add(self.get_vector(point))
         self.set_opacity(self.opacity)
 
@@ -278,7 +277,7 @@ class StreamLines(VGroup):
         if noise_factor is None:
             noise_factor = delta_y / 2
         return np.array([
-            x * RIGHT + y * UP + noise_factor * np.random.random(3)
+            x * consts.RIGHT + y * consts.UP + noise_factor * np.random.random(3)
             for n in range(n_repeats)
             for x in np.arange(x_min, x_max + delta_x, delta_x)
             for y in np.arange(y_min, y_max + delta_y, delta_y)

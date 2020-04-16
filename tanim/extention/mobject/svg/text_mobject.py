@@ -8,8 +8,7 @@ import cairo
 from tanim.extention.mobject.svg.svg_mobject import SVGMobject
 from tanim.utils.color import Color
 from tanim.utils.config_ops import digest_config
-from tanim.utils.constants import NORMAL, ITALIC, OBLIQUE, BOLD, NOT_SETTING_FONT_MSG, TEXT_DIR, START_X, \
-    START_Y
+import tanim.utils.constants as consts
 
 
 class TextSetting(object):
@@ -32,8 +31,8 @@ class Text(SVGMobject):
         'gradient': None,
         'lsh': -1,
         'size': 1,
-        'slant': NORMAL,
-        'weight': NORMAL,
+        'slant': consts.NORMAL,
+        'weight': consts.NORMAL,
         't2c': {},
         't2f': {},
         't2g': {},
@@ -104,18 +103,18 @@ class Text(SVGMobject):
                 self[start:end].set_color_by_gradient(*gradient)
 
     def str2slant(self, string):
-        if string == NORMAL:
-            return cairo.FontSlant.NORMAL
-        if string == ITALIC:
-            return cairo.FontSlant.ITALIC
-        if string == OBLIQUE:
-            return cairo.FontSlant.OBLIQUE
+        if string == consts.NORMAL:
+            return cairo.FontSlant.consts.NORMAL
+        if string == consts.ITALIC:
+            return cairo.FontSlant.consts.ITALIC
+        if string == consts.OBLIQUE:
+            return cairo.FontSlant.consts.OBLIQUE
 
     def str2weight(self, string):
-        if string == NORMAL:
-            return cairo.FontWeight.NORMAL
-        if string == BOLD:
-            return cairo.FontWeight.BOLD
+        if string == consts.NORMAL:
+            return cairo.FontWeight.consts.NORMAL
+        if string == consts.BOLD:
+            return cairo.FontWeight.consts.BOLD
 
     def text2hash(self):
         settings = self.font + self.slant + self.weight
@@ -178,9 +177,9 @@ class Text(SVGMobject):
         lsh = self.lsh * 10
 
         if self.font == '':
-            print(NOT_SETTING_FONT_MSG)
+            print(consts.NOT_SETTING_FONT_MSG)
 
-        dir_name = TEXT_DIR
+        dir_name = consts.TEXT_DIR
         hash_name = self.text2hash()
         file_name = os.path.join(dir_name, hash_name)+'.svg'
         if os.path.exists(file_name):
@@ -189,7 +188,7 @@ class Text(SVGMobject):
         surface = cairo.SVGSurface(file_name, 600, 400)
         context = cairo.Context(surface)
         context.set_font_size(size)
-        context.move_to(START_X, START_Y)
+        context.move_to(consts.START_X, consts.START_Y)
 
         settings = self.text2settings()
         offset_x = 0
@@ -204,7 +203,7 @@ class Text(SVGMobject):
             if setting.line_num != last_line_num:
                 offset_x = 0
                 last_line_num = setting.line_num
-            context.move_to(START_X + offset_x, START_Y + lsh*setting.line_num)
+            context.move_to(consts.START_X + offset_x, consts.START_Y + lsh*setting.line_num)
             context.show_text(text)
             offset_x += context.text_extents(text)[4]
 

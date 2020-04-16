@@ -1,13 +1,15 @@
 import copy
 import itertools as it
 import operator as op
+import os
 import random
 import sys
 from functools import reduce
+import numpy as np
 
 from tanim.utils.color import Color
 
-from tanim.utils.constants import *
+import tanim.utils.constants as consts
 from tanim.utils.color import color_gradient
 from tanim.utils.color import interpolate_color
 from tanim.utils.iterables import remove_list_redundancies
@@ -217,7 +219,7 @@ class Mobject(Container):
         """
         Default behavior is to scale about the center of the mobject.
         The argument about_edge can be a vector, indicating which side of
-        the mobject to scale about, e.g., mob.scale(about_edge = RIGHT)
+        the mobject to scale about, e.g., mob.scale(about_edge = consts.RIGHT)
         scales about mob.get_right().
 
         Otherwise, if about_point is given a value, scaling is done with
@@ -228,10 +230,10 @@ class Mobject(Container):
         )
         return self
 
-    def rotate_about_origin(self, angle, axis=OUT, axes=[]):
-        return self.rotate(angle, axis, about_point=ORIGIN)
+    def rotate_about_origin(self, angle, axis=consts.OUT, axes=[]):
+        return self.rotate(angle, axis, about_point=consts.ORIGIN)
 
-    def rotate(self, angle, axis=OUT, **kwargs):
+    def rotate(self, angle, axis=consts.OUT, **kwargs):
         rot_matrix = rotation_matrix(angle, axis)
         self.apply_points_function_about_point(
             lambda points: np.dot(points, rot_matrix.T),
@@ -239,8 +241,8 @@ class Mobject(Container):
         )
         return self
 
-    def flip(self, axis=UP, **kwargs):
-        return self.rotate(TAU / 2, axis, **kwargs)
+    def flip(self, axis=consts.UP, **kwargs):
+        return self.rotate(consts.TAU / 2, axis, **kwargs)
 
     def stretch(self, factor, dim, **kwargs):
         def func(points):
@@ -253,7 +255,7 @@ class Mobject(Container):
     def apply_function(self, function, **kwargs):
         # Default to applying matrix about the origin, not mobjects center
         if len(kwargs) == 0:
-            kwargs["about_point"] = ORIGIN
+            kwargs["about_point"] = consts.ORIGIN
         self.apply_points_function_about_point(
             lambda points: np.apply_along_axis(function, 1, points),
             **kwargs
@@ -272,7 +274,7 @@ class Mobject(Container):
     def apply_matrix(self, matrix, **kwargs):
         # Default to applying matrix about the origin, not mobjects center
         if ("about_point" not in kwargs) and ("about_edge" not in kwargs):
-            kwargs["about_point"] = ORIGIN
+            kwargs["about_point"] = consts.ORIGIN
         full_matrix = np.identity(self.dim)
         matrix = np.array(matrix)
         full_matrix[:matrix.shape[0], :matrix.shape[1]] = matrix
@@ -294,7 +296,7 @@ class Mobject(Container):
 
         return self.apply_function(R3_func)
 
-    def wag(self, direction=RIGHT, axis=DOWN, wag_factor=1.0):
+    def wag(self, direction=consts.RIGHT, axis=consts.DOWN, wag_factor=1.0):
         for mob in self.family_members_with_points():
             alphas = np.dot(mob.points, np.transpose(axis))
             alphas -= min(alphas)
@@ -335,7 +337,7 @@ class Mobject(Container):
     def apply_points_function_about_point(self, func, about_point=None, about_edge=None):
         if about_point is None:
             if about_edge is None:
-                about_edge = ORIGIN
+                about_edge = consts.ORIGIN
             about_point = self.get_critical_point(about_edge)
         for mob in self.family_members_with_points():
             mob.points -= about_point
@@ -343,7 +345,7 @@ class Mobject(Container):
             mob.points += about_point
         return self
 
-    def rotate_in_place(self, angle, axis=OUT):
+    def rotate_in_place(self, angle, axis=consts.OUT):
         # redundant with default behavior of rotate now.
         return self.rotate(angle, axis=axis)
 
@@ -356,7 +358,7 @@ class Mobject(Container):
         return self.scale(scale_factor, about_point=point)
 
     def pose_at_angle(self, **kwargs):
-        self.rotate(TAU / 14, RIGHT + UP, **kwargs)
+        self.rotate(consts.TAU / 14, consts.RIGHT + consts.UP, **kwargs)
         return self
 
     # Positioning methods
@@ -365,28 +367,28 @@ class Mobject(Container):
         self.shift(-self.get_center())
         return self
 
-    def align_on_border(self, direction, buff=DEFAULT_MOBJECT_TO_EDGE_BUFFER):
+    def align_on_border(self, direction, buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
         """
         Direction just needs to be a vector pointing towards side or
         corner in the 2d plane.
         """
-        target_point = np.sign(direction) * (FRAME_X_RADIUS, FRAME_Y_RADIUS, 0)
+        target_point = np.sign(direction) * (consts.FRAME_X_RADIUS, consts.FRAME_Y_RADIUS, 0)
         point_to_align = self.get_critical_point(direction)
         shift_val = target_point - point_to_align - buff * np.array(direction)
         shift_val = shift_val * abs(np.sign(direction))
         self.shift(shift_val)
         return self
 
-    def to_corner(self, corner=LEFT + DOWN, buff=DEFAULT_MOBJECT_TO_EDGE_BUFFER):
+    def to_corner(self, corner=consts.LEFT + consts.DOWN, buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
         return self.align_on_border(corner, buff)
 
-    def to_edge(self, edge=LEFT, buff=DEFAULT_MOBJECT_TO_EDGE_BUFFER):
+    def to_edge(self, edge=consts.LEFT, buff=consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER):
         return self.align_on_border(edge, buff)
 
     def next_to(self, mobject_or_point,
-                direction=RIGHT,
-                buff=DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
-                aligned_edge=ORIGIN,
+                direction=consts.RIGHT,
+                buff=consts.DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
+                aligned_edge=consts.ORIGIN,
                 submobject_to_align=None,
                 index_of_submobject_to_align=None,
                 coor_mask=np.array([1, 1, 1]),
@@ -414,10 +416,10 @@ class Mobject(Container):
         return self
 
     def shift_onto_screen(self, **kwargs):
-        space_lengths = [FRAME_X_RADIUS, FRAME_Y_RADIUS]
-        for vect in UP, DOWN, LEFT, RIGHT:
+        space_lengths = [consts.FRAME_X_RADIUS, consts.FRAME_Y_RADIUS]
+        for vect in consts.UP, consts.DOWN, consts.LEFT, consts.RIGHT:
             dim = np.argmax(np.abs(vect))
-            buff = kwargs.get("buff", DEFAULT_MOBJECT_TO_EDGE_BUFFER)
+            buff = kwargs.get("buff", consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER)
             max_val = space_lengths[dim] - buff
             edge_center = self.get_edge_center(vect)
             if np.dot(edge_center, vect) > max_val:
@@ -425,13 +427,13 @@ class Mobject(Container):
         return self
 
     def is_off_screen(self):
-        if self.get_left()[0] > FRAME_X_RADIUS:
+        if self.get_left()[0] > consts.FRAME_X_RADIUS:
             return True
-        if self.get_right()[0] < -FRAME_X_RADIUS:
+        if self.get_right()[0] < -consts.FRAME_X_RADIUS:
             return True
-        if self.get_bottom()[1] > FRAME_Y_RADIUS:
+        if self.get_bottom()[1] > consts.FRAME_Y_RADIUS:
             return True
-        if self.get_top()[1] < -FRAME_Y_RADIUS:
+        if self.get_top()[1] < -consts.FRAME_Y_RADIUS:
             return True
         return False
 
@@ -466,20 +468,20 @@ class Mobject(Container):
     def set_depth(self, depth, stretch=False, **kwargs):
         return self.rescale_to_fit(depth, 2, stretch=stretch, **kwargs)
 
-    def set_coord(self, value, dim, direction=ORIGIN):
+    def set_coord(self, value, dim, direction=consts.ORIGIN):
         curr = self.get_coord(dim, direction)
         shift_vect = np.zeros(self.dim)
         shift_vect[dim] = value - curr
         self.shift(shift_vect)
         return self
 
-    def set_x(self, x, direction=ORIGIN):
+    def set_x(self, x, direction=consts.ORIGIN):
         return self.set_coord(x, 0, direction)
 
-    def set_y(self, y, direction=ORIGIN):
+    def set_y(self, y, direction=consts.ORIGIN):
         return self.set_coord(y, 1, direction)
 
-    def set_z(self, z, direction=ORIGIN):
+    def set_z(self, z, direction=consts.ORIGIN):
         return self.set_coord(z, 2, direction)
 
     def space_out_submobjects(self, factor=1.5, **kwargs):
@@ -488,7 +490,7 @@ class Mobject(Container):
             submob.scale(1. / factor)
         return self
 
-    def move_to(self, point_or_mobject, aligned_edge=ORIGIN,
+    def move_to(self, point_or_mobject, aligned_edge=consts.ORIGIN,
                 coor_mask=np.array([1, 1, 1])):
         if isinstance(point_or_mobject, Mobject):
             target = point_or_mobject.get_critical_point(aligned_edge)
@@ -521,7 +523,7 @@ class Mobject(Container):
     def surround(self, mobject,
                  dim_to_match=0,
                  stretch=False,
-                 buff=MED_SMALL_BUFF):
+                 buff=consts.MED_SMALL_BUFF):
         self.fit_into(mobject, dim_to_match, stretch)
         length = mobject.length_over_dim(dim_to_match)
         self.scale_in_place((length + buff) / length)
@@ -529,7 +531,7 @@ class Mobject(Container):
 
     # Background rectangle
     def add_background_rectangle(self, color=Color('BLACK'), opacity=0.75, **kwargs):
-        from tanim.extention import BackgroundRectangle
+        from tanim.extention.mobject.shape_matchers import BackgroundRectangle
         self.background_rectangle = BackgroundRectangle(
             self, color=color,
             fill_opacity=opacity,
@@ -724,22 +726,22 @@ class Mobject(Container):
         return all_points[index]
 
     def get_top(self):
-        return self.get_edge_center(UP)
+        return self.get_edge_center(consts.UP)
 
     def get_bottom(self):
-        return self.get_edge_center(DOWN)
+        return self.get_edge_center(consts.DOWN)
 
     def get_right(self):
-        return self.get_edge_center(RIGHT)
+        return self.get_edge_center(consts.RIGHT)
 
     def get_left(self):
-        return self.get_edge_center(LEFT)
+        return self.get_edge_center(consts.LEFT)
 
     def get_zenith(self):
-        return self.get_edge_center(OUT)
+        return self.get_edge_center(consts.OUT)
 
     def get_nadir(self):
-        return self.get_edge_center(IN)
+        return self.get_edge_center(consts.IN)
 
     def length_over_dim(self, dim):
         return (
@@ -756,7 +758,7 @@ class Mobject(Container):
     def get_depth(self):
         return self.length_over_dim(2)
 
-    def get_coord(self, dim, direction=ORIGIN):
+    def get_coord(self, dim, direction=consts.ORIGIN):
         """
         Meant to generalize get_x, get_y, get_z
         """
@@ -764,13 +766,13 @@ class Mobject(Container):
             dim=dim, key=direction[dim]
         )
 
-    def get_x(self, direction=ORIGIN):
+    def get_x(self, direction=consts.ORIGIN):
         return self.get_coord(0, direction)
 
-    def get_y(self, direction=ORIGIN):
+    def get_y(self, direction=consts.ORIGIN):
         return self.get_coord(1, direction)
 
-    def get_z(self, direction=ORIGIN):
+    def get_z(self, direction=consts.ORIGIN):
         return self.get_coord(2, direction)
 
     def get_start(self):
@@ -829,29 +831,29 @@ class Mobject(Container):
     def match_depth(self, mobject, **kwargs):
         return self.match_dim_size(mobject, 2, **kwargs)
 
-    def match_coord(self, mobject, dim, direction=ORIGIN):
+    def match_coord(self, mobject, dim, direction=consts.ORIGIN):
         return self.set_coord(
             mobject.get_coord(dim, direction),
             dim=dim,
             direction=direction,
         )
 
-    def match_x(self, mobject, direction=ORIGIN):
+    def match_x(self, mobject, direction=consts.ORIGIN):
         return self.match_coord(mobject, 0, direction)
 
-    def match_y(self, mobject, direction=ORIGIN):
+    def match_y(self, mobject, direction=consts.ORIGIN):
         return self.match_coord(mobject, 1, direction)
 
-    def match_z(self, mobject, direction=ORIGIN):
+    def match_z(self, mobject, direction=consts.ORIGIN):
         return self.match_coord(mobject, 2, direction)
 
-    def align_to(self, mobject_or_point, direction=ORIGIN, alignment_vect=UP):
+    def align_to(self, mobject_or_point, direction=consts.ORIGIN, alignment_vect=consts.UP):
         """
         Examples:
-        mob1.align_to(mob2, UP) moves mob1 vertically so that its
+        mob1.align_to(mob2, consts.UP) moves mob1 vertically so that its
         top edge lines ups with mob2's top edge.
 
-        mob1.align_to(mob2, alignment_vect = RIGHT) moves mob1
+        mob1.align_to(mob2, alignment_vect = consts.RIGHT) moves mob1
         horizontally so that it's center is directly above/below
         the center of mob2
         """
@@ -907,7 +909,7 @@ class Mobject(Container):
             it.chain(*[method(m) for m in mobjects])
         ))
 
-    def arrange(self, direction=RIGHT, center=True, **kwargs):
+    def arrange(self, direction=consts.RIGHT, center=True, **kwargs):
         for m1, m2 in zip(self.submobjects, self.submobjects[1:]):
             m2.next_to(m1, direction, **kwargs)
         if center:
@@ -920,12 +922,12 @@ class Mobject(Container):
             n_cols = int(np.sqrt(len(submobs)))
 
         if n_rows is not None:
-            v1 = RIGHT
-            v2 = DOWN
+            v1 = consts.RIGHT
+            v2 = consts.DOWN
             n = len(submobs) // n_rows
         elif n_cols is not None:
-            v1 = DOWN
-            v2 = RIGHT
+            v1 = consts.DOWN
+            v2 = consts.RIGHT
             n = len(submobs) // n_cols
         Group(*[
             Group(*submobs[i:i + n]).arrange(v1, **kwargs)

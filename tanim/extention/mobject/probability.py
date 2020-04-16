@@ -3,8 +3,9 @@ import numpy as np
 from tanim.utils.color import Color
 from tanim.utils.color import color_gradient
 from tanim.utils.iterables import tuplify
+import tanim.utils.constants as consts
 
-from tanim.core.mobject.mobject import Mobject, MED_SMALL_BUFF, UP, DOWN, RIGHT, SMALL_BUFF, LEFT, MED_LARGE_BUFF
+from tanim.core.mobject.mobject import Mobject
 from tanim.core.mobject.vectorized_mobject import VGroup
 
 from tanim.extention.mobject.geometry import Line
@@ -28,12 +29,12 @@ class SampleSpace(Rectangle):
         "default_label_scale_val": 1,
     }
 
-    def add_title(self, title="Sample space", buff=MED_SMALL_BUFF):
+    def add_title(self, title="Sample space", buff=consts.MED_SMALL_BUFF):
         # TODO, should this really exist in SampleSpaceScene
         title_mob = TextMobject(title)
         if title_mob.get_width() > self.get_width():
             title_mob.set_width(self.get_width())
-        title_mob.next_to(self, UP, buff=buff)
+        title_mob.next_to(self, consts.UP, buff=buff)
         self.title = title_mob
         self.add(title_mob)
 
@@ -66,14 +67,14 @@ class SampleSpace(Rectangle):
     def get_horizontal_division(
         self, p_list,
         colors=[Color('GREEN_E'), Color('BLUE_E')],
-        vect=DOWN
+        vect=consts.DOWN
     ):
         return self.get_division_along_dimension(p_list, 1, colors, vect)
 
     def get_vertical_division(
         self, p_list,
         colors=[Color('MAROON_B'), Color('YELLOW')],
-        vect=RIGHT
+        vect=consts.RIGHT
     ):
         return self.get_division_along_dimension(p_list, 0, colors, vect)
 
@@ -87,7 +88,7 @@ class SampleSpace(Rectangle):
 
     def get_subdivision_braces_and_labels(
         self, parts, labels, direction,
-        buff=SMALL_BUFF,
+        buff=consts.SMALL_BUFF,
         min_num_quads=1
     ):
         label_mobs = VGroup()
@@ -116,7 +117,7 @@ class SampleSpace(Rectangle):
         }
         return VGroup(parts.braces, parts.labels)
 
-    def get_side_braces_and_labels(self, labels, direction=LEFT, **kwargs):
+    def get_side_braces_and_labels(self, labels, direction=consts.LEFT, **kwargs):
         assert(hasattr(self, "horizontal_parts"))
         parts = self.horizontal_parts
         return self.get_subdivision_braces_and_labels(parts, labels, direction, **kwargs)
@@ -124,12 +125,12 @@ class SampleSpace(Rectangle):
     def get_top_braces_and_labels(self, labels, **kwargs):
         assert(hasattr(self, "vertical_parts"))
         parts = self.vertical_parts
-        return self.get_subdivision_braces_and_labels(parts, labels, UP, **kwargs)
+        return self.get_subdivision_braces_and_labels(parts, labels, consts.UP, **kwargs)
 
     def get_bottom_braces_and_labels(self, labels, **kwargs):
         assert(hasattr(self, "vertical_parts"))
         parts = self.vertical_parts
-        return self.get_subdivision_braces_and_labels(parts, labels, DOWN, **kwargs)
+        return self.get_subdivision_braces_and_labels(parts, labels, consts.DOWN, **kwargs)
 
     def add_braces_and_labels(self):
         for attr in "horizontal_parts", "vertical_parts":
@@ -174,15 +175,15 @@ class BarChart(VGroup):
         self.center()
 
     def add_axes(self):
-        x_axis = Line(self.tick_width * LEFT / 2, self.width * RIGHT)
-        y_axis = Line(MED_LARGE_BUFF * DOWN, self.height * UP)
+        x_axis = Line(self.tick_width * consts.LEFT / 2, self.width * consts.RIGHT)
+        y_axis = Line(consts.MED_LARGE_BUFF * consts.DOWN, self.height * consts.UP)
         ticks = VGroup()
         heights = np.linspace(0, self.height, self.n_ticks + 1)
         values = np.linspace(0, self.max_value, self.n_ticks + 1)
         for y, value in zip(heights, values):
-            tick = Line(LEFT, RIGHT)
+            tick = Line(consts.LEFT, consts.RIGHT)
             tick.set_width(self.tick_width)
-            tick.move_to(y * UP)
+            tick.move_to(y * consts.UP)
             ticks.add(tick)
         y_axis.add(ticks)
 
@@ -194,7 +195,7 @@ class BarChart(VGroup):
             for tick, value in zip(ticks, values):
                 label = TexMobject(str(np.round(value, 2)))
                 label.set_height(self.y_axis_label_height)
-                label.next_to(tick, LEFT, SMALL_BUFF)
+                label.next_to(tick, consts.LEFT, consts.SMALL_BUFF)
                 labels.add(label)
             self.y_axis_labels = labels
             self.add(labels)
@@ -209,7 +210,7 @@ class BarChart(VGroup):
                 stroke_width=self.bar_stroke_width,
                 fill_opacity=self.bar_fill_opacity,
             )
-            bar.move_to((2 * i + 1) * buff * RIGHT, DOWN + LEFT)
+            bar.move_to((2 * i + 1) * buff * consts.RIGHT, consts.DOWN + consts.LEFT)
             bars.add(bar)
         bars.set_color_by_gradient(*self.bar_colors)
 
@@ -217,7 +218,7 @@ class BarChart(VGroup):
         for bar, name in zip(bars, self.bar_names):
             label = TexMobject(str(name))
             label.scale(self.bar_label_scale_val)
-            label.next_to(bar, DOWN, SMALL_BUFF)
+            label.next_to(bar, consts.DOWN, consts.SMALL_BUFF)
             bar_labels.add(label)
 
         self.add(bars, bar_labels)
@@ -230,7 +231,7 @@ class BarChart(VGroup):
             bar.stretch_to_fit_height(
                 (value / self.max_value) * self.height
             )
-            bar.move_to(bar_bottom, DOWN)
+            bar.move_to(bar_bottom, consts.DOWN)
 
     def copy(self):
         return self.deepcopy()

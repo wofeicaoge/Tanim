@@ -1,4 +1,4 @@
-from tanim.utils.constants import PI
+import tanim.utils.constants as consts
 
 from tanim.core.animation.transform import Transform
 
@@ -44,5 +44,5 @@ class GrowArrow(GrowFromPoint):
 
 class SpinInFromNothing(GrowFromCenter):
     CONFIG = {
-        "path_arc": PI,
+        "path_arc": consts.PI,
     }

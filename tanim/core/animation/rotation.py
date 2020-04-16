@@ -1,6 +1,6 @@
-from tanim.utils.constants import OUT
-from tanim.utils.constants import PI
-from tanim.utils.constants import TAU
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
 from tanim.utils.rate_functions import linear
 
 from tanim.core.animation.animation import Animation
@@ -9,8 +9,8 @@ from tanim.core.animation.transform import Transform
 
 class Rotating(Animation):
     CONFIG = {
-        "axis": OUT,
-        "radians": TAU,
+        "axis": consts.OUT,
+        "radians": consts.TAU,
         "run_time": 5,
         "rate_func": linear,
         "about_point": None,
@@ -33,7 +33,7 @@ class Rotate(Transform):
         "about_edge": None,
     }
 
-    def __init__(self, mobject, angle=PI, axis=OUT, **kwargs):
+    def __init__(self, mobject, angle=consts.PI, axis=consts.OUT, **kwargs):
         if "path_arc" not in kwargs:
             kwargs["path_arc"] = angle
         if "path_arc_axis" not in kwargs:

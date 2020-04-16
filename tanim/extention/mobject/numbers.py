@@ -3,7 +3,7 @@ import numpy as np
 from tanim.core.mobject.vectorized_mobject import VMobject
 
 from tanim.extention.mobject.svg.tex_mobject import SingleStringTexMobject
-from tanim.utils.constants import LEFT, DOWN, UP
+import tanim.utils.constants as consts
 
 
 class DecimalNumber(VMobject):
@@ -15,7 +15,7 @@ class DecimalNumber(VMobject):
         "show_ellipsis": False,
         "unit": None,  # Aligned to bottom unless it starts with "^"
         "include_background_rectangle": False,
-        "edge_to_fix": LEFT,
+        "edge_to_fix": consts.LEFT,
     }
 
     def __init__(self, number=0, **kwargs):
@@ -48,7 +48,7 @@ class DecimalNumber(VMobject):
         if num_string.startswith("-"):
             minus = self.submobjects[0]
             minus.next_to(
-                self.submobjects[1], LEFT,
+                self.submobjects[1], consts.LEFT,
                 buff=self.digit_to_digit_buff
             )
 
@@ -58,19 +58,19 @@ class DecimalNumber(VMobject):
 
         self.arrange(
             buff=self.digit_to_digit_buff,
-            aligned_edge=DOWN
+            aligned_edge=consts.DOWN
         )
 
         # Handle alignment of parts that should be aligned
         # to the bottom
         for i, c in enumerate(num_string):
             if c == "-" and len(num_string) > i + 1:
-                self[i].align_to(self[i + 1], UP)
-                self[i].shift(self[i+1].get_height() * DOWN / 2)
+                self[i].align_to(self[i + 1], consts.UP)
+                self[i].shift(self[i+1].get_height() * consts.DOWN / 2)
             elif c == ",":
-                self[i].shift(self[i].get_height() * DOWN / 2)
+                self[i].shift(self[i].get_height() * consts.DOWN / 2)
         if self.unit and self.unit.startswith("^"):
-            self.unit_sign.align_to(self, UP)
+            self.unit_sign.align_to(self, consts.UP)
         #
         if self.include_background_rectangle:
             self.add_background_rectangle()

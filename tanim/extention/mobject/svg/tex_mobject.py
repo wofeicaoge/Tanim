@@ -10,7 +10,7 @@ from tanim.core.mobject.vectorized_mobject import VectorizedPoint
 from tanim.utils.config_ops import digest_config
 from tanim.utils.strings import split_string_list_to_isolate_substrings
 from tanim.utils.tex_file_writing import tex_to_svg_file, init_tex_template
-from tanim.utils.constants import RIGHT, MED_LARGE_BUFF, LEFT, SMALL_BUFF, DOWN, FRAME_WIDTH, MED_SMALL_BUFF, UP
+import tanim.utils.constants as consts
 
 TEX_MOB_SCALE_FACTOR = 0.05
 
@@ -187,7 +187,7 @@ class TexMobject(SingleStringTexMobject):
                 # positioned in the right part of the TexMobject
                 sub_tex_mob.submobjects = [VectorizedPoint()]
                 last_submob_index = min(curr_index, len(self.submobjects) - 1)
-                sub_tex_mob.move_to(self.submobjects[last_submob_index], RIGHT)
+                sub_tex_mob.move_to(self.submobjects[last_submob_index], consts.RIGHT)
             else:
                 sub_tex_mob.submobjects = self.submobjects[curr_index:new_index]
             new_submobjects.append(sub_tex_mob)
@@ -254,7 +254,7 @@ class TextMobject(TexMobject):
 
 class BulletedList(TextMobject):
     CONFIG = {
-        "buff": MED_LARGE_BUFF,
+        "buff": consts.MED_LARGE_BUFF,
         "dot_scale_factor": 2,
         # Have to include because of handle_multiple_args implementation
         "alignment": "",
@@ -265,11 +265,11 @@ class BulletedList(TextMobject):
         TextMobject.__init__(self, *line_separated_items, **kwargs)
         for part in self:
             dot = TexMobject("\\cdot").scale(self.dot_scale_factor)
-            dot.next_to(part[0], LEFT, SMALL_BUFF)
+            dot.next_to(part[0], consts.LEFT, consts.SMALL_BUFF)
             part.add_to_back(dot)
         self.arrange(
-            DOWN,
-            aligned_edge=LEFT,
+            consts.DOWN,
+            aligned_edge=consts.LEFT,
             buff=self.buff
         )
 
@@ -305,19 +305,19 @@ class Title(TextMobject):
     CONFIG = {
         "scale_factor": 1,
         "include_underline": True,
-        "underline_width": FRAME_WIDTH - 2,
+        "underline_width": consts.FRAME_WIDTH - 2,
         # This will override underline_width
         "match_underline_width_to_text": False,
-        "underline_buff": MED_SMALL_BUFF,
+        "underline_buff": consts.MED_SMALL_BUFF,
     }
 
     def __init__(self, *text_parts, **kwargs):
         TextMobject.__init__(self, *text_parts, **kwargs)
         self.scale(self.scale_factor)
-        self.to_edge(UP)
+        self.to_edge(consts.UP)
         if self.include_underline:
-            underline = Line(LEFT, RIGHT)
-            underline.next_to(self, DOWN, buff=self.underline_buff)
+            underline = Line(consts.LEFT, consts.RIGHT)
+            underline.next_to(self, consts.DOWN, buff=self.underline_buff)
             if self.match_underline_width_to_text:
                 underline.match_width(self)
             else:

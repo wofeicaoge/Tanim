@@ -1,6 +1,6 @@
 import numpy as np
 
-from tanim.utils.constants import OUT
+import tanim.utils.constants as consts
 from tanim.utils.bezier import interpolate
 from tanim.utils.space_ops import get_norm
 from tanim.utils.space_ops import rotation_matrix
@@ -18,7 +18,7 @@ def straight_path(start_points, end_points, alpha):
     return interpolate(start_points, end_points, alpha)
 
 
-def path_along_arc(arc_angle, axis=OUT):
+def path_along_arc(arc_angle, axis=consts.OUT):
     """
     If vect is vector from start to end, [vect[:,1], -vect[:,0]] is
     perpendicular to vect in the left direction.
@@ -26,7 +26,7 @@ def path_along_arc(arc_angle, axis=OUT):
     if abs(arc_angle) < STRAIGHT_PATH_THRESHOLD:
         return straight_path
     if get_norm(axis) == 0:
-        axis = OUT
+        axis = consts.OUT
     unit_axis = axis / get_norm(axis)
 
     def path(start_points, end_points, alpha):

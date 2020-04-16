@@ -7,13 +7,13 @@ from tanim.core.mobject.vectorized_mobject import VMobject
 
 from tanim.extention.mobject.geometry import Line
 from tanim.extention.mobject.geometry import Rectangle
-from tanim.utils.constants import SMALL_BUFF, UP, LEFT, DOWN, RIGHT
+import tanim.utils.constants as consts
 
 
 class SurroundingRectangle(Rectangle):
     CONFIG = {
         "color": Color('YELLOW'),
-        "buff": SMALL_BUFF,
+        "buff": consts.SMALL_BUFF,
     }
 
     def __init__(self, mobject, **kwargs):
@@ -69,8 +69,8 @@ class Cross(VGroup):
 
     def __init__(self, mobject, **kwargs):
         VGroup.__init__(self,
-                        Line(UP + LEFT, DOWN + RIGHT),
-                        Line(UP + RIGHT, DOWN + LEFT),
+                        Line(consts.UP + consts.LEFT, consts.DOWN + consts.RIGHT),
+                        Line(consts.UP + consts.RIGHT, consts.DOWN + consts.LEFT),
                         )
         self.replace(mobject, stretch=True)
         self.set_stroke(self.stroke_color, self.stroke_width)
@@ -78,10 +78,10 @@ class Cross(VGroup):
 
 class Underline(Line):
     CONFIG = {
-        "buff": SMALL_BUFF,
+        "buff": consts.SMALL_BUFF,
     }
 
     def __init__(self, mobject, **kwargs):
-        super().__init__(LEFT, RIGHT, **kwargs)
+        super().__init__(consts.LEFT, consts.RIGHT, **kwargs)
         self.match_width(mobject)
-        self.next_to(mobject, DOWN, buff=self.buff)
+        self.next_to(mobject, consts.DOWN, buff=self.buff)

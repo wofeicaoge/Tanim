@@ -14,7 +14,7 @@ as a convenience for scripts creating scenes for videos.
 """
 
 
-from tanim.utils.constants import *
+import tanim.utils.constants as consts
 
 from tanim.utils.config import *
 

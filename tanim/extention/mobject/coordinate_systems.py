@@ -4,8 +4,7 @@ import numpy as np
 from tanim.utils.color import Color
 
 from tanim.utils.config_ops import merge_dicts_recursively
-from tanim.utils.constants import FRAME_X_RADIUS, FRAME_Y_RADIUS, RIGHT, DL, UP, DR, MED_SMALL_BUFF, LEFT, ORIGIN, \
-    DEGREES, DOWN, OUT, SMALL_BUFF
+import tanim.utils.constants as consts
 from tanim.utils.simple_functions import binary_search
 from tanim.utils.space_ops import angle_of_vector
 
@@ -26,10 +25,10 @@ class CoordinateSystem():
     """
     CONFIG = {
         "dimension": 2,
-        "x_min": -FRAME_X_RADIUS,
-        "x_max": FRAME_X_RADIUS,
-        "y_min": -FRAME_Y_RADIUS,
-        "y_max": FRAME_Y_RADIUS,
+        "x_min": -consts.FRAME_X_RADIUS,
+        "x_max": consts.FRAME_X_RADIUS,
+        "y_min": -consts.FRAME_Y_RADIUS,
+        "y_max": consts.FRAME_Y_RADIUS,
     }
 
     def coords_to_point(self, *coords):
@@ -61,25 +60,25 @@ class CoordinateSystem():
     def get_z_axis(self):
         return self.get_axis(2)
 
-    def get_x_axis_label(self, label_tex, edge=RIGHT, direction=DL, **kwargs):
+    def get_x_axis_label(self, label_tex, edge=consts.RIGHT, direction=consts.DL, **kwargs):
         return self.get_axis_label(
             label_tex, self.get_x_axis(),
             edge, direction, **kwargs
         )
 
-    def get_y_axis_label(self, label_tex, edge=UP, direction=DR, **kwargs):
+    def get_y_axis_label(self, label_tex, edge=consts.UP, direction=consts.DR, **kwargs):
         return self.get_axis_label(
             label_tex, self.get_y_axis(),
             edge, direction, **kwargs
         )
 
-    def get_axis_label(self, label_tex, axis, edge, direction, buff=MED_SMALL_BUFF):
+    def get_axis_label(self, label_tex, axis, edge, direction, buff=consts.MED_SMALL_BUFF):
         label = TexMobject(label_tex)
         label.next_to(
             axis.get_edge_center(edge), direction,
             buff=buff
         )
-        label.shift_onto_screen(buff=MED_SMALL_BUFF)
+        label.shift_onto_screen(buff=consts.MED_SMALL_BUFF)
         return label
 
     def get_axis_labels(self, x_label_tex="x", y_label_tex="y"):
@@ -139,9 +138,9 @@ class Axes(VGroup, CoordinateSystem):
         },
         "x_axis_config": {},
         "y_axis_config": {
-            "label_direction": LEFT,
+            "label_direction": consts.LEFT,
         },
-        "center_point": ORIGIN,
+        "center_point": consts.ORIGIN,
     }
 
     def __init__(self, **kwargs):
@@ -152,7 +151,7 @@ class Axes(VGroup, CoordinateSystem):
         self.y_axis = self.create_axis(
             self.y_min, self.y_max, self.y_axis_config
         )
-        self.y_axis.rotate(90 * DEGREES, about_point=ORIGIN)
+        self.y_axis.rotate(90 * consts.DEGREES, about_point=consts.ORIGIN)
         # Add as a separate group incase various other
         # mobjects are added to self, as for example in
         # NumberPlane below
@@ -216,9 +215,9 @@ class ThreeDAxes(Axes):
         "z_axis_config": {},
         "z_min": -3.5,
         "z_max": 3.5,
-        "z_normal": DOWN,
+        "z_normal": consts.DOWN,
         "num_axis_pieces": 20,
-        "light_source": 9 * DOWN + 7 * LEFT + 10 * OUT,
+        "light_source": 9 * consts.DOWN + 7 * consts.LEFT + 10 * consts.OUT,
     }
 
     def __init__(self, **kwargs):
@@ -226,10 +225,10 @@ class ThreeDAxes(Axes):
         z_axis = self.z_axis = self.create_axis(
             self.z_min, self.z_max, self.z_axis_config
         )
-        z_axis.rotate(-np.pi / 2, UP, about_point=ORIGIN)
+        z_axis.rotate(-np.pi / 2, consts.UP, about_point=consts.ORIGIN)
         z_axis.rotate(
-            angle_of_vector(self.z_normal), OUT,
-            about_point=ORIGIN
+            angle_of_vector(self.z_normal), consts.OUT,
+            about_point=consts.ORIGIN
         )
         self.axes.add(z_axis)
         self.add(z_axis)
@@ -267,12 +266,12 @@ class NumberPlane(Axes):
             "stroke_width": 2,
             "include_ticks": False,
             "include_tip": False,
-            "line_to_number_buff": SMALL_BUFF,
-            "label_direction": DR,
+            "line_to_number_buff": consts.SMALL_BUFF,
+            "label_direction": consts.DR,
             "number_scale_val": 0.5,
         },
         "y_axis_config": {
-            "label_direction": DR,
+            "label_direction": consts.DR,
         },
         "background_line_style": {
             "stroke_color": Color('BLUE_D'),

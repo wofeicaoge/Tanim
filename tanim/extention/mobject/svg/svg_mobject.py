@@ -12,7 +12,7 @@ from tanim.core.mobject.vectorized_mobject import VGroup
 from tanim.core.mobject.vectorized_mobject import VMobject
 from tanim.utils.color import Color
 from tanim.utils.config_ops import digest_config, digest_locals
-from tanim.utils.constants import DEFAULT_STROKE_WIDTH, ASSETS_DIR, RIGHT, DOWN, UP, LEFT, ORIGIN
+import tanim.utils.constants as consts
 
 
 def string_to_numbers(num_string):
@@ -33,7 +33,7 @@ class SVGMobject(VMobject):
         # Must be filled in in a subclass, or when called
         "file_name": None,
         "unpack_groups": True,  # if False, creates a hierarchy of VGroups
-        "stroke_width": DEFAULT_STROKE_WIDTH,
+        "stroke_width": consts.DEFAULT_STROKE_WIDTH,
         "fill_opacity": 1.0,
         # "fill_color" : Color('GREY'),
     }
@@ -49,9 +49,9 @@ class SVGMobject(VMobject):
         if self.file_name is None:
             raise Exception("Must specify file for SVGMobject")
         possible_paths = [
-            os.path.join(os.path.join(ASSETS_DIR, "svg_images"), self.file_name),
-            os.path.join(os.path.join(ASSETS_DIR, "svg_images"), self.file_name + ".svg"),
-            os.path.join(os.path.join(ASSETS_DIR, "svg_images"), self.file_name + ".xdv"),
+            os.path.join(os.path.join(consts.ASSETS_DIR, "svg_images"), self.file_name),
+            os.path.join(os.path.join(consts.ASSETS_DIR, "svg_images"), self.file_name + ".svg"),
+            os.path.join(os.path.join(consts.ASSETS_DIR, "svg_images"), self.file_name + ".xdv"),
             self.file_name,
         ]
         for path in possible_paths:
@@ -153,7 +153,7 @@ class SVGMobject(VMobject):
             else 0.0
             for key in ("cx", "cy", "r")
         ]
-        return Circle(radius=r).shift(x * RIGHT + y * DOWN)
+        return Circle(radius=r).shift(x * consts.RIGHT + y * consts.DOWN)
 
     def ellipse_to_mobject(self, circle_element):
         x, y, rx, ry = [
@@ -164,7 +164,7 @@ class SVGMobject(VMobject):
             else 0.0
             for key in ("cx", "cy", "rx", "ry")
         ]
-        return Circle().scale(rx * RIGHT + ry * UP).shift(x * RIGHT + y * DOWN)
+        return Circle().scale(rx * consts.RIGHT + ry * consts.UP).shift(x * consts.RIGHT + y * consts.DOWN)
 
     def rect_to_mobject(self, rect_element):
         fill_color = rect_element.getAttribute("fill")
@@ -219,7 +219,7 @@ class SVGMobject(VMobject):
                 corner_radius=corner_radius
             )
 
-        mob.shift(mob.get_center() - mob.get_corner(UP + LEFT))
+        mob.shift(mob.get_center() - mob.get_corner(consts.UP + consts.LEFT))
         return mob
 
     def handle_transforms(self, element, mobject):
@@ -228,7 +228,7 @@ class SVGMobject(VMobject):
             x = self.attribute_to_float(element.getAttribute('x'))
             # Flip y
             y = -self.attribute_to_float(element.getAttribute('y'))
-            mobject.shift(x * RIGHT + y * UP)
+            mobject.shift(x * consts.RIGHT + y * consts.UP)
         except:
             pass
 
@@ -251,7 +251,7 @@ class SVGMobject(VMobject):
 
             for mob in mobject.family_members_with_points():
                 mob.points = np.dot(mob.points, matrix)
-            mobject.shift(x * RIGHT + y * UP)
+            mobject.shift(x * consts.RIGHT + y * consts.UP)
         except:
             pass
 
@@ -264,10 +264,10 @@ class SVGMobject(VMobject):
             scale_values = string_to_numbers(transform)
             if len(scale_values) == 2:
                 scale_x, scale_y = scale_values
-                mobject.scale(np.array([scale_x, scale_y, 1]), about_point=ORIGIN)
+                mobject.scale(np.array([scale_x, scale_y, 1]), about_point=consts.ORIGIN)
             elif len(scale_values) == 1:
                 scale = scale_values[0]
-                mobject.scale(np.array([scale, scale, 1]), about_point=ORIGIN)
+                mobject.scale(np.array([scale, scale, 1]), about_point=consts.ORIGIN)
         except:
             pass
 
@@ -278,7 +278,7 @@ class SVGMobject(VMobject):
                 raise Exception()
             transform = transform[len(prefix):-len(suffix)]
             x, y = string_to_numbers(transform)
-            mobject.shift(x * RIGHT + y * DOWN)
+            mobject.shift(x * consts.RIGHT + y * consts.DOWN)
         except:
             pass
         # TODO, ...
@@ -347,7 +347,7 @@ class VMobjectFromSVGPathstring(VMobject):
         for command, coord_string in pairs:
             self.handle_command(command, coord_string)
         # people treat y-coordinate differently
-        self.rotate(np.pi, RIGHT, about_point=ORIGIN)
+        self.rotate(np.pi, consts.RIGHT, about_point=consts.ORIGIN)
 
     def handle_command(self, command, coord_string):
         isLower = command.islower()

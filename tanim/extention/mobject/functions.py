@@ -6,7 +6,7 @@ from tanim.utils.color import Color
 from tanim.utils.config_ops import digest_config
 
 from tanim.core.mobject.vectorized_mobject import VMobject
-from tanim.utils.constants import FRAME_X_RADIUS
+import tanim.utils.constants as consts
 
 
 class ParametricFunction(VMobject):
@@ -85,8 +85,8 @@ class ParametricFunction(VMobject):
 class FunctionGraph(ParametricFunction):
     CONFIG = {
         "color": Color('YELLOW'),
-        "x_min": -FRAME_X_RADIUS,
-        "x_max": FRAME_X_RADIUS,
+        "x_min": -consts.FRAME_X_RADIUS,
+        "x_max": consts.FRAME_X_RADIUS,
     }
 
     def __init__(self, function, **kwargs):

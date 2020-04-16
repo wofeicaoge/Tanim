@@ -1,8 +1,8 @@
 from tanim.utils.color import Color
 
-from tanim.utils.constants import FRAME_HEIGHT
-from tanim.utils.constants import FRAME_WIDTH
-from tanim.utils.constants import ORIGIN
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
 from tanim.utils.config_ops import digest_config
 
 from tanim.core.camera.camera import Camera
@@ -14,9 +14,9 @@ from tanim.extention.mobject.frame import ScreenRectangle
 # TODO, think about how to incorporate perspective
 class CameraFrame(VGroup):
     CONFIG = {
-        "width": FRAME_WIDTH,
-        "height": FRAME_HEIGHT,
-        "center": ORIGIN,
+        "width": consts.FRAME_WIDTH,
+        "height": consts.FRAME_HEIGHT,
+        "center": consts.ORIGIN,
     }
 
     def __init__(self, **kwargs):
@@ -41,7 +41,7 @@ class MovingCamera(Camera):
         """
         digest_config(self, kwargs)
         if frame is None:
-            frame = ScreenRectangle(height=FRAME_HEIGHT)
+            frame = ScreenRectangle(height=consts.FRAME_HEIGHT)
             frame.set_stroke(
                 self.default_frame_stroke_color,
                 self.default_frame_stroke_width,

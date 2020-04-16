@@ -1,7 +1,7 @@
 import numpy as np
 
 from tanim.core.mobject.mobject import Mobject
-from tanim.utils.constants import DEGREES, DOWN, LEFT, OUT, ORIGIN, FRAME_WIDTH, RIGHT
+import tanim.utils.constants as consts
 from tanim.utils.three_d_shading_utils import get_3d_vmob_end_corner
 from tanim.utils.three_d_shading_utils import get_3d_vmob_end_corner_unit_normal
 from tanim.utils.three_d_shading_utils import get_3d_vmob_start_corner
@@ -22,13 +22,13 @@ class ThreeDCamera(Camera):
         "distance": 20.0,
         "default_distance": 5.0,
         "phi": 0,  # Angle off z axis
-        "theta": -90 * DEGREES,  # Rotation about z axis
+        "theta": -90 * consts.DEGREES,  # Rotation about z axis
         "gamma": 0,  # Rotation about normal vector to camera
-        "light_source_start_point": 9 * DOWN + 7 * LEFT + 10 * OUT,
-        "frame_center": ORIGIN,
+        "light_source_start_point": 9 * consts.DOWN + 7 * consts.LEFT + 10 * consts.OUT,
+        "frame_center": consts.ORIGIN,
         "should_apply_shading": True,
         "exponential_projection": False,
-        "max_allowable_norm": 3 * FRAME_WIDTH,
+        "max_allowable_norm": 3 * consts.FRAME_WIDTH,
     }
 
     def __init__(self, *args, **kwargs):
@@ -147,8 +147,8 @@ class ThreeDCamera(Camera):
         theta = self.get_theta()
         gamma = self.get_gamma()
         matrices = [
-            rotation_about_z(-theta - 90 * DEGREES),
-            rotation_matrix(-phi, RIGHT),
+            rotation_about_z(-theta - 90 * consts.DEGREES),
+            rotation_matrix(-phi, consts.RIGHT),
             rotation_about_z(gamma),
         ]
         result = np.identity(3)

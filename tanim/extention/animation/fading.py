@@ -1,4 +1,4 @@
-from tanim.utils.constants import DOWN
+import tanim.utils.constants as consts
 from tanim.utils.bezier import interpolate
 from tanim.utils.rate_functions import there_and_back
 
@@ -43,7 +43,7 @@ class FadeIn(Transform):
 
 class FadeInFrom(Transform):
     CONFIG = {
-        "direction": DOWN,
+        "direction": consts.DOWN,
         "lag_ratio": DEFAULT_ANIMATION_LAG_RATIO,
     }
 
@@ -63,7 +63,7 @@ class FadeInFrom(Transform):
 
 class FadeOutAndShift(FadeOut):
     CONFIG = {
-        "direction": DOWN,
+        "direction": consts.DOWN,
     }
 
     def __init__(self, mobject, direction=None, **kwargs):

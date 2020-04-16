@@ -12,8 +12,7 @@ import numpy as np
 from tanim.utils.color import Color
 from tanim.utils.color import color_to_int_rgba
 from tanim.utils.config_ops import digest_config
-from tanim.utils.constants import DEFAULT_PIXEL_HEIGHT, DEFAULT_PIXEL_WIDTH, DEFAULT_FRAME_RATE, FRAME_HEIGHT, \
-    FRAME_WIDTH, ORIGIN, TAU, PRODUCTION_QUALITY_CAMERA_CONFIG
+import tanim.utils.constants as consts
 from tanim.utils.images import get_full_raster_image_path
 from tanim.utils.iterables import batch_by_property
 from tanim.utils.iterables import list_difference_update
@@ -30,19 +29,19 @@ from tanim.core.mobject.vectorized_mobject import VMobject
 class Camera(object):
     CONFIG = {
         "background_image": None,
-        "pixel_height": DEFAULT_PIXEL_HEIGHT,
-        "pixel_width": DEFAULT_PIXEL_WIDTH,
-        "frame_rate": DEFAULT_FRAME_RATE,
+        "pixel_height": consts.DEFAULT_PIXEL_HEIGHT,
+        "pixel_width": consts.DEFAULT_PIXEL_WIDTH,
+        "frame_rate": consts.DEFAULT_FRAME_RATE,
         # Note: frame height and width will be resized to match
         # the pixel aspect ratio
-        "frame_height": FRAME_HEIGHT,
-        "frame_width": FRAME_WIDTH,
-        "frame_center": ORIGIN,
+        "frame_height": consts.FRAME_HEIGHT,
+        "frame_width": consts.FRAME_WIDTH,
+        "frame_center": consts.ORIGIN,
         "background_color": Color('BLACK'),
         "background_opacity": 1,
         # Points in vectorized mobjects with norm greater
         # than this value will be rescaled.
-        "max_allowable_norm": FRAME_WIDTH,
+        "max_allowable_norm": consts.FRAME_WIDTH,
         "image_mode": "RGBA",
         "n_channels": 4,
         "pixel_array_dtype": 'uint8',
@@ -383,7 +382,7 @@ class Camera(object):
             width * self.cairo_line_width_multiple *
             # This ensures lines have constant width
             # as you zoom in on them.
-            (self.get_frame_width() / FRAME_WIDTH)
+            (self.get_frame_width() / consts.FRAME_WIDTH)
         )
         ctx.stroke_preserve()
         return self
@@ -478,7 +477,7 @@ class Camera(object):
 
         # Rotate
         angle = angle_of_vector(right_vect)
-        adjusted_angle = -int(360 * angle / TAU)
+        adjusted_angle = -int(360 * angle / consts.TAU)
         if adjusted_angle != 0:
             sub_image = sub_image.rotate(
                 adjusted_angle, resample=Image.BICUBIC, expand=1
@@ -577,8 +576,8 @@ class Camera(object):
     def adjusted_thickness(self, thickness):
         # TODO: This seems...unsystematic
         big_sum = op.add(
-            PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_height"],
-            PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_width"],
+            consts.PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_height"],
+            consts.PRODUCTION_QUALITY_CAMERA_CONFIG["pixel_width"],
         )
         this_sum = op.add(
             self.get_pixel_height(),

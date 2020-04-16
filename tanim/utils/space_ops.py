@@ -2,10 +2,10 @@ from functools import reduce
 
 import numpy as np
 
-from tanim.utils.constants import OUT
-from tanim.utils.constants import PI
-from tanim.utils.constants import RIGHT
-from tanim.utils.constants import TAU
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
+import tanim.utils.constants as consts
 from tanim.utils.iterables import adjacent_pairs
 from tanim.utils.simple_functions import fdiv
 
@@ -42,8 +42,8 @@ def angle_axis_from_quaternion(quaternion):
         fall_back=np.array([1, 0, 0])
     )
     angle = 2 * np.arccos(quaternion[0])
-    if angle > TAU / 2:
-        angle = TAU - angle
+    if angle > consts.TAU / 2:
+        angle = consts.TAU - angle
     return angle, axis
 
 
@@ -53,7 +53,7 @@ def quaternion_conjugate(quaternion):
     return result
 
 
-def rotate_vector(vector, angle, axis=OUT):
+def rotate_vector(vector, angle, axis=consts.OUT):
     if len(vector) == 2:
         # Use complex numbers...because why not
         z = complex(*vector) * np.exp(complex(0, angle))
@@ -180,8 +180,8 @@ def get_unit_normal(v1, v2):
 ###
 
 
-def compass_directions(n=4, start_vect=RIGHT):
-    angle = TAU / n
+def compass_directions(n=4, start_vect=consts.RIGHT):
+    angle = consts.TAU / n
     return np.array([
         rotate_vector(start_vect, k * angle)
         for k in range(n)
@@ -234,6 +234,6 @@ def get_winding_number(points):
     total_angle = 0
     for p1, p2 in adjacent_pairs(points):
         d_angle = angle_of_vector(p2) - angle_of_vector(p1)
-        d_angle = ((d_angle + PI) % TAU) - PI
+        d_angle = ((d_angle + consts.PI) % consts.TAU) - consts.PI
         total_angle += d_angle
-    return total_angle / TAU
+    return total_angle / consts.TAU

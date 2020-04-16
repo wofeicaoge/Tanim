@@ -3,10 +3,11 @@ import numpy as np
 from tanim.utils.color import Color
 from tanim.utils.space_ops import angle_of_vector
 from tanim.utils.space_ops import get_norm
+import tanim.utils.constants as consts
 
 from tanim.core.animation.animation import Animation
 from tanim.core.animation.transform import Transform
-from tanim.core.mobject.mobject import Mobject, SMALL_BUFF, ORIGIN, UP, DOWN, RIGHT, FRAME_WIDTH, Group, DL
+from tanim.core.mobject.mobject import Mobject
 from tanim.core.mobject.vectorized_mobject import VGroup
 from tanim.core.scene.scene import Scene
 
@@ -129,16 +130,16 @@ class VectorScene(Scene):
         if at_tip:
             vect = vector.get_vector()
             vect /= get_norm(vect)
-            label.next_to(vector.get_end(), vect, buff=SMALL_BUFF)
+            label.next_to(vector.get_end(), vect, buff=consts.SMALL_BUFF)
         else:
             angle = vector.get_angle()
             if not rotate:
-                label.rotate(-angle, about_point=ORIGIN)
+                label.rotate(-angle, about_point=consts.ORIGIN)
             if direction == "left":
-                label.shift(-label.get_bottom() + 0.1 * UP)
+                label.shift(-label.get_bottom() + 0.1 * consts.UP)
             else:
-                label.shift(-label.get_top() + 0.1 * DOWN)
-            label.rotate(angle, about_point=ORIGIN)
+                label.shift(-label.get_top() + 0.1 * consts.DOWN)
+            label.rotate(angle, about_point=consts.ORIGIN)
             label.shift((vector.get_end() - vector.get_start()) / 2)
         return label
 
@@ -150,21 +151,21 @@ class VectorScene(Scene):
         return label
 
     def position_x_coordinate(self, x_coord, x_line, vector):
-        x_coord.next_to(x_line, -np.sign(vector[1]) * UP)
+        x_coord.next_to(x_line, -np.sign(vector[1]) * consts.UP)
         x_coord.set_color(X_COLOR)
         return x_coord
 
     def position_y_coordinate(self, y_coord, y_line, vector):
-        y_coord.next_to(y_line, np.sign(vector[0]) * RIGHT)
+        y_coord.next_to(y_line, np.sign(vector[0]) * consts.RIGHT)
         y_coord.set_color(Y_COLOR)
         return y_coord
 
-    def coords_to_vector(self, vector, coords_start=2 * RIGHT + 2 * UP, clean_up=True):
+    def coords_to_vector(self, vector, coords_start=2 * consts.RIGHT + 2 * consts.UP, clean_up=True):
         starting_mobjects = list(self.submobjects)
         array = Matrix(vector)
         array.shift(coords_start)
         arrow = Vector(vector)
-        x_line = Line(ORIGIN, vector[0] * RIGHT)
+        x_line = Line(consts.ORIGIN, vector[0] * consts.RIGHT)
         y_line = Line(x_line.get_end(), arrow.get_end())
         x_line.set_color(X_COLOR)
         y_line.set_color(Y_COLOR)
@@ -202,7 +203,7 @@ class VectorScene(Scene):
             arrow = Vector(vector)
             show_creation = True
         array = vector_coordinate_label(arrow, integer_labels=integer_labels)
-        x_line = Line(ORIGIN, vector[0] * RIGHT)
+        x_line = Line(consts.ORIGIN, vector[0] * consts.RIGHT)
         y_line = Line(x_line.get_end(), arrow.get_end())
         x_line.set_color(X_COLOR)
         y_line.set_color(Y_COLOR)
@@ -247,10 +248,10 @@ class LinearTransformationScene(VectorScene):
         "include_background_plane": True,
         "include_foreground_plane": True,
         "foreground_plane_kwargs": {
-            "x_max": FRAME_WIDTH / 2,
-            "x_min": -FRAME_WIDTH / 2,
-            "y_max": FRAME_WIDTH / 2,
-            "y_min": -FRAME_WIDTH / 2,
+            "x_max": consts.FRAME_WIDTH / 2,
+            "x_min": -consts.FRAME_WIDTH / 2,
+            "y_max": consts.FRAME_WIDTH / 2,
+            "y_min": -consts.FRAME_WIDTH / 2,
             "faded_line_ratio": 0
         },
         "background_plane_kwargs": {
@@ -338,7 +339,7 @@ class LinearTransformationScene(VectorScene):
             fill_color=color,
             fill_opacity=opacity
         )
-        square.move_to(self.plane.coords_to_point(0, 0), DL)
+        square.move_to(self.plane.coords_to_point(0, 0), consts.DL)
         return square
 
     def add_unit_square(self, animate=False, **kwargs):
@@ -388,7 +389,7 @@ class LinearTransformationScene(VectorScene):
     def add_title(self, title, scale_factor=1.5, animate=False):
         if not isinstance(title, Mobject):
             title = TextMobject(title).scale(scale_factor)
-        title.to_edge(UP)
+        title.to_edge(consts.UP)
         title.add_background_rectangle()
         if animate:
             self.play(Write(title))
@@ -449,8 +450,8 @@ class LinearTransformationScene(VectorScene):
         func = self.get_transposed_matrix_transformation(transposed_matrix)
         if "path_arc" not in kwargs:
             net_rotation = np.mean([
-                angle_of_vector(func(RIGHT)),
-                angle_of_vector(func(UP)) - np.pi / 2
+                angle_of_vector(func(consts.RIGHT)),
+                angle_of_vector(func(consts.UP)) - np.pi / 2
             ])
             kwargs["path_arc"] = net_rotation
         self.apply_function(func, **kwargs)

@@ -8,8 +8,7 @@ import numpy as np
 from tanim.utils.color import Color
 from tanim.utils.bezier import interpolate
 from tanim.utils.config_ops import digest_config
-from tanim.utils.constants import UP, LEFT, RIGHT, ORIGIN, SMALL_BUFF, DOWN, MED_SMALL_BUFF, OUT, FRAME_WIDTH, \
-    MED_LARGE_BUFF, ASSETS_DIR, LARGE_BUFF, PI, TAU, DEGREES
+import tanim.utils.constants as consts
 from tanim.utils.rate_functions import linear
 from tanim.utils.space_ops import angle_of_vector, complex_to_R3, rotate_vector, center_of_mass
 
@@ -77,7 +76,7 @@ class SunGlasses(SVGMobject):
         self.set_width(
             self.glasses_width_to_eyes_width * pi_creature.eyes.get_width()
         )
-        self.move_to(pi_creature.eyes, UP)
+        self.move_to(pi_creature.eyes, consts.UP)
 
 
 class Speedometer(VMobject):
@@ -99,7 +98,7 @@ class Speedometer(VMobject):
         ))
         tick_angle_range = np.linspace(start_angle, end_angle, self.num_ticks)
         for index, angle in enumerate(tick_angle_range):
-            vect = rotate_vector(RIGHT, angle)
+            vect = rotate_vector(consts.RIGHT, angle)
             tick = Line((1 - self.tick_length) * vect, vect)
             label = TexMobject(str(10 * index))
             label.set_height(self.tick_length)
@@ -107,14 +106,14 @@ class Speedometer(VMobject):
             self.add(tick, label)
 
         needle = Polygon(
-            LEFT, UP, RIGHT,
+            consts.LEFT, consts.UP, consts.RIGHT,
             stroke_width=0,
             fill_opacity=1,
             fill_color=self.needle_color
         )
         needle.stretch_to_fit_width(self.needle_width)
         needle.stretch_to_fit_height(self.needle_height)
-        needle.rotate(start_angle - np.pi / 2, about_point=ORIGIN)
+        needle.rotate(start_angle - np.pi / 2, about_point=consts.ORIGIN)
         self.add(needle)
         self.needle = needle
 
@@ -188,7 +187,7 @@ class PartyHat(SVGMobject):
         SVGMobject.__init__(self, **kwargs)
         self.set_height(self.height)
         if self.pi_creature is not None:
-            self.next_to(self.pi_creature.eyes, UP, buff=0)
+            self.next_to(self.pi_creature.eyes, consts.UP, buff=0)
 
         self.frills = VGroup(*self[:self.NUM_FRILLS])
         self.cone = self[self.NUM_FRILLS]
@@ -233,17 +232,17 @@ class Laptop(VGroup):
             VGroup(*[
                 Square(**self.key_color_kwargs)
                 for x in range(12 - y % 2)
-            ]).arrange(RIGHT, buff=SMALL_BUFF)
+            ]).arrange(consts.RIGHT, buff=consts.SMALL_BUFF)
             for y in range(4)
-        ]).arrange(DOWN, buff=MED_SMALL_BUFF)
+        ]).arrange(consts.DOWN, buff=consts.MED_SMALL_BUFF)
         keyboard.stretch_to_fit_width(
             self.keyboard_width_to_body_width * body.get_width(),
         )
         keyboard.stretch_to_fit_height(
             self.keyboard_height_to_body_height * body.get_height(),
         )
-        keyboard.next_to(body, OUT, buff=0.1 * SMALL_BUFF)
-        keyboard.shift(MED_SMALL_BUFF * UP)
+        keyboard.next_to(body, consts.OUT, buff=0.1 * consts.SMALL_BUFF)
+        keyboard.shift(consts.MED_SMALL_BUFF * consts.UP)
         body.add(keyboard)
 
         screen_plate.stretch(self.screen_thickness /
@@ -255,27 +254,27 @@ class Laptop(VGroup):
         )
         screen.replace(screen_plate, stretch=True)
         screen.scale_in_place(self.screen_width_to_screen_plate_width)
-        screen.next_to(screen_plate, OUT, buff=0.1 * SMALL_BUFF)
+        screen.next_to(screen_plate, consts.OUT, buff=0.1 * consts.SMALL_BUFF)
         screen_plate.add(screen)
-        screen_plate.next_to(body, UP, buff=0)
+        screen_plate.next_to(body, consts.UP, buff=0)
         screen_plate.rotate(
-            self.open_angle, RIGHT,
+            self.open_angle, consts.RIGHT,
             about_point=screen_plate.get_bottom()
         )
         self.screen_plate = screen_plate
         self.screen = screen
 
         axis = Line(
-            body.get_corner(UP + LEFT + OUT),
-            body.get_corner(UP + RIGHT + OUT),
+            body.get_corner(consts.UP + consts.LEFT + consts.OUT),
+            body.get_corner(consts.UP + consts.RIGHT + consts.OUT),
             color=Color('BLACK'),
             stroke_width=2
         )
         self.axis = axis
 
         self.add(body, screen_plate, axis)
-        self.rotate(5 * np.pi / 12, LEFT, about_point=ORIGIN)
-        self.rotate(np.pi / 6, DOWN, about_point=ORIGIN)
+        self.rotate(5 * np.pi / 12, consts.LEFT, about_point=consts.ORIGIN)
+        self.rotate(np.pi / 6, consts.DOWN, about_point=consts.ORIGIN)
 
 
 class PatreonLogo(SVGMobject):
@@ -297,7 +296,7 @@ class PatreonLogo(SVGMobject):
 class VideoIcon(SVGMobject):
     CONFIG = {
         "file_name": "video_icon",
-        "width": FRAME_WIDTH / 12.,
+        "width": consts.FRAME_WIDTH / 12.,
     }
 
     def __init__(self, **kwargs):
@@ -319,7 +318,7 @@ class VideoSeries(VGroup):
         videos = [VideoIcon() for x in range(self.num_videos)]
         VGroup.__init__(self, *videos, **kwargs)
         self.arrange()
-        self.set_width(FRAME_WIDTH - MED_LARGE_BUFF)
+        self.set_width(consts.FRAME_WIDTH - consts.MED_LARGE_BUFF)
         self.set_color_by_gradient(*self.gradient_colors)
 
 
@@ -341,8 +340,8 @@ class Headphones(SVGMobject):
         if pi_creature is not None:
             eyes = pi_creature.eyes
             self.set_height(3 * eyes.get_height())
-            self.move_to(eyes, DOWN)
-            self.shift(DOWN * eyes.get_height() / 4)
+            self.move_to(eyes, consts.DOWN)
+            self.shift(consts.DOWN * eyes.get_height() / 4)
 
 
 class Clock(VGroup):
@@ -360,8 +359,8 @@ class Clock(VGroup):
             ticks.append(
                 Line(point, (1 - length) * point)
             )
-        self.hour_hand = Line(ORIGIN, 0.3 * UP)
-        self.minute_hand = Line(ORIGIN, 0.6 * UP)
+        self.hour_hand = Line(consts.ORIGIN, 0.3 * consts.UP)
+        self.minute_hand = Line(consts.ORIGIN, 0.6 * consts.UP)
         # for hand in self.hour_hand, self.minute_hand:
         #     #Balance out where the center is
         #     hand.add(VectorizedPoint(-hand.get_end()))
@@ -384,7 +383,7 @@ class ClockPassesTime(Animation):
         digest_config(self, kwargs)
         assert(isinstance(clock, Clock))
         rot_kwargs = {
-            "axis": OUT,
+            "axis": consts.OUT,
             "about_point": clock.get_center()
         }
         hour_radians = -self.hours_passed * 2 * np.pi / 12
@@ -409,8 +408,8 @@ class ClockPassesTime(Animation):
 
 class Bubble(SVGMobject):
     CONFIG = {
-        "direction": LEFT,
-        "center_point": ORIGIN,
+        "direction": consts.LEFT,
+        "center_point": consts.ORIGIN,
         "content_scale_factor": 0.75,
         "height": 5,
         "width": 8,
@@ -429,7 +428,7 @@ class Bubble(SVGMobject):
         try:
             SVGMobject.__init__(self, **kwargs)
         except IOError as err:
-            self.file_name = os.path.join(ASSETS_DIR, self.file_name)
+            self.file_name = os.path.join(consts.ASSETS_DIR, self.file_name)
             SVGMobject.__init__(self, **kwargs)
         self.center()
         self.stretch_to_fit_height(self.height)
@@ -441,11 +440,11 @@ class Bubble(SVGMobject):
 
     def get_tip(self):
         # TODO, find a better way
-        return self.get_corner(DOWN + self.direction) - 0.6 * self.direction
+        return self.get_corner(consts.DOWN + self.direction) - 0.6 * self.direction
 
     def get_bubble_center(self):
         factor = self.bubble_center_adjustment_factor
-        return self.get_center() + factor * self.get_height() * UP
+        return self.get_center() + factor * self.get_height() * consts.UP
 
     def move_tip_to(self, point):
         mover = VGroup(self)
@@ -454,7 +453,7 @@ class Bubble(SVGMobject):
         mover.shift(point - self.get_tip())
         return self
 
-    def flip(self, axis=UP):
+    def flip(self, axis=consts.UP):
         Mobject.flip(self, axis=axis)
         if abs(axis[1]) > 0:
             self.direction = -np.array(self.direction)
@@ -466,7 +465,7 @@ class Bubble(SVGMobject):
         can_flip = not self.direction_was_specified
         if want_to_flip and can_flip:
             self.flip()
-        boundary_point = mobject.get_critical_point(UP - self.direction)
+        boundary_point = mobject.get_critical_point(consts.UP - self.direction)
         vector_from_center = 1.0 * (boundary_point - mob_center)
         self.move_tip_to(mob_center + vector_from_center)
         return self
@@ -491,9 +490,9 @@ class Bubble(SVGMobject):
 
     def resize_to_content(self):
         target_width = self.content.get_width()
-        target_width += max(MED_LARGE_BUFF, 2)
+        target_width += max(consts.MED_LARGE_BUFF, 2)
         target_height = self.content.get_height()
-        target_height += 2.5 * LARGE_BUFF
+        target_height += 2.5 * consts.LARGE_BUFF
         tip_point = self.get_tip()
         self.stretch_to_fit_width(target_width)
         self.stretch_to_fit_height(target_height)
@@ -572,15 +571,15 @@ class Car(SVGMobject):
 
     def move_to(self, point_or_mobject):
         vect = rotate_vector(
-            UP + LEFT, self.orientation_line.get_angle()
+            consts.UP + consts.LEFT, self.orientation_line.get_angle()
         )
         self.next_to(point_or_mobject, vect, buff=0)
         return self
 
     def get_front_line(self):
         return DashedLine(
-            self.get_corner(UP + RIGHT),
-            self.get_corner(DOWN + RIGHT),
+            self.get_corner(consts.UP + consts.RIGHT),
+            self.get_corner(consts.DOWN + consts.RIGHT),
             color=Color('BLUE'),
             dash_length=0.05,
         )
@@ -590,14 +589,14 @@ class Car(SVGMobject):
             radius = tire.get_width() / 2
             center = tire.get_center()
             tred = Line(
-                0.7 * radius * RIGHT, 1.1 * radius * RIGHT,
+                0.7 * radius * consts.RIGHT, 1.1 * radius * consts.RIGHT,
                 stroke_width=2,
                 color=Color('BLACK')
             )
-            tred.rotate(PI / 5, about_point=tred.get_end())
+            tred.rotate(consts.PI / 5, about_point=tred.get_end())
             for theta in np.arange(0, 2 * np.pi, np.pi / 4):
                 new_tred = tred.copy()
-                new_tred.rotate(theta, about_point=ORIGIN)
+                new_tred.rotate(theta, about_point=consts.ORIGIN)
                 new_tred.shift(center)
                 tire.add(new_tred)
         return self
@@ -654,7 +653,7 @@ class Logo(VMobject):
         ],
         "n_spike_layers": 4,
         "n_spikes": 28,
-        "spike_angle": TAU / 28,
+        "spike_angle": consts.TAU / 28,
     }
 
     def __init__(self, **kwargs):
@@ -667,8 +666,8 @@ class Logo(VMobject):
         blue_iris_back = AnnularSector(
             inner_radius=self.pupil_radius,
             outer_radius=self.outer_radius,
-            angle=270 * DEGREES,
-            start_angle=180 * DEGREES,
+            angle=270 * consts.DEGREES,
+            start_angle=180 * consts.DEGREES,
             fill_color=self.iris_background_blue,
             fill_opacity=1,
             stroke_width=0,
@@ -676,8 +675,8 @@ class Logo(VMobject):
         brown_iris_back = AnnularSector(
             inner_radius=self.pupil_radius,
             outer_radius=self.outer_radius,
-            angle=90 * DEGREES,
-            start_angle=90 * DEGREES,
+            angle=90 * consts.DEGREES,
+            start_angle=90 * consts.DEGREES,
             fill_color=self.iris_background_brown,
             fill_opacity=1,
             stroke_width=0,
@@ -707,43 +706,43 @@ class Logo(VMobject):
             half_base = radius * np.tan(tip_angle)
             triangle, right_half_triangle = [
                 Polygon(
-                    radius * UP,
-                    half_base * RIGHT,
+                    radius * consts.UP,
+                    half_base * consts.RIGHT,
                     vertex3,
                     fill_opacity=1,
                     stroke_width=0,
                 )
-                for vertex3 in (half_base * LEFT, ORIGIN,)
+                for vertex3 in (half_base * consts.LEFT, consts.ORIGIN,)
             ]
             left_half_triangle = right_half_triangle.copy()
-            left_half_triangle.flip(UP, about_point=ORIGIN)
+            left_half_triangle.flip(consts.UP, about_point=consts.ORIGIN)
 
             n_spikes = self.n_spikes
             full_spikes = [
                 triangle.copy().rotate(
                     -angle,
-                    about_point=ORIGIN
+                    about_point=consts.ORIGIN
                 )
                 for angle in np.linspace(
-                    0, TAU, n_spikes, endpoint=False
+                    0, consts.TAU, n_spikes, endpoint=False
                 )
             ]
             index = (3 * n_spikes) // 4
             if radius == radii[0]:
                 layer = VGroup(*full_spikes)
                 layer.rotate(
-                    -TAU / n_spikes / 2,
-                    about_point=ORIGIN
+                    -consts.TAU / n_spikes / 2,
+                    about_point=consts.ORIGIN
                 )
                 layer.brown_index = index
             else:
                 half_spikes = [
                     right_half_triangle.copy(),
                     left_half_triangle.copy().rotate(
-                        90 * DEGREES, about_point=ORIGIN,
+                        90 * consts.DEGREES, about_point=consts.ORIGIN,
                     ),
                     right_half_triangle.copy().rotate(
-                        90 * DEGREES, about_point=ORIGIN,
+                        90 * consts.DEGREES, about_point=consts.ORIGIN,
                     ),
                     left_half_triangle.copy()
                 ]
@@ -777,7 +776,7 @@ class Logo(VMobject):
             stroke_width=0,
             sheen=0.0,
         )
-        self.pupil.rotate(90 * DEGREES)
+        self.pupil.rotate(90 * consts.DEGREES)
         self.add(self.pupil)
 
     def cut_pupil(self):
@@ -955,8 +954,8 @@ class PlayingCard(VGroup):
             10: [0, 2],
         }.get(num, [])
 
-        top = self.get_top() + symbol.get_height() * DOWN
-        bottom = self.get_bottom() + symbol.get_height() * UP
+        top = self.get_top() + symbol.get_height() * consts.DOWN
+        bottom = self.get_bottom() + symbol.get_height() * consts.UP
         column_points = [
             interpolate(top, bottom, alpha)
             for alpha in np.linspace(0, 1, n_rows)
@@ -968,8 +967,8 @@ class PlayingCard(VGroup):
         ])
         if n_cols == 2:
             space = 0.2 * self.get_width()
-            column_copy = design.copy().shift(space * RIGHT)
-            design.shift(space * LEFT)
+            column_copy = design.copy().shift(space * consts.RIGHT)
+            design.shift(space * consts.LEFT)
             design.add(*column_copy)
         design.add(*[
             symbol.copy().move_to(
@@ -992,15 +991,15 @@ class PlayingCard(VGroup):
         value_mob.set_width(width)
         value_mob.stretch_to_fit_height(height)
         value_mob.next_to(
-            self.get_corner(UP + LEFT), DOWN + RIGHT,
-            buff=MED_LARGE_BUFF * width
+            self.get_corner(consts.UP + consts.LEFT), consts.DOWN + consts.RIGHT,
+            buff=consts.MED_LARGE_BUFF * width
         )
         value_mob.set_color(symbol.get_color())
         corner_symbol = symbol.copy()
         corner_symbol.set_width(width)
         corner_symbol.next_to(
-            value_mob, DOWN,
-            buff=MED_SMALL_BUFF * width
+            value_mob, consts.DOWN,
+            buff=consts.MED_SMALL_BUFF * width
         )
         corner_group = VGroup(value_mob, corner_symbol)
         opposite_corner_group = corner_group.copy()

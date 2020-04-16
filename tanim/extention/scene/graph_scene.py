@@ -7,7 +7,7 @@ from tanim.utils.bezier import interpolate
 from tanim.utils.color import color_gradient
 from tanim.utils.color import invert_color
 from tanim.utils.space_ops import angle_of_vector
-from tanim.utils.constants import LEFT, RIGHT, UP, DOWN, SMALL_BUFF, MED_SMALL_BUFF
+import tanim.utils.constants as consts
 
 from tanim.core.animation.transform import Transform
 from tanim.core.mobject.vectorized_mobject import VGroup
@@ -45,7 +45,7 @@ class GraphScene(Scene):
         "y_labeled_nums": None,
         "y_axis_label": "$y$",
         "axes_color": Color('GREY'),
-        "graph_origin": 2.5 * DOWN + 4 * LEFT,
+        "graph_origin": 2.5 * consts.DOWN + 4 * consts.LEFT,
         "exclude_zero_label": True,
         "default_graph_colors": [Color('BLUE'), Color('GREEN'), Color('YELLOW')],
         "default_derivative_color": Color('GREEN'),
@@ -89,8 +89,8 @@ class GraphScene(Scene):
         if self.x_axis_label:
             x_label = TextMobject(self.x_axis_label)
             x_label.next_to(
-                x_axis.get_tick_marks(), UP + RIGHT,
-                buff=SMALL_BUFF
+                x_axis.get_tick_marks(), consts.UP + consts.RIGHT,
+                buff=consts.SMALL_BUFF
             )
             x_label.shift_onto_screen()
             x_axis.add(x_label)
@@ -111,8 +111,8 @@ class GraphScene(Scene):
             leftmost_tick=self.y_bottom_tick,
             numbers_with_elongated_ticks=self.y_labeled_nums,
             color=self.axes_color,
-            line_to_number_vect=LEFT,
-            label_direction=LEFT,
+            line_to_number_vect=consts.LEFT,
+            label_direction=consts.LEFT,
         )
         y_axis.shift(self.graph_origin - y_axis.number_to_point(0))
         y_axis.rotate(np.pi / 2, about_point=y_axis.number_to_point(0))
@@ -123,8 +123,8 @@ class GraphScene(Scene):
         if self.y_axis_label:
             y_label = TextMobject(self.y_axis_label)
             y_label.next_to(
-                y_axis.get_corner(UP + RIGHT), UP + RIGHT,
-                buff=SMALL_BUFF
+                y_axis.get_corner(consts.UP + consts.RIGHT), consts.UP + consts.RIGHT,
+                buff=consts.SMALL_BUFF
             )
             y_label.shift_onto_screen()
             y_axis.add(y_label)
@@ -139,8 +139,8 @@ class GraphScene(Scene):
 
     def coords_to_point(self, x, y):
         assert(hasattr(self, "x_axis") and hasattr(self, "y_axis"))
-        result = self.x_axis.number_to_point(x)[0] * RIGHT
-        result += self.y_axis.number_to_point(y)[1] * UP
+        result = self.x_axis.number_to_point(x)[0] * consts.RIGHT
+        result += self.y_axis.number_to_point(y)[1] * consts.UP
         return result
 
     def point_to_coords(self, point):
@@ -200,8 +200,8 @@ class GraphScene(Scene):
         graph,
         label="f(x)",
         x_val=None,
-        direction=RIGHT,
-        buff=MED_SMALL_BUFF,
+        direction=consts.RIGHT,
+        buff=consts.MED_SMALL_BUFF,
         color=None,
     ):
         label = TexMobject(label)
@@ -211,7 +211,7 @@ class GraphScene(Scene):
             # Search from right to left
             for x in np.linspace(self.x_max, self.x_min, 100):
                 point = self.input_to_graph_point(x, graph)
-                if point[1] < FRAME_Y_RADIUS:
+                if point[1] < consts.FRAME_Y_RADIUS:
                     break
             x_val = x
         label.next_to(
@@ -384,7 +384,7 @@ class GraphScene(Scene):
 
         p1 = self.input_to_graph_point(x, graph)
         p2 = self.input_to_graph_point(x + dx, graph)
-        interim_point = p2[0] * RIGHT + p1[1] * UP
+        interim_point = p2[0] * consts.RIGHT + p1[1] * consts.UP
 
         group.dx_line = Line(
             p1, interim_point,
@@ -417,7 +417,7 @@ class GraphScene(Scene):
         if dx_label is not None:
             group.dx_label.next_to(
                 group.dx_line,
-                np.sign(dx) * DOWN,
+                np.sign(dx) * consts.DOWN,
                 buff=group.dx_label.get_height() / 2
             )
             group.dx_label.set_color(group.dx_line.get_color())
@@ -425,7 +425,7 @@ class GraphScene(Scene):
         if df_label is not None:
             group.df_label.next_to(
                 group.df_line,
-                np.sign(dx) * RIGHT,
+                np.sign(dx) * consts.RIGHT,
                 buff=group.df_label.get_height() / 2
             )
             group.df_label.set_color(group.df_line.get_color())
@@ -440,10 +440,10 @@ class GraphScene(Scene):
 
         return group
 
-    def add_T_label(self, x_val, side=RIGHT, label=None, color=Color('WHITE'), animated=False, **kwargs):
+    def add_T_label(self, x_val, side=consts.RIGHT, label=None, color=Color('WHITE'), animated=False, **kwargs):
         triangle = RegularPolygon(n=3, start_angle=np.pi / 2)
-        triangle.set_height(MED_SMALL_BUFF)
-        triangle.move_to(self.coords_to_point(x_val, 0), UP)
+        triangle.set_height(consts.MED_SMALL_BUFF)
+        triangle.move_to(self.coords_to_point(x_val, 0), consts.UP)
         triangle.set_fill(color, 1)
         triangle.set_stroke(width=0)
         if label is None:
@@ -451,7 +451,7 @@ class GraphScene(Scene):
         else:
             T_label = TexMobject(label, fill_color=color)
 
-        T_label.next_to(triangle, DOWN)
+        T_label.next_to(triangle, consts.DOWN)
         v_line = self.get_vertical_line_to_graph(
             x_val, self.v_graph,
             color=Color('YELLOW')
@@ -465,11 +465,11 @@ class GraphScene(Scene):
                 **kwargs
             )
 
-        if np.all(side == LEFT):
+        if np.all(side == consts.LEFT):
             self.left_T_label_group = VGroup(T_label, triangle)
             self.left_v_line = v_line
             self.add(self.left_T_label_group, self.left_v_line)
-        elif np.all(side == RIGHT):
+        elif np.all(side == consts.RIGHT):
             self.right_T_label_group = VGroup(T_label, triangle)
             self.right_v_line = v_line
             self.add(self.right_T_label_group, self.right_v_line)
@@ -508,13 +508,13 @@ class GraphScene(Scene):
                 t_min, graph
             )
             new_left_v_line.set_color(left_v_line.get_color())
-            left_T_label.move_to(new_left_v_line.get_bottom(), UP)
+            left_T_label.move_to(new_left_v_line.get_bottom(), consts.UP)
 
             new_right_v_line = self.get_vertical_line_to_graph(
                 t_max, graph
             )
             new_right_v_line.set_color(right_v_line.get_color())
-            right_T_label.move_to(new_right_v_line.get_bottom(), UP)
+            right_T_label.move_to(new_right_v_line.get_bottom(), consts.UP)
 
             # Fade close to 0
             if fade_close_to_origin:

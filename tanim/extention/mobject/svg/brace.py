@@ -9,7 +9,7 @@ from tanim.extention.animation.growing import GrowFromCenter
 from tanim.extention.mobject.svg.tex_mobject import TexMobject
 from tanim.extention.mobject.svg.tex_mobject import TextMobject
 from tanim.utils.config_ops import digest_config
-from tanim.utils.constants import DOWN, ORIGIN, LEFT, RIGHT, DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, UP
+import tanim.utils.constants as consts
 from tanim.utils.space_ops import get_norm
 
 
@@ -22,12 +22,12 @@ class Brace(TexMobject):
         "background_stroke_width": 0,
     }
 
-    def __init__(self, mobject, direction=DOWN, **kwargs):
+    def __init__(self, mobject, direction=consts.DOWN, **kwargs):
         digest_config(self, kwargs, locals())
         angle = -np.arctan2(*direction[:2]) + np.pi
-        mobject.rotate(-angle, about_point=ORIGIN)
-        left = mobject.get_corner(DOWN + LEFT)
-        right = mobject.get_corner(DOWN + RIGHT)
+        mobject.rotate(-angle, about_point=consts.ORIGIN)
+        left = mobject.get_corner(consts.DOWN + consts.LEFT)
+        right = mobject.get_corner(consts.DOWN + consts.RIGHT)
         target_width = right[0] - left[0]
 
         # Adding int(target_width) qquads gives approximately the right width
@@ -39,9 +39,9 @@ class Brace(TexMobject):
         TexMobject.__init__(self, tex_string, **kwargs)
         self.tip_point_index = np.argmin(self.get_all_points()[:, 1])
         self.stretch_to_fit_width(target_width)
-        self.shift(left - self.get_corner(UP + LEFT) + self.buff * DOWN)
+        self.shift(left - self.get_corner(consts.UP + consts.LEFT) + self.buff * consts.DOWN)
         for mob in mobject, self:
-            mob.rotate(angle, about_point=ORIGIN)
+            mob.rotate(angle, about_point=consts.ORIGIN)
 
     def put_at_tip(self, mob, use_next_to=True, **kwargs):
         if use_next_to:
@@ -52,7 +52,7 @@ class Brace(TexMobject):
             )
         else:
             mob.move_to(self.get_tip())
-            buff = kwargs.get("buff", DEFAULT_MOBJECT_TO_MOBJECT_BUFFER)
+            buff = kwargs.get("buff", consts.DEFAULT_MOBJECT_TO_MOBJECT_BUFFER)
             shift_distance = mob.get_width() / 2.0 + buff
             mob.shift(self.get_direction() * shift_distance)
         return self
@@ -84,7 +84,7 @@ class BraceLabel(VMobject):
         "label_scale": 1,
     }
 
-    def __init__(self, obj, text, brace_direction=DOWN, **kwargs):
+    def __init__(self, obj, text, brace_direction=consts.DOWN, **kwargs):
         VMobject.__init__(self, **kwargs)
         self.brace_direction = brace_direction
         if isinstance(obj, list):

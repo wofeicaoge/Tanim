@@ -8,7 +8,7 @@ from tanim.core.mobject.vectorized_mobject import VGroup
 from tanim.core.mobject.vectorized_mobject import VMobject
 from tanim.utils.color import Color
 from tanim.utils.config_ops import digest_config
-from tanim.utils.constants import UP, LEFT, RIGHT, ORIGIN, OUT, PI, TAU, MED_SMALL_BUFF, DEGREES, UL, UR, DR, DL
+import tanim.utils.constants as consts
 from tanim.utils.iterables import adjacent_n_tuples
 from tanim.utils.iterables import adjacent_pairs
 from tanim.utils.simple_functions import fdiv
@@ -48,7 +48,7 @@ class TipableVMobject(VMobject):
     CONFIG = {
         "tip_length": DEFAULT_ARROW_TIP_LENGTH,
         # TODO
-        "normal_vector": OUT,
+        "normal_vector": consts.OUT,
         "tip_style": {
             "fill_opacity": 1,
             "stroke_width": 0,
@@ -105,7 +105,7 @@ class TipableVMobject(VMobject):
             anchor = self.get_end()
         tip.rotate(
             angle_of_vector(handle - anchor) -
-            PI - tip.get_angle()
+            consts.PI - tip.get_angle()
         )
         tip.shift(anchor - tip.get_tip_point())
         return tip
@@ -232,22 +232,22 @@ class Arc(TipableVMobject):
         "radius": 1.0,
         "num_components": 9,
         "anchors_span_full_range": True,
-        "arc_center": ORIGIN,
+        "arc_center": consts.ORIGIN,
     }
 
-    def __init__(self, start_angle=0, angle=TAU / 4, **kwargs):
+    def __init__(self, start_angle=0, angle=consts.TAU / 4, **kwargs):
         self.start_angle = start_angle
         self.angle = angle
         VMobject.__init__(self, **kwargs)
 
     def generate_points(self):
         self.set_pre_positioned_points()
-        self.scale(self.radius, about_point=ORIGIN)
+        self.scale(self.radius, about_point=consts.ORIGIN)
         self.shift(self.arc_center)
 
     def set_pre_positioned_points(self):
         anchors = np.array([
-            np.cos(a) * RIGHT + np.sin(a) * UP
+            np.cos(a) * consts.RIGHT + np.sin(a) * consts.UP
             for a in np.linspace(
                 self.start_angle,
                 self.start_angle + self.angle,
@@ -281,16 +281,16 @@ class Arc(TipableVMobject):
         t1 = h1 - a1
         t2 = h2 - a2
         # Normals
-        n1 = rotate_vector(t1, TAU / 4)
-        n2 = rotate_vector(t2, TAU / 4)
+        n1 = rotate_vector(t1, consts.TAU / 4)
+        n2 = rotate_vector(t2, consts.TAU / 4)
         try:
             return line_intersection(
                 line1=(a1, a1 + n1),
                 line2=(a2, a2 + n2),
             )
         except Exception:
-            warnings.warn("Can't find Arc center, using ORIGIN instead")
-            return np.array(ORIGIN)
+            warnings.warn("Can't find Arc center, using consts.ORIGIN instead")
+            return np.array(consts.ORIGIN)
 
     def move_arc_center_to(self, point):
         self.shift(point - self.get_arc_center())
@@ -299,18 +299,18 @@ class Arc(TipableVMobject):
     def stop_angle(self):
         return angle_of_vector(
             self.points[-1] - self.get_arc_center()
-        ) % TAU
+        ) % consts.TAU
 
 
 class ArcBetweenPoints(Arc):
-    def __init__(self, start, end, angle=TAU / 4, **kwargs):
+    def __init__(self, start, end, angle=consts.TAU / 4, **kwargs):
         Arc.__init__(
             self,
             angle=angle,
             **kwargs,
         )
         if angle == 0:
-            self.set_points_as_corners([LEFT, RIGHT])
+            self.set_points_as_corners([consts.LEFT, consts.RIGHT])
         self.put_start_and_end_on(start, end)
 
 
@@ -336,7 +336,7 @@ class Circle(Arc):
     }
 
     def __init__(self, **kwargs):
-        Arc.__init__(self, 0, TAU, **kwargs)
+        Arc.__init__(self, 0, consts.TAU, **kwargs)
 
     def surround(self, mobject, dim_to_match=0, stretch=False, buffer_factor=1.2):
         # Ignores dim_to_match and stretch; result will always be a circle
@@ -356,7 +356,7 @@ class Circle(Arc):
             self.points[0] - self.get_center()
         )
         return self.point_from_proportion(
-            (angle - start_angle) / TAU
+            (angle - start_angle) / consts.TAU
         )
 
 
@@ -368,7 +368,7 @@ class Dot(Circle):
         "color": Color('WHITE')
     }
 
-    def __init__(self, point=ORIGIN, **kwargs):
+    def __init__(self, point=consts.ORIGIN, **kwargs):
         Circle.__init__(self, arc_center=point, **kwargs)
 
 
@@ -394,7 +394,7 @@ class AnnularSector(Arc):
     CONFIG = {
         "inner_radius": 1,
         "outer_radius": 2,
-        "angle": TAU / 4,
+        "angle": consts.TAU / 4,
         "start_angle": 0,
         "fill_opacity": 1,
         "stroke_width": 0,
@@ -451,7 +451,7 @@ class Line(TipableVMobject):
         "path_arc": None,  # angle of arc specified here
     }
 
-    def __init__(self, start=LEFT, end=RIGHT, **kwargs):
+    def __init__(self, start=consts.LEFT, end=consts.RIGHT, **kwargs):
         digest_config(self, kwargs)
         self.set_start_and_end_attrs(start, end)
         VMobject.__init__(self, **kwargs)
@@ -620,15 +620,15 @@ class Elbow(VMobject):
 
     def __init__(self, **kwargs):
         VMobject.__init__(self, **kwargs)
-        self.set_points_as_corners([UP, UP + RIGHT, RIGHT])
-        self.set_width(self.width, about_point=ORIGIN)
-        self.rotate(self.angle, about_point=ORIGIN)
+        self.set_points_as_corners([consts.UP, consts.UP + consts.RIGHT, consts.RIGHT])
+        self.set_width(self.width, about_point=consts.ORIGIN)
+        self.rotate(self.angle, about_point=consts.ORIGIN)
 
 
 class Arrow(Line):
     CONFIG = {
         "stroke_width": 6,
-        "buff": MED_SMALL_BUFF,
+        "buff": consts.MED_SMALL_BUFF,
         "max_tip_length_to_length_ratio": 0.25,
         "max_stroke_width_to_length_ratio": 5,
         "preserve_tip_size_when_scaling": True,
@@ -705,10 +705,10 @@ class Vector(Arrow):
         "buff": 0,
     }
 
-    def __init__(self, direction=RIGHT, **kwargs):
+    def __init__(self, direction=consts.RIGHT, **kwargs):
         if len(direction) == 2:
             direction = np.append(np.array(direction), 0)
-        Arrow.__init__(self, ORIGIN, direction, **kwargs)
+        Arrow.__init__(self, consts.ORIGIN, direction, **kwargs)
 
 
 class DoubleArrow(Arrow):
@@ -785,8 +785,8 @@ class RegularPolygon(Polygon):
             if n % 2 == 0:
                 self.start_angle = 0
             else:
-                self.start_angle = 90 * DEGREES
-        start_vect = rotate_vector(RIGHT, self.start_angle)
+                self.start_angle = 90 * consts.DEGREES
+        start_vect = rotate_vector(consts.RIGHT, self.start_angle)
         vertices = compass_directions(n, start_vect)
         Polygon.__init__(self, *vertices, **kwargs)
 
@@ -801,7 +801,7 @@ class ArrowTip(Triangle):
         "fill_opacity": 1,
         "stroke_width": 0,
         "length": DEFAULT_ARROW_TIP_LENGTH,
-        "start_angle": PI,
+        "start_angle": consts.PI,
     }
 
     def __init__(self, **kwargs):
@@ -835,7 +835,7 @@ class Rectangle(Polygon):
     }
 
     def __init__(self, **kwargs):
-        Polygon.__init__(self, UL, UR, DR, DL, **kwargs)
+        Polygon.__init__(self, consts.UL, consts.UR, consts.DR, consts.DL, **kwargs)
         self.set_width(self.width, stretch=True)
         self.set_height(self.height, stretch=True)
 

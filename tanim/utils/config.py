@@ -248,7 +248,7 @@ def get_camera_configuration(args):
     elif args.high_quality or args.livestream:
         camera_config.update(tanim.utils.constants.HIGH_QUALITY_CAMERA_CONFIG)
     else:
-        camera_config.update(tanim.utils.constants.PRODUCTION_QUALITY_CAMERA_CONFIG)
+        camera_config.update(tanim.utils.constants.consts.PRODUCTION_QUALITY_CAMERA_CONFIG)
 
     # If the resolution was passed in via -r
     if args.resolution:

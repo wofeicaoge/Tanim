@@ -7,14 +7,14 @@ from tanim.utils.color import rgba_to_color
 from tanim.utils.config_ops import digest_config
 from tanim.utils.iterables import stretch_array_to_length
 from tanim.utils.space_ops import get_norm
-from tanim.utils.constants import *
+import tanim.utils.constants as consts
 
 from tanim.core.mobject.mobject import Mobject, GroupContainer
 
 
 class PMobject(Mobject):
     CONFIG = {
-        "stroke_width": DEFAULT_STROKE_WIDTH,
+        "stroke_width": consts.DEFAULT_STROKE_WIDTH,
     }
 
     def reset_points(self):
@@ -191,7 +191,7 @@ class PMobject(Mobject):
 # TODO, Make the two implementations bellow non-redundant
 class Mobject1D(PMobject):
     CONFIG = {
-        "density": DEFAULT_POINT_DENSITY_1D,
+        "density": consts.DEFAULT_POINT_DENSITY_1D,
     }
 
     def __init__(self, **kwargs):
@@ -215,7 +215,7 @@ class Mobject1D(PMobject):
 
 class Mobject2D(PMobject):
     CONFIG = {
-        "density": DEFAULT_POINT_DENSITY_2D,
+        "density": consts.DEFAULT_POINT_DENSITY_2D,
     }
 
     def __init__(self, **kwargs):
@@ -236,17 +236,17 @@ class PointCloudDot(Mobject1D):
     CONFIG = {
         "radius": 0.075,
         "stroke_width": 2,
-        "density": DEFAULT_POINT_DENSITY_1D,
+        "density": consts.DEFAULT_POINT_DENSITY_1D,
         "color": Color('YELLOW'),
     }
 
-    def __init__(self, center=ORIGIN, **kwargs):
+    def __init__(self, center=consts.ORIGIN, **kwargs):
         Mobject1D.__init__(self, **kwargs)
         self.shift(center)
 
     def generate_points(self):
         self.add_points([
-            r * (np.cos(theta) * RIGHT + np.sin(theta) * UP)
+            r * (np.cos(theta) * consts.RIGHT + np.sin(theta) * consts.UP)
             for r in np.arange(0, self.radius, self.epsilon)
             for theta in np.arange(0, 2 * np.pi, self.epsilon / r)
         ])
@@ -257,6 +257,6 @@ class Point(PMobject):
         "color": Color('BLACK'),
     }
 
-    def __init__(self, location=ORIGIN, **kwargs):
+    def __init__(self, location=consts.ORIGIN, **kwargs):
         PMobject.__init__(self, **kwargs)
         self.add_points([location])

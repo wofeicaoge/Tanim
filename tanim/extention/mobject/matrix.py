@@ -9,7 +9,7 @@ from tanim.extention.mobject.numbers import Integer
 from tanim.extention.mobject.shape_matchers import BackgroundRectangle
 from tanim.extention.mobject.svg.tex_mobject import TexMobject
 from tanim.extention.mobject.svg.tex_mobject import TextMobject
-from tanim.utils.constants import DEFAULT_MOBJECT_TO_MOBJECT_BUFFER, LEFT, RIGHT, MED_SMALL_BUFF, DR, DOWN
+import tanim.utils.constants as consts
 
 VECTOR_LABEL_SCALE_FACTOR = 0.8
 
@@ -44,9 +44,9 @@ def vector_coordinate_label(vector_mob, integer_labels=True,
 
     shift_dir = np.array(vector_mob.get_end())
     if shift_dir[0] >= 0:  # Pointing right
-        shift_dir -= label.get_left() + DEFAULT_MOBJECT_TO_MOBJECT_BUFFER * LEFT
+        shift_dir -= label.get_left() + consts.DEFAULT_MOBJECT_TO_MOBJECT_BUFFER * consts.LEFT
     else:  # Pointing left
-        shift_dir -= label.get_right() + DEFAULT_MOBJECT_TO_MOBJECT_BUFFER * RIGHT
+        shift_dir -= label.get_right() + consts.DEFAULT_MOBJECT_TO_MOBJECT_BUFFER * consts.RIGHT
     label.shift(shift_dir)
     label.set_color(color)
     label.rect = BackgroundRectangle(label)
@@ -58,13 +58,13 @@ class Matrix(VMobject):
     CONFIG = {
         "v_buff": 0.8,
         "h_buff": 1.3,
-        "bracket_h_buff": MED_SMALL_BUFF,
-        "bracket_v_buff": MED_SMALL_BUFF,
+        "bracket_h_buff": consts.MED_SMALL_BUFF,
+        "bracket_v_buff": consts.MED_SMALL_BUFF,
         "add_background_rectangles_to_entries": False,
         "include_background_rectangle": False,
         "element_to_mobject": TexMobject,
         "element_to_mobject_config": {},
-        "element_alignment_corner": DR,
+        "element_alignment_corner": consts.DR,
     }
 
     def __init__(self, matrix, **kwargs):
@@ -97,7 +97,7 @@ class Matrix(VMobject):
             for j, elem in enumerate(row):
                 mob = matrix[i][j]
                 mob.move_to(
-                    i * self.v_buff * DOWN + j * self.h_buff * RIGHT,
+                    i * self.v_buff * consts.DOWN + j * self.h_buff * consts.RIGHT,
                     self.element_alignment_corner
                 )
         return self
@@ -109,8 +109,8 @@ class Matrix(VMobject):
             self.get_height() + 2 * self.bracket_v_buff
         )
         l_bracket, r_bracket = bracket_pair.split()
-        l_bracket.next_to(self, LEFT, self.bracket_h_buff)
-        r_bracket.next_to(self, RIGHT, self.bracket_h_buff)
+        l_bracket.next_to(self, consts.LEFT, self.bracket_h_buff)
+        r_bracket.next_to(self, consts.RIGHT, self.bracket_h_buff)
         self.add(l_bracket, r_bracket)
         self.brackets = VGroup(l_bracket, r_bracket)
         return self
@@ -166,18 +166,18 @@ def get_det_text(matrix, determinant=None, background_rect=False, initial_scale_
     parens.scale(initial_scale_factor)
     parens.stretch_to_fit_height(matrix.get_height())
     l_paren, r_paren = parens.split()
-    l_paren.next_to(matrix, LEFT, buff=0.1)
-    r_paren.next_to(matrix, RIGHT, buff=0.1)
+    l_paren.next_to(matrix, consts.LEFT, buff=0.1)
+    r_paren.next_to(matrix, consts.RIGHT, buff=0.1)
     det = TextMobject("det")
     det.scale(initial_scale_factor)
-    det.next_to(l_paren, LEFT, buff=0.1)
+    det.next_to(l_paren, consts.LEFT, buff=0.1)
     if background_rect:
         det.add_background_rectangle()
     det_text = VGroup(det, l_paren, r_paren)
     if determinant is not None:
         eq = TexMobject("=")
-        eq.next_to(r_paren, RIGHT, buff=0.1)
+        eq.next_to(r_paren, consts.RIGHT, buff=0.1)
         result = TexMobject(str(determinant))
-        result.next_to(eq, RIGHT, buff=0.2)
+        result.next_to(eq, consts.RIGHT, buff=0.2)
         det_text.add(eq, result)
     return det_text

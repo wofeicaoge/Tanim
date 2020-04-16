@@ -3,7 +3,7 @@ import numpy as np
 from tanim.utils.color import Color
 from tanim.utils.bezier import interpolate
 from tanim.utils.config_ops import digest_config
-from tanim.utils.constants import UP, FRAME_X_RADIUS, FRAME_Y_RADIUS, TAU, RIGHT, ORIGIN
+import tanim.utils.constants as consts
 from tanim.utils.rate_functions import there_and_back
 from tanim.utils.rate_functions import wiggle
 
@@ -47,7 +47,7 @@ class FocusOn(Transform):
 
     def create_starting_mobject(self):
         return Dot(
-            radius=FRAME_X_RADIUS + FRAME_Y_RADIUS,
+            radius=consts.FRAME_X_RADIUS + consts.FRAME_Y_RADIUS,
             stroke_width=0,
             fill_color=self.color,
             fill_opacity=0,
@@ -91,10 +91,10 @@ class Flash(AnimationGroup):
 
     def create_lines(self):
         lines = VGroup()
-        for angle in np.arange(0, TAU, TAU / self.num_lines):
-            line = Line(ORIGIN, self.line_length * RIGHT)
-            line.shift((self.flash_radius - self.line_length) * RIGHT)
-            line.rotate(angle, about_point=ORIGIN)
+        for angle in np.arange(0, consts.TAU, consts.TAU / self.num_lines):
+            line = Line(consts.ORIGIN, self.line_length * consts.RIGHT)
+            line.shift((self.flash_radius - self.line_length) * consts.RIGHT)
+            line.rotate(angle, about_point=consts.ORIGIN)
             lines.add(line)
         lines.set_color(self.color)
         lines.set_stroke(width=3)
@@ -222,7 +222,7 @@ class ShowCreationThenFadeAround(AnimationOnSurroundingRectangle):
 
 class ApplyWave(Homotopy):
     CONFIG = {
-        "direction": UP,
+        "direction": consts.UP,
         "amplitude": 0.2,
         "run_time": 1,
     }
@@ -245,7 +245,7 @@ class ApplyWave(Homotopy):
 class WiggleOutThenIn(Animation):
     CONFIG = {
         "scale_value": 1.1,
-        "rotation_angle": 0.01 * TAU,
+        "rotation_angle": 0.01 * consts.TAU,
         "n_wiggles": 6,
         "run_time": 2,
         "scale_about_point": None,
@@ -274,7 +274,7 @@ class WiggleOutThenIn(Animation):
 
 class TurnInsideOut(Transform):
     CONFIG = {
-        "path_arc": TAU / 4,
+        "path_arc": consts.TAU / 4,
     }
 
     def create_target(self):

@@ -17,8 +17,9 @@ from tanim.utils.iterables import tuplify
 from tanim.utils.simple_functions import clip_in_place
 from tanim.utils.space_ops import get_norm
 from tanim.utils.space_ops import rotate_vector
+import tanim.utils.constants as consts
 
-from tanim.core.mobject.mobject import Mobject, Group, DEFAULT_STROKE_WIDTH, UL, PI, ORIGIN
+from tanim.core.mobject.mobject import Mobject, Group
 
 
 # TODO
@@ -36,7 +37,7 @@ class VMobject(Mobject):
         "fill_opacity": 0.0,
         "stroke_color": None,
         "stroke_opacity": 1.0,
-        "stroke_width": DEFAULT_STROKE_WIDTH,
+        "stroke_width": consts.DEFAULT_STROKE_WIDTH,
         # The purpose of background stroke is to have
         # something that won't overlap the fill, e.g.
         # For text against some textured background
@@ -48,7 +49,7 @@ class VMobject(Mobject):
         # sheen_factor, and the display will gradient to this
         # secondary color in the direction of sheen_direction.
         "sheen_factor": 0.0,
-        "sheen_direction": UL,
+        "sheen_direction": consts.UL,
         # Indicates that it will not be displayed, but
         # that it should count in parent mobject's path
         "close_new_points": False,
@@ -370,7 +371,7 @@ class VMobject(Mobject):
             c = self.get_center()
             bases = np.array([
                 self.get_edge_center(vect) - c
-                for vect in [RIGHT, UP, OUT]
+                for vect in [consts.RIGHT, consts.UP, consts.OUT]
             ]).transpose()
             offset = np.dot(bases, direction)
             return (c - offset, c + offset)
@@ -476,7 +477,7 @@ class VMobject(Mobject):
             if handle2 is None:
                 to_anchor_vect = new_anchor - last_a2
                 new_tangent = rotate_vector(
-                    last_tangent, PI, axis=to_anchor_vect
+                    last_tangent, consts.PI, axis=to_anchor_vect
                 )
                 handle2 = new_anchor - new_tangent
             self.append_points([
@@ -884,7 +885,7 @@ class VectorizedPoint(VMobject):
         "artificial_height": 0.01,
     }
 
-    def __init__(self, location=ORIGIN, **kwargs):
+    def __init__(self, location=consts.ORIGIN, **kwargs):
         VMobject.__init__(self, **kwargs)
         self.set_points(np.array([location]))
 

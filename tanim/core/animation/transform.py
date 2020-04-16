@@ -1,4 +1,4 @@
-from tanim.utils.constants import OUT
+import tanim.utils.constants as consts
 from tanim.utils.paths import path_along_arc
 from tanim.utils.paths import straight_path
 
@@ -8,7 +8,7 @@ from tanim.core.animation.animation import Animation
 class Transform(Animation):
     CONFIG = {
         "path_arc": 0,
-        "path_arc_axis": OUT,
+        "path_arc_axis": consts.OUT,
         "path_func": None,
         "replace_mobject_with_target_in_scene": False,
     }
@@ -34,7 +34,7 @@ class Transform(Animation):
         if "path_arc" in kwargs:
             self.path_func = path_along_arc(
                 kwargs["path_arc"],
-                kwargs.get("path_arc_axis", OUT)
+                kwargs.get("path_arc_axis", consts.OUT)
             )
 
     def begin(self):
