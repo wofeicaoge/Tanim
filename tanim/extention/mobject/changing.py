@@ -8,14 +8,12 @@ from tanim.core.mobject.vectorized_mobject import VGroup
 
 
 class AnimatedBoundary(VGroup):
-    CONFIG = {
-        "colors": [Color('BLUE_D'), Color('BLUE_B'), Color('BLUE_E'), Color('GREY_BROWN')],
-        "max_stroke_width": 3,
-        "cycle_rate": 0.5,
-        "back_and_forth": True,
-        "draw_rate_func": smooth,
-        "fade_rate_func": smooth,
-    }
+    colors = [Color('BLUE_D'), Color('BLUE_B'), Color('BLUE_E'), Color('GREY_BROWN')]
+    max_stroke_width = 3
+    cycle_rate = 0.5
+    back_and_forth = True
+    draw_rate_func = smooth
+    fade_rate_func = smooth
 
     def __init__(self, vmobject, **kwargs):
         super().__init__(**kwargs)
@@ -73,11 +71,9 @@ class AnimatedBoundary(VGroup):
 
 
 class TracedPath(VMobject):
-    CONFIG = {
-        "stroke_width": 2,
-        "stroke_color": Color('WHITE'),
-        "min_distance_to_new_point": 0.1,
-    }
+    stroke_width = 2,
+    stroke_color = Color('WHITE')
+    min_distance_to_new_point = 0.1
 
     def __init__(self, traced_point_func, **kwargs):
         super().__init__(**kwargs)

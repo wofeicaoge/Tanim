@@ -11,10 +11,8 @@ DEFAULT_FADE_LAG_RATIO = 0
 
 
 class FadeOut(Transform):
-    CONFIG = {
-        "remover": True,
-        "lag_ratio": DEFAULT_FADE_LAG_RATIO,
-    }
+    remover = True
+    lag_ratio = DEFAULT_FADE_LAG_RATIO
 
     def create_target(self):
         return self.mobject.copy().fade(1)
@@ -25,9 +23,7 @@ class FadeOut(Transform):
 
 
 class FadeIn(Transform):
-    CONFIG = {
-        "lag_ratio": DEFAULT_FADE_LAG_RATIO,
-    }
+    lag_ratio = DEFAULT_FADE_LAG_RATIO
 
     def create_target(self):
         return self.mobject
@@ -42,10 +38,8 @@ class FadeIn(Transform):
 
 
 class FadeInFrom(Transform):
-    CONFIG = {
-        "direction": consts.DOWN,
-        "lag_ratio": DEFAULT_ANIMATION_LAG_RATIO,
-    }
+    direction = consts.DOWN
+    lag_ratio = DEFAULT_ANIMATION_LAG_RATIO
 
     def __init__(self, mobject, direction=None, **kwargs):
         if direction is not None:
@@ -62,9 +56,7 @@ class FadeInFrom(Transform):
 
 
 class FadeOutAndShift(FadeOut):
-    CONFIG = {
-        "direction": consts.DOWN,
-    }
+    direction = consts.DOWN
 
     def __init__(self, mobject, direction=None, **kwargs):
         if direction is not None:
@@ -90,9 +82,7 @@ class FadeInFromPoint(FadeIn):
 
 
 class FadeInFromLarge(FadeIn):
-    CONFIG = {
-        "scale_factor": 2,
-    }
+    scale_factor = 2
 
     def __init__(self, mobject, scale_factor=2, **kwargs):
         if scale_factor is not None:
@@ -109,9 +99,7 @@ class VFadeIn(Animation):
     """
     VFadeIn and VFadeOut only work for VMobjects,
     """
-    CONFIG = {
-        "suspend_mobject_updating": False,
-    }
+    suspend_mobject_updating = False
 
     def interpolate_submobject(self, submob, start, alpha):
         submob.set_stroke(
@@ -123,16 +111,12 @@ class VFadeIn(Animation):
 
 
 class VFadeOut(VFadeIn):
-    CONFIG = {
-        "remover": True
-    }
+    remover = True
 
     def interpolate_submobject(self, submob, start, alpha):
         super().interpolate_submobject(submob, start, 1 - alpha)
 
 
 class VFadeInThenOut(VFadeIn):
-    CONFIG = {
-        "rate_func": there_and_back,
-        "remover": True,
-    }
+    rate_func = there_and_back
+    remover = True

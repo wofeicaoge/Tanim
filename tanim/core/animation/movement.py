@@ -2,9 +2,7 @@ from tanim.core.animation.animation import Animation
 
 
 class Move(Animation):
-    CONFIG = {
-        "apply_function_kwargs": {},
-    }
+    apply_function_kwargs = {}
 
     def __init__(self, function, mobject, **kwargs):
         self.function = function
@@ -21,9 +19,7 @@ class Move(Animation):
 
 
 class MoveAlongPath(Animation):
-    CONFIG = {
-        "suspend_mobject_updating": False,
-    }
+    suspend_mobject_updating = False
 
     def __init__(self, mobject, path, **kwargs):
         self.path = path

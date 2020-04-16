@@ -4,9 +4,7 @@ from tanim.core.animation.transform import Transform
 
 
 class GrowFromPoint(Transform):
-    CONFIG = {
-        "point_color": None,
-    }
+    point_color = None
 
     def __init__(self, mobject, point, **kwargs):
         self.point = point
@@ -43,6 +41,4 @@ class GrowArrow(GrowFromPoint):
 
 
 class SpinInFromNothing(GrowFromCenter):
-    CONFIG = {
-        "path_arc": consts.PI,
-    }
+    path_arc = consts.PI

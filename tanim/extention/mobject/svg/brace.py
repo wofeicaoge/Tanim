@@ -14,13 +14,11 @@ from tanim.utils.space_ops import get_norm
 
 
 class Brace(TexMobject):
-    CONFIG = {
-        "buff": 0.2,
-        "width_multiplier": 2,
-        "max_num_quads": 15,
-        "min_num_quads": 0,
-        "background_stroke_width": 0,
-    }
+    buff = 0.2
+    width_multiplier = 2
+    max_num_quads = 15
+    min_num_quads = 0
+    background_stroke_width = 0
 
     def __init__(self, mobject, direction=consts.DOWN, **kwargs):
         digest_config(self, kwargs, locals())
@@ -79,10 +77,8 @@ class Brace(TexMobject):
 
 
 class BraceLabel(VMobject):
-    CONFIG = {
-        "label_constructor": TexMobject,
-        "label_scale": 1,
-    }
+    label_constructor = TexMobject
+    label_scale = 1
 
     def __init__(self, obj, text, brace_direction=consts.DOWN, **kwargs):
         VMobject.__init__(self, **kwargs)
@@ -136,6 +132,4 @@ class BraceLabel(VMobject):
 
 
 class BraceText(BraceLabel):
-    CONFIG = {
-        "label_constructor": TextMobject
-    }
+    label_constructor = TextMobject

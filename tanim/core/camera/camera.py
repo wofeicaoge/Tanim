@@ -27,29 +27,27 @@ from tanim.core.mobject.vectorized_mobject import VMobject
 
 
 class Camera(object):
-    CONFIG = {
-        "background_image": None,
-        "pixel_height": consts.DEFAULT_PIXEL_HEIGHT,
-        "pixel_width": consts.DEFAULT_PIXEL_WIDTH,
-        "frame_rate": consts.DEFAULT_FRAME_RATE,
-        # Note: frame height and width will be resized to match
-        # the pixel aspect ratio
-        "frame_height": consts.FRAME_HEIGHT,
-        "frame_width": consts.FRAME_WIDTH,
-        "frame_center": consts.ORIGIN,
-        "background_color": Color('BLACK'),
-        "background_opacity": 1,
-        # Points in vectorized mobjects with norm greater
-        # than this value will be rescaled.
-        "max_allowable_norm": consts.FRAME_WIDTH,
-        "image_mode": "RGBA",
-        "n_channels": 4,
-        "pixel_array_dtype": 'uint8',
-        # z_buff_func is only used if the flag above is set to True.
-        # round z coordinate to nearest hundredth when comparring
-        "z_buff_func": lambda m: np.round(m.get_center()[2], 2),
-        "cairo_line_width_multiple": 0.01,
-    }
+    background_image = None
+    pixel_height = consts.DEFAULT_PIXEL_HEIGHT
+    pixel_width = consts.DEFAULT_PIXEL_WIDTH
+    frame_rate = consts.DEFAULT_FRAME_RATE
+    # Note: frame height and width will be resized to match
+    # the pixel aspect ratio
+    frame_height = consts.FRAME_HEIGHT
+    frame_width = consts.FRAME_WIDTH
+    frame_center = consts.ORIGIN
+    background_color = Color('BLACK')
+    background_opacity = 1
+    # Points in vectorized mobjects with norm greater
+    # than this value will be rescaled.
+    max_allowable_norm = consts.FRAME_WIDTH
+    image_mode = "RGBA"
+    n_channels = 4
+    pixel_array_dtype = 'uint8'
+    # z_buff_func is only used if the flag above is set to True.
+    # round z coordinate to nearest hundredth when comparring
+    z_buff_func = lambda m: np.round(m.get_center()[2], 2)
+    cairo_line_width_multiple = 0.01
 
     def __init__(self, background=None, **kwargs):
         digest_config(self, kwargs, locals())

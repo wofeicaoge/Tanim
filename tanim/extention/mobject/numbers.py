@@ -7,16 +7,14 @@ import tanim.utils.constants as consts
 
 
 class DecimalNumber(VMobject):
-    CONFIG = {
-        "num_decimal_places": 2,
-        "include_sign": False,
-        "group_with_commas": True,
-        "digit_to_digit_buff": 0.05,
-        "show_ellipsis": False,
-        "unit": None,  # Aligned to bottom unless it starts with "^"
-        "include_background_rectangle": False,
-        "edge_to_fix": consts.LEFT,
-    }
+    num_decimal_places = 2
+    include_sign = False
+    group_with_commas = True
+    digit_to_digit_buff = 0.05
+    show_ellipsis = False
+    unit = None  # Aligned to bottom unless it starts with "^"
+    include_background_rectangle = False
+    edge_to_fix = consts.LEFT
 
     def __init__(self, number=0, **kwargs):
         super().__init__(**kwargs)
@@ -112,7 +110,7 @@ class DecimalNumber(VMobject):
         ])
 
     def set_value(self, number, **config):
-        full_config = dict(self.CONFIG)
+        full_config = self.__class__.__dict__.copy()
         full_config.update(self.initial_config)
         full_config.update(config)
         new_decimal = DecimalNumber(number, **full_config)
@@ -140,9 +138,7 @@ class DecimalNumber(VMobject):
 
 
 class Integer(DecimalNumber):
-    CONFIG = {
-        "num_decimal_places": 0,
-    }
+    num_decimal_places = 0
 
     def get_value(self):
         return int(np.round(super().get_value()))

@@ -6,9 +6,7 @@ from tanim.extention.mobject.numbers import DecimalNumber
 
 
 class ChangingDecimal(Animation):
-    CONFIG = {
-        "suspend_mobject_updating": False,
-    }
+    suspend_mobject_updating = False
 
     def __init__(self, decimal_mob, number_update_func, **kwargs):
         assert isinstance(decimal_mob, DecimalNumber)

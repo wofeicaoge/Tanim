@@ -8,11 +8,9 @@ from tanim.utils.config_ops import digest_config
 
 # TODO, think about how to incorporate perspective
 class CameraFrame(VGroup):
-    CONFIG = {
-        "width": consts.FRAME_WIDTH,
-        "height": consts.FRAME_HEIGHT,
-        "center": consts.ORIGIN,
-    }
+    width = consts.FRAME_WIDTH
+    height = consts.FRAME_HEIGHT
+    center = consts.ORIGIN
 
     def __init__(self, **kwargs):
         pass
@@ -22,12 +20,9 @@ class MovingCamera(Camera):
     """
     Stays in line with the height, width and position of it's 'frame', which is a Rectangle
     """
-
-    CONFIG = {
-        "fixed_dimension": 0,  # width
-        "default_frame_stroke_color": Color('WHITE'),
-        "default_frame_stroke_width": 0,
-    }
+    fixed_dimension = 0  # width
+    default_frame_stroke_color = Color('WHITE')
+    default_frame_stroke_width = 0
 
     def __init__(self, frame=None, **kwargs):
         """

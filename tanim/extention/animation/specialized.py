@@ -15,10 +15,8 @@ from tanim.extention.mobject.svg.drawings import Car
 
 
 class MoveCar(ApplyMethod):
-    CONFIG = {
-        "moving_forward": True,
-        "run_time": 5,
-    }
+    moving_forward = True
+    run_time = 5
 
     def __init__(self, car, target_point, **kwargs):
         self.check_if_input_is_car(car)
@@ -51,17 +49,15 @@ class MoveCar(ApplyMethod):
 
 
 class Broadcast(LaggedStart):
-    CONFIG = {
-        "small_radius": 0.0,
-        "big_radius": 5,
-        "n_circles": 5,
-        "start_stroke_width": 8,
-        "color": Color('WHITE'),
-        "remover": True,
-        "lag_ratio": 0.2,
-        "run_time": 3,
-        "remover": True,
-    }
+    small_radius = 0.0
+    big_radius = 5
+    n_circles = 5
+    start_stroke_width = 8
+    color = Color('WHITE')
+    remover = True
+    lag_ratio = 0.2
+    run_time = 3
+    remover = True
 
     def __init__(self, focal_point, **kwargs):
         digest_config(self, kwargs)

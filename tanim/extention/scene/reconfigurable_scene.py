@@ -7,9 +7,7 @@ class ReconfigurableScene(Scene):
     """
     Note, this seems to no longer work as intented.
     """
-    CONFIG = {
-        "allow_recursion": True,
-    }
+    Callow_recursion = True
 
     def setup(self):
         self.states = []

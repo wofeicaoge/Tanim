@@ -27,12 +27,10 @@ class Mobject(Container):
     """
     Mathematical Object
     """
-    CONFIG = {
-        "color": Color('WHITE'),
-        "name": None,
-        "dim": 3,
-        "target": None,
-    }
+    color = Color('WHITE')
+    name = None
+    dim = 3
+    target = None
 
     def __init__(self, **kwargs):
         Container.__init__(self, **kwargs)

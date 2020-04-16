@@ -13,18 +13,16 @@ DEFAULT_LAGGED_START_LAG_RATIO = 0.05
 
 
 class AnimationGroup(Animation):
-    CONFIG = {
-        # If None, this defaults to the sum of all
-        # internal animations
-        "run_time": None,
-        "rate_func": linear,
-        # If 0, all animations are played at once.
-        # If 1, all are played successively.
-        # If >0 and <1, they start at lagged times
-        # from one and other.
-        "lag_ratio": 0,
-        "group": None,
-    }
+    # If None, this defaults to the sum of all
+    # internal animations
+    run_time = None
+    rate_func = linear
+    # If 0, all animations are played at once.
+    # If 1, all are played successively.
+    # If >0 and <1, they start at lagged times
+    # from one and other.
+    lag_ratio = 0
+    group = None
 
     def __init__(self, *animations, **kwargs):
         digest_config(self, kwargs)
@@ -105,9 +103,7 @@ class AnimationGroup(Animation):
 
 
 class Succession(AnimationGroup):
-    CONFIG = {
-        "lag_ratio": 1,
-    }
+    lag_ratio = 1
 
     def begin(self):
         assert (len(self.animations) > 0)
@@ -134,15 +130,11 @@ class Succession(AnimationGroup):
 
 
 class LaggedStart(AnimationGroup):
-    CONFIG = {
-        "lag_ratio": DEFAULT_LAGGED_START_LAG_RATIO,
-    }
+    lag_ratio = DEFAULT_LAGGED_START_LAG_RATIO
 
 
 class LaggedStartMap(LaggedStart):
-    CONFIG = {
-        "run_time": 2,
-    }
+    run_time = 2
 
     def __init__(self, AnimationClass, mobject, arg_creator=None, **kwargs):
         args_list = []

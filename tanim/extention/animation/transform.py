@@ -8,21 +8,15 @@ from tanim.core.mobject.mobject import Group, Mobject
 
 
 class ReplacementTransform(Transform):
-    CONFIG = {
-        "replace_mobject_with_target_in_scene": True,
-    }
+    replace_mobject_with_target_in_scene = True
 
 
 class ClockwiseTransform(Transform):
-    CONFIG = {
-        "path_arc": -np.pi
-    }
+    path_arc = -np.pi
 
 
 class CounterclockwiseTransform(Transform):
-    CONFIG = {
-        "path_arc": np.pi
-    }
+    path_arc = np.pi
 
 
 class MoveToTarget(Transform):
@@ -61,9 +55,7 @@ class ApplyMethod(Transform):
 
 
 class ApplyPointwiseFunction(ApplyMethod):
-    CONFIG = {
-        "run_time": consts.DEFAULT_POINTWISE_FUNCTION_RUN_TIME
-    }
+    run_time = consts.DEFAULT_POINTWISE_FUNCTION_RUN_TIME
 
     def __init__(self, function, mobject, **kwargs):
         super().__init__(mobject.apply_function, function, **kwargs)
@@ -147,9 +139,7 @@ class ApplyComplexFunction(ApplyMethod):
 
 
 class CyclicReplace(Transform):
-    CONFIG = {
-        "path_arc": 90 * consts.DEGREES,
-    }
+    path_arc = 90 * consts.DEGREES
 
     def __init__(self, *mobjects, **kwargs):
         self.group = Group(*mobjects)

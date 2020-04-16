@@ -29,32 +29,30 @@ from tanim.extention.animation.creation import Write, DrawBorderThenFill, ShowCr
 
 
 class GraphScene(Scene):
-    CONFIG = {
-        "x_min": -1,
-        "x_max": 10,
-        "x_axis_width": 9,
-        "x_tick_frequency": 1,
-        "x_leftmost_tick": None,  # Change if different from x_min
-        "x_labeled_nums": None,
-        "x_axis_label": "$x$",
-        "y_min": -1,
-        "y_max": 10,
-        "y_axis_height": 6,
-        "y_tick_frequency": 1,
-        "y_bottom_tick": None,  # Change if different from y_min
-        "y_labeled_nums": None,
-        "y_axis_label": "$y$",
-        "axes_color": Color('GREY'),
-        "graph_origin": 2.5 * consts.DOWN + 4 * consts.LEFT,
-        "exclude_zero_label": True,
-        "default_graph_colors": [Color('BLUE'), Color('GREEN'), Color('YELLOW')],
-        "default_derivative_color": Color('GREEN'),
-        "default_input_color": Color('YELLOW'),
-        "default_riemann_start_color": Color('BLUE'),
-        "default_riemann_end_color": Color('GREEN'),
-        "area_opacity": 0.8,
-        "num_rects": 50,
-    }
+    x_min = -1
+    x_max = 10
+    x_axis_width = 9
+    x_tick_frequency = 1
+    x_leftmost_tick = None  # Change if different from x_min
+    x_labeled_nums = None
+    x_axis_label = "$x$"
+    y_min = -1
+    y_max = 10
+    y_axis_height = 6
+    y_tick_frequency = 1
+    y_bottom_tick = None  # Change if different from y_min
+    y_labeled_nums = None
+    y_axis_label = "$y$"
+    axes_color = Color('GREY')
+    graph_origin = 2.5 * consts.DOWN + 4 * consts.LEFT
+    exclude_zero_label = True
+    default_graph_colors = [Color('BLUE'), Color('GREEN'), Color('YELLOW')]
+    default_derivative_color = Color('GREEN')
+    default_input_color = Color('YELLOW')
+    default_riemann_start_color = Color('BLUE')
+    default_riemann_end_color = Color('GREEN')
+    area_opacity = 0.8
+    num_rects = 50
 
     def setup(self):
         self.default_graph_colors_cycle = it.cycle(self.default_graph_colors)

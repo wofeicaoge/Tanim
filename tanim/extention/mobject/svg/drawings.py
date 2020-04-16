@@ -26,25 +26,21 @@ from tanim.extention.mobject.geometry import Circle, AnnularSector, Arc, Line, P
 
 
 class Lightbulb(SVGMobject):
-    CONFIG = {
-        "file_name": "lightbulb",
-        "height": 1,
-        "stroke_color": Color('YELLOW'),
-        "stroke_width": 3,
-        "fill_color": Color('YELLOW'),
-        "fill_opacity": 0,
-    }
+    file_name = "lightbulb"
+    height = 1
+    stroke_color = Color('YELLOW')
+    stroke_width = 3
+    fill_color = Color('YELLOW')
+    fill_opacity = 0
 
 
 class BitcoinLogo(SVGMobject):
-    CONFIG = {
-        "file_name": "Bitcoin_logo",
-        "height": 1,
-        "fill_color": "#f7931a",
-        "inner_color": Color('WHITE'),
-        "fill_opacity": 1,
-        "stroke_width": 0,
-    }
+    file_name = "Bitcoin_logo"
+    height = 1
+    fill_color = "#f7931a"
+    inner_color = Color('WHITE')
+    fill_opacity = 1
+    stroke_width = 0
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
@@ -53,21 +49,17 @@ class BitcoinLogo(SVGMobject):
 
 
 class Guitar(SVGMobject):
-    CONFIG = {
-        "file_name": "guitar",
-        "height": 2.5,
-        "fill_color": Color('GREY'),
-        "fill_opacity": 1,
-        "stroke_color": Color('WHITE'),
-        "stroke_width": 0.5,
-    }
+    file_name = "guitar"
+    height = 2.5
+    fill_color = Color('GREY')
+    fill_opacity = 1
+    stroke_color = Color('WHITE')
+    stroke_width = 0.5
 
 
 class SunGlasses(SVGMobject):
-    CONFIG = {
-        "file_name": "sunglasses",
-        "glasses_width_to_eyes_width": 1.1,
-    }
+    file_name = "sunglasses"
+    glasses_width_to_eyes_width = 1.1
 
     def __init__(self, pi_creature, **kwargs):
         SVGMobject.__init__(self, **kwargs)
@@ -80,14 +72,12 @@ class SunGlasses(SVGMobject):
 
 
 class Speedometer(VMobject):
-    CONFIG = {
-        "arc_angle": 4 * np.pi / 3,
-        "num_ticks": 8,
-        "tick_length": 0.2,
-        "needle_width": 0.1,
-        "needle_height": 0.8,
-        "needle_color": Color('YELLOW'),
-    }
+    arc_angle = 4 * np.pi / 3
+    num_ticks = 8
+    tick_length = 0.2
+    needle_width = 0.1
+    needle_height = 0.8
+    needle_color = Color('YELLOW')
 
     def generate_points(self):
         start_angle = np.pi / 2 + self.arc_angle / 2
@@ -147,10 +137,8 @@ class Speedometer(VMobject):
 
 
 class AoPSLogo(SVGMobject):
-    CONFIG = {
-        "file_name": "aops_logo",
-        "height": 1.5,
-    }
+    file_name = "aops_logo"
+    height = 1.5
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
@@ -170,16 +158,15 @@ class AoPSLogo(SVGMobject):
 
 
 class PartyHat(SVGMobject):
-    CONFIG = {
-        "file_name": "party_hat",
-        "height": 1.5,
-        "pi_creature": None,
-        "stroke_width": 0,
-        "fill_opacity": 1,
-        "frills_colors": [Color('MAROON_B'), Color('PURPLE')],
-        "cone_color": Color('GREEN'),
-        "dots_colors": [Color('YELLOW')],
-    }
+    file_name = "party_hat"
+    height = 1.5
+    pi_creature = None
+    stroke_width = 0
+    fill_opacity = 1
+    frills_colors = [Color('MAROON_B'), Color('PURPLE')]
+    cone_color = Color('GREEN')
+    dots_colors = [Color('YELLOW')]
+
     NUM_FRILLS = 7
     NUM_DOTS = 6
 
@@ -199,24 +186,22 @@ class PartyHat(SVGMobject):
 
 
 class Laptop(VGroup):
-    CONFIG = {
-        "width": 3,
-        "body_dimensions": [4, 3, 0.05],
-        "screen_thickness": 0.01,
-        "keyboard_width_to_body_width": 0.9,
-        "keyboard_height_to_body_height": 0.5,
-        "screen_width_to_screen_plate_width": 0.9,
-        "key_color_kwargs": {
-            "stroke_width": 0,
-            "fill_color": Color('BLACK'),
-            "fill_opacity": 1,
-        },
-        "fill_opacity": 1,
+    width = 3
+    body_dimensions = [4, 3, 0.05]
+    screen_thickness = 0.01
+    keyboard_width_to_body_width = 0.9
+    keyboard_height_to_body_height = 0.5
+    screen_width_to_screen_plate_width = 0.9
+    key_color_kwargs = {
         "stroke_width": 0,
-        "body_color": Color('GREY'),
-        "shaded_body_color": Color('GREY'),
-        "open_angle": np.pi / 4,
+        "fill_color": Color('BLACK'),
+        "fill_opacity": 1
     }
+    fill_opacity = 1
+    stroke_width = 0
+    body_color = Color('GREY')
+    shaded_body_color = Color('GREY')
+    open_angle = np.pi / 4
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -278,14 +263,12 @@ class Laptop(VGroup):
 
 
 class PatreonLogo(SVGMobject):
-    CONFIG = {
-        "file_name": "patreon_logo",
-        "fill_color": "#F96854",
-        # "fill_color" : Color('WHITE'),
-        "fill_opacity": 1,
-        "stroke_width": 0,
-        "width": 4,
-    }
+    file_name = "patreon_logo"
+    fill_color = "#F96854"
+    # "fill_color" : Color('WHITE'),
+    fill_opacity = 1
+    stroke_width = 0
+    width = 4
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
@@ -294,10 +277,8 @@ class PatreonLogo(SVGMobject):
 
 
 class VideoIcon(SVGMobject):
-    CONFIG = {
-        "file_name": "video_icon",
-        "width": consts.FRAME_WIDTH / 12.,
-    }
+    file_name = "video_icon"
+    width = consts.FRAME_WIDTH / 12.
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
@@ -308,10 +289,8 @@ class VideoIcon(SVGMobject):
 
 
 class VideoSeries(VGroup):
-    CONFIG = {
-        "num_videos": 11,
-        "gradient_colors": [Color('BLUE_B'), Color('BLUE_D')],
-    }
+    num_videos = 11,
+    gradient_colors = [Color('BLUE_B'), Color('BLUE_D')]
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -323,12 +302,10 @@ class VideoSeries(VGroup):
 
 
 class Headphones(SVGMobject):
-    CONFIG = {
-        "file_name": "headphones",
-        "height": 2,
-        "y_stretch_factor": 0.5,
-        "color": Color('GREY'),
-    }
+    file_name = "headphones"
+    height = 2
+    y_stretch_factor = 0.5
+    color = Color('GREY')
 
     def __init__(self, pi_creature=None, **kwargs):
         digest_config(self, kwargs)
@@ -345,8 +322,6 @@ class Headphones(SVGMobject):
 
 
 class Clock(VGroup):
-    CONFIG = {}
-
     def __init__(self, **kwargs):
         circle = Circle(color=Color('WHITE'))
         ticks = []
@@ -373,15 +348,13 @@ class Clock(VGroup):
 
 
 class ClockPassesTime(Animation):
-    CONFIG = {
-        "run_time": 5,
-        "hours_passed": 12,
-        "rate_func": linear,
-    }
+    run_time = 5
+    hours_passed = 12
+    rate_func = linear
 
     def __init__(self, clock, **kwargs):
         digest_config(self, kwargs)
-        assert(isinstance(clock, Clock))
+        assert (isinstance(clock, Clock))
         rot_kwargs = {
             "axis": consts.OUT,
             "about_point": clock.get_center()
@@ -407,19 +380,17 @@ class ClockPassesTime(Animation):
 
 
 class Bubble(SVGMobject):
-    CONFIG = {
-        "direction": consts.LEFT,
-        "center_point": consts.ORIGIN,
-        "content_scale_factor": 0.75,
-        "height": 5,
-        "width": 8,
-        "bubble_center_adjustment_factor": 1. / 8,
-        "file_name": None,
-        "fill_color": Color('BLACK'),
-        "fill_opacity": 0.8,
-        "stroke_color": Color('WHITE'),
-        "stroke_width": 3,
-    }
+    direction = consts.LEFT
+    center_point = consts.ORIGIN
+    content_scale_factor = 0.75
+    height = 5
+    width = 8
+    bubble_center_adjustment_factor = 1. / 8
+    file_name = None
+    fill_color = Color('BLACK')
+    fill_opacity = 0.8
+    stroke_color = Color('WHITE')
+    stroke_width = 3
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs, locals())
@@ -506,23 +477,17 @@ class Bubble(SVGMobject):
 
 
 class SpeechBubble(Bubble):
-    CONFIG = {
-        "file_name": "Bubbles_speech.svg",
-        "height": 4
-    }
+    file_name = "Bubbles_speech.svg"
+    height = 4
 
 
 class DoubleSpeechBubble(Bubble):
-    CONFIG = {
-        "file_name": "Bubbles_double_speech.svg",
-        "height": 4
-    }
+    file_name = "Bubbles_double_speech.svg"
+    height = 4
 
 
 class ThoughtBubble(Bubble):
-    CONFIG = {
-        "file_name": "Bubbles_thought.svg",
-    }
+    file_name = "Bubbles_thought.svg"
 
     def __init__(self, **kwargs):
         Bubble.__init__(self, **kwargs)
@@ -536,12 +501,10 @@ class ThoughtBubble(Bubble):
 
 
 class Car(SVGMobject):
-    CONFIG = {
-        "file_name": "Car",
-        "height": 1,
-        "color": Color('GREY'),
-        "light_colors": [Color('BLACK'), Color('BLACK')],
-    }
+    file_name = "Car"
+    height = 1
+    color = Color('GREY')
+    light_colors = [Color('BLACK'), Color('BLACK')]
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
@@ -616,11 +579,9 @@ class Car(SVGMobject):
 
 
 class VectorizedEarth(SVGMobject):
-    CONFIG = {
-        "file_name": "earth",
-        "height": 1.5,
-        "fill_color": Color('BLACK'),
-    }
+    file_name = "earth"
+    height = 1.5
+    fill_color = Color('BLACK')
 
     def __init__(self, **kwargs):
         SVGMobject.__init__(self, **kwargs)
@@ -635,27 +596,25 @@ class VectorizedEarth(SVGMobject):
 
 
 class Logo(VMobject):
-    CONFIG = {
-        "pupil_radius": 1.0,
-        "outer_radius": 2.0,
-        "iris_background_blue": "#74C0E3",
-        "iris_background_brown": "#8C6239",
-        "blue_spike_colors": [
-            "#528EA3",
-            "#3E6576",
-            "#224C5B",
-            Color('BLACK'),
-        ],
-        "brown_spike_colors": [
-            "#754C24",
-            "#603813",
-            "#42210b",
-            Color('BLACK'),
-        ],
-        "n_spike_layers": 4,
-        "n_spikes": 28,
-        "spike_angle": consts.TAU / 28,
-    }
+    pupil_radius = 1.0,
+    outer_radius = 2.0,
+    iris_background_blue = Color("#74C0E3"),
+    iris_background_brown = Color("#8C6239"),
+    blue_spike_colors = [
+        Color("#528EA3"),
+        Color("#3E6576"),
+        Color("#224C5B"),
+        Color('BLACK')
+    ]
+    brown_spike_colors = [
+        Color("#754C24"),
+        Color("#603813"),
+        Color("#42210b"),
+        Color('BLACK')
+    ]
+    n_spike_layers = 4
+    n_spikes = 28
+    spike_angle = consts.TAU / 28
 
     def __init__(self, **kwargs):
         VMobject.__init__(self, **kwargs)
@@ -837,20 +796,18 @@ class DeckOfCards(VGroup):
 
 
 class PlayingCard(VGroup):
-    CONFIG = {
-        "value": None,
-        "suit": None,
-        "key": None,  # String like "8H" or "KS"
-        "height": 2,
-        "height_to_width": 3.5 / 2.5,
-        "card_height_to_symbol_height": 7,
-        "card_width_to_corner_num_width": 10,
-        "card_height_to_corner_num_height": 10,
-        "color": Color('GREY'),
-        "turned_over": False,
-        "possible_suits": ["hearts", "diamonds", "spades", "clubs"],
-        "possible_values": list(map(str, list(range(2, 11)))) + ["J", "Q", "K", "A"],
-    }
+    value = None
+    suit = None
+    key = None  # String like "8H" or "KS"
+    height = 2
+    height_to_width = 3.5 / 2.5
+    card_height_to_symbol_height = 7
+    card_width_to_corner_num_width = 10
+    card_height_to_corner_num_height = 10
+    color = Color('GREY')
+    turned_over = False
+    possible_suits = ["hearts", "diamonds", "spades", "clubs"]
+    possible_values = list(map(str, list(range(2, 11)))) + ["J", "Q", "K", "A"]
 
     def __init__(self, key=None, **kwargs):
         VGroup.__init__(self, key=key, **kwargs)
@@ -998,7 +955,7 @@ class PlayingCard(VGroup):
             consts.DOWN +
             consts.RIGHT,
             buff=consts.MED_LARGE_BUFF *
-            width)
+                 width)
         value_mob.set_color(symbol.get_color())
         corner_symbol = symbol.copy()
         corner_symbol.set_width(width)
@@ -1016,13 +973,11 @@ class PlayingCard(VGroup):
 
 
 class SuitSymbol(SVGMobject):
-    CONFIG = {
-        "height": 0.5,
-        "fill_opacity": 1,
-        "stroke_width": 0,
-        "red": "#D02028",
-        "black": Color('BLACK'),
-    }
+    height = 0.5
+    fill_opacity = 1
+    stroke_width = 0
+    red = Color("#D02028")
+    black = Color('BLACK')
 
     def __init__(self, suit_name, **kwargs):
         digest_config(self, kwargs)

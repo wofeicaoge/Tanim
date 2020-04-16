@@ -6,12 +6,10 @@ from tanim.core.animation.animation import Animation
 
 
 class Transform(Animation):
-    CONFIG = {
-        "path_arc": 0,
-        "path_arc_axis": consts.OUT,
-        "path_func": None,
-        "replace_mobject_with_target_in_scene": False,
-    }
+    path_arc = 0
+    path_arc_axis = consts.OUT
+    path_func = None
+    replace_mobject_with_target_in_scene = False
 
     def __init__(self, mobject, target_mobject=None, **kwargs):
         super().__init__(mobject, **kwargs)

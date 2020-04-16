@@ -17,19 +17,17 @@ from tanim.extention.mobject.value_tracker import ValueTracker
 
 
 class ThreeDCamera(Camera):
-    CONFIG = {
-        "shading_factor": 0.2,
-        "distance": 20.0,
-        "default_distance": 5.0,
-        "phi": 0,  # Angle off z axis
-        "theta": -90 * consts.DEGREES,  # Rotation about z axis
-        "gamma": 0,  # Rotation about normal vector to camera
-        "light_source_start_point": 9 * consts.DOWN + 7 * consts.LEFT + 10 * consts.OUT,
-        "frame_center": consts.ORIGIN,
-        "should_apply_shading": True,
-        "exponential_projection": False,
-        "max_allowable_norm": 3 * consts.FRAME_WIDTH,
-    }
+    shading_factor = 0.2
+    distance = 20.0
+    default_distance = 5.0
+    phi = 0  # Angle off z axis
+    theta = -90 * consts.DEGREES  # Rotation about z axis
+    gamma = 0  # Rotation about normal vector to camera
+    light_source_start_point = 9 * consts.DOWN + 7 * consts.LEFT + 10 * consts.OUT
+    frame_center = consts.ORIGIN
+    should_apply_shading = True
+    exponential_projection = False
+    max_allowable_norm = 3 * consts.FRAME_WIDTH
 
     def __init__(self, *args, **kwargs):
         Camera.__init__(self, *args, **kwargs)

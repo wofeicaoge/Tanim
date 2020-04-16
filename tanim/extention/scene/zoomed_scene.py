@@ -13,23 +13,21 @@ from tanim.extention.animation.transform import ApplyMethod
 
 
 class ZoomedScene(MovingCameraScene):
-    CONFIG = {
-        "camera_class": MultiCamera,
-        "zoomed_display_height": 3,
-        "zoomed_display_width": 3,
-        "zoomed_display_center": None,
-        "zoomed_display_corner": consts.UP + consts.RIGHT,
-        "zoomed_display_corner_buff": consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER,
-        "zoomed_camera_config": {
+    camera_class = MultiCamera
+    zoomed_display_height = 3
+    zoomed_display_width = 3
+    zoomed_display_center = None
+    zoomed_display_corner = consts.UP + consts.RIGHT
+    zoomed_display_corner_buff = consts.DEFAULT_MOBJECT_TO_EDGE_BUFFER
+    zoomed_camera_config = {
             "default_frame_stroke_width": 2,
-            "background_opacity": 1,
-        },
-        "zoomed_camera_image_mobject_config": {},
-        "zoomed_camera_frame_starting_position": consts.ORIGIN,
-        "zoom_factor": 0.15,
-        "image_frame_stroke_width": 3,
-        "zoom_activated": False,
+            "background_opacity": 1
     }
+    zoomed_camera_image_mobject_config = {}
+    zoomed_camera_frame_starting_position = consts.ORIGIN
+    zoom_factor = 0.15
+    image_frame_stroke_width = 3
+    zoom_activated = False
 
     def setup(self):
         MovingCameraScene.setup(self)
