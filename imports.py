@@ -14,79 +14,79 @@ as a convenience for scripts creating scenes for videos.
 """
 
 
-from utils.constants import *
+from tanim.utils.constants import *
 
-from utils.config import *
+from tanim.utils.config import *
 
-from core.animation.animation import *
-from core.animation.creation import *
-from core.animation.transform import *
-from core.animation.movement import *
-from core.animation.rotation import *
-from core.animation.update import *
-from extention.animation.animation_group import *
-from extention.animation.creation import *
-from extention.animation.transform import *
-from extention.animation.specialized import *
-from extention.animation.fading import *
-from extention.animation.growing import *
-from extention.animation.indication import *
-from extention.animation.numbers import *
-from extention.animation.movement import *
+from tanim.core.animation.animation import *
+from tanim.core.animation.creation import *
+from tanim.core.animation.transform import *
+from tanim.core.animation.movement import *
+from tanim.core.animation.rotation import *
+from tanim.core.animation.update import *
+from tanim.extention.animation.animation_group import *
+from tanim.extention.animation.creation import *
+from tanim.extention.animation.transform import *
+from tanim.extention.animation.specialized import *
+from tanim.extention.animation.fading import *
+from tanim.extention.animation.growing import *
+from tanim.extention.animation.indication import *
+from tanim.extention.animation.numbers import *
+from tanim.extention.animation.movement import *
 
-from core.camera.camera import *
-from extention.camera.mapping_camera import *
-from extention.camera.moving_camera import *
-from extention.camera.three_d_camera import *
+from tanim.core.camera.camera import *
+from tanim.extention.camera.mapping_camera import *
+from tanim.extention.camera.moving_camera import *
+from tanim.extention.camera.three_d_camera import *
 
-from core.mobject.mobject import *
-from core.mobject.image_mobject import *
-from core.mobject.point_cloud_mobject import *
-from core.mobject.vectorized_mobject import *
-from extention.mobject.coordinate_systems import *
-from extention.mobject.changing import *
-from extention.mobject.frame import *
-from extention.mobject.functions import *
-from extention.mobject.geometry import *
-from extention.mobject.matrix import *
-from extention.mobject.number_line import *
-from extention.mobject.numbers import *
-from extention.mobject.probability import *
-from extention.mobject.shape_matchers import *
-from extention.mobject.svg.brace import *
-from extention.mobject.svg.drawings import *
-from extention.mobject.svg.svg_mobject import *
-from extention.mobject.svg.tex_mobject import *
-from extention.mobject.svg.text_mobject import *
-from extention.mobject.three_dimensions import *
-from extention.mobject.value_tracker import *
-from extention.mobject.vector_field import *
+from tanim.core.mobject.mobject import *
+from tanim.core.mobject.image_mobject import *
+from tanim.core.mobject.point_cloud_mobject import *
+from tanim.core.mobject.vectorized_mobject import *
+from tanim.extention.mobject.coordinate_systems import *
+from tanim.extention.mobject.changing import *
+from tanim.extention.mobject.frame import *
+from tanim.extention.mobject.functions import *
+from tanim.extention.mobject.geometry import *
+from tanim.extention.mobject.matrix import *
+from tanim.extention.mobject.number_line import *
+from tanim.extention.mobject.numbers import *
+from tanim.extention.mobject.probability import *
+from tanim.extention.mobject.shape_matchers import *
+from tanim.extention.mobject.svg.brace import *
+from tanim.extention.mobject.svg.drawings import *
+from tanim.extention.mobject.svg.svg_mobject import *
+from tanim.extention.mobject.svg.tex_mobject import *
+from tanim.extention.mobject.svg.text_mobject import *
+from tanim.extention.mobject.three_dimensions import *
+from tanim.extention.mobject.value_tracker import *
+from tanim.extention.mobject.vector_field import *
 
-from core.scene.scene import *
-from extention.scene.graph_scene import *
-from extention.scene.moving_camera_scene import *
-from extention.scene.reconfigurable_scene import *
-from extention.scene.sample_space_scene import *
-from extention.scene.graph_scene import *
-from extention.scene.three_d_scene import *
-from extention.scene.vector_space_scene import *
-from extention.scene.zoomed_scene import *
+from tanim.core.scene.scene import *
+from tanim.extention.scene.graph_scene import *
+from tanim.extention.scene.moving_camera_scene import *
+from tanim.extention.scene.reconfigurable_scene import *
+from tanim.extention.scene.sample_space_scene import *
+from tanim.extention.scene.graph_scene import *
+from tanim.extention.scene.three_d_scene import *
+from tanim.extention.scene.vector_space_scene import *
+from tanim.extention.scene.zoomed_scene import *
 
-from utils.bezier import *
-from utils.color import *
-from utils.config_ops import *
-from utils.debug import *
-from utils.images import *
-from utils.iterables import *
-from utils.file_ops import *
-from utils.paths import *
-from utils.rate_functions import *
-from utils.simple_functions import *
-from utils.sounds import *
-from utils.space_ops import *
-from utils.strings import *
-from utils.three_d_utils import *
-from utils.mobject_update_utils import *
+from tanim.utils.bezier import *
+from tanim.utils.color import *
+from tanim.utils.config_ops import *
+from tanim.utils.debug import *
+from tanim.utils.images import *
+from tanim.utils.iterables import *
+from tanim.utils.file_ops import *
+from tanim.utils.paths import *
+from tanim.utils.rate_functions import *
+from tanim.utils.simple_functions import *
+from tanim.utils.sounds import *
+from tanim.utils.space_ops import *
+from tanim.utils.strings import *
+from tanim.utils.three_d_utils import *
+from tanim.utils.mobject_update_utils import *
 
 
 # Non tanim libraries that are also nice to have without thinking
@@ -105,4 +105,4 @@ import sympy as sp
 import subprocess
 
 from PIL import Image
-from utils.color import Color
+from tanim.utils.color import Color
