@@ -5,13 +5,14 @@ import re
 
 import cairo
 
+from tanim.core.container.container import Object
 from tanim.extention.mobject.svg.svg_mobject import SVGMobject
 from tanim.utils.color import Color
 from tanim.utils.config_ops import digest_config
 import tanim.utils.constants as consts
 
 
-class TextSetting(object):
+class TextSetting(Object):
     def __init__(self, start, end, font, slant, weight, line_num=-1):
         self.start = start
         self.end = end

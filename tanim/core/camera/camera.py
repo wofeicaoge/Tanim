@@ -9,6 +9,7 @@ from scipy.spatial.distance import pdist
 import cairo
 import numpy as np
 
+from tanim.core.container.container import Object
 from tanim.utils.color import Color
 from tanim.utils.color import color_to_int_rgba
 from tanim.utils.config_ops import digest_config
@@ -26,7 +27,7 @@ from tanim.core.mobject.point_cloud_mobject import PMobject
 from tanim.core.mobject.vectorized_mobject import VMobject
 
 
-class Camera(object):
+class Camera(Object):
     background_image = None
     pixel_height = consts.DEFAULT_PIXEL_HEIGHT
     pixel_width = consts.DEFAULT_PIXEL_WIDTH
@@ -634,7 +635,7 @@ class Camera(object):
         return centered_space_coords
 
 
-class BackgroundColoredVMobjectDisplayer(object):
+class BackgroundColoredVMobjectDisplayer(Object):
     def __init__(self, camera):
         self.camera = camera
         self.file_name_to_pixel_array_map = {}

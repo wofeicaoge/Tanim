@@ -1,6 +1,7 @@
 from copy import deepcopy
 import numpy as np
 
+from tanim.core.container.container import Object
 from tanim.utils.config_ops import digest_config
 from tanim.utils.rate_functions import smooth
 
@@ -10,7 +11,7 @@ DEFAULT_ANIMATION_RUN_TIME = 1.0
 DEFAULT_ANIMATION_LAG_RATIO = 0
 
 
-class Animation(object):
+class Animation(Object):
     run_time = DEFAULT_ANIMATION_RUN_TIME
     name = None
     # Does this animation add or remove a mobject form the screen
@@ -26,7 +27,7 @@ class Animation(object):
     def __init__(self, mobject, **kwargs):
         self.rate_func = smooth
         assert(isinstance(mobject, Mobject))
-        digest_config(self, kwargs)
+        super().__init__(**kwargs)
         self.mobject = mobject
 
     def __str__(self):

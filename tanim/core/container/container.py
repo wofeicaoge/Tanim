@@ -2,14 +2,14 @@ from tanim.utils.config_ops import digest_config
 from tanim.utils.iterables import list_update
 
 
-# Currently, this is only used by both Scene and Mobject.
-# Still, we abstract its functionality here, albeit purely nominally.
-# All actual implementation has to be handled by derived classes for now.
-
-
-class Container(object):
+class Object(object):
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
+
+
+class Container(Object):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.submobjects = []  # Is it really better to name it submobjects?
 
     def add(self, *mobjects):

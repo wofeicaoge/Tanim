@@ -7,6 +7,7 @@ from time import sleep
 from pydub import AudioSegment
 import numpy as np
 
+from tanim.core.container.container import Object
 from tanim.utils.config_ops import digest_config
 import tanim.utils.constants as consts
 from tanim.utils.file_ops import add_extension_if_not_present
@@ -18,7 +19,7 @@ def print_file_ready_message(file_path):
     print("\nFile ready at {}\n".format(file_path))
 
 
-class SceneFileWriter(object):
+class SceneFileWriter(Object):
     write_to_movie = False
     # TODO, save_pngs is doing nothing
     save_pngs = False,
