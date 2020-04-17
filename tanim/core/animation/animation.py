@@ -12,7 +12,6 @@ DEFAULT_ANIMATION_LAG_RATIO = 0
 
 class Animation(object):
     run_time = DEFAULT_ANIMATION_RUN_TIME
-    rate_func = smooth
     name = None
     # Does this animation add or remove a mobject form the screen
     remover = False
@@ -25,6 +24,7 @@ class Animation(object):
     suspend_mobject_updating = True
 
     def __init__(self, mobject, **kwargs):
+        self.rate_func = smooth
         assert(isinstance(mobject, Mobject))
         digest_config(self, kwargs)
         self.mobject = mobject

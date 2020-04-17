@@ -32,8 +32,8 @@ def digest_config(obj, kwargs, caller_locals={}):
 
     # Order matters a lot here, first dicts have higher priority
     caller_locals = filtered_locals(caller_locals)
-    all_dicts = [kwargs, caller_locals, obj.__dict__]
-    obj.__dict__ = merge_dicts_recursively(*reversed(all_dicts))
+    all_dicts = [kwargs, caller_locals]
+    obj.__dict__.update(merge_dicts_recursively(*reversed(all_dicts)))
 
 
 def merge_dicts_recursively(*dicts):
