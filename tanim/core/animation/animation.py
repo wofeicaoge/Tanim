@@ -11,18 +11,20 @@ DEFAULT_ANIMATION_LAG_RATIO = 0
 
 
 class Animation(object):
-    run_time = DEFAULT_ANIMATION_RUN_TIME
-    rate_func = smooth
-    name = None
-    # Does this animation add or remove a mobject form the screen
-    remover = False
-    # If 0, the animation is applied to all submobjects
-    # at the same time
-    # If 1, it is applied to each successively.
-    # If 0 < lag_ratio < 1, its applied to each
-    # with lagged start times
-    lag_ratio = DEFAULT_ANIMATION_LAG_RATIO
-    suspend_mobject_updating = True
+    CONFIG = {
+        "run_time": DEFAULT_ANIMATION_RUN_TIME,
+        "rate_func": smooth,
+        "name": None,
+        # Does this animation add or remove a mobject form the screen
+        "remover": False,
+        # If 0, the animation is applied to all submobjects
+        # at the same time
+        # If 1, it is applied to each successively.
+        # If 0 < lag_ratio < 1, its applied to each
+        # with lagged start times
+        "lag_ratio": DEFAULT_ANIMATION_LAG_RATIO,
+        "suspend_mobject_updating": True,
+    }
 
     def __init__(self, mobject, **kwargs):
         assert(isinstance(mobject, Mobject))

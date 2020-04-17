@@ -14,7 +14,9 @@ from tanim.core.mobject.mobject import Mobject, GroupContainer
 
 
 class PMobject(Mobject):
-    stroke_width = consts.DEFAULT_STROKE_WIDTH
+    CONFIG = {
+        "stroke_width": consts.DEFAULT_STROKE_WIDTH,
+    }
 
     def reset_points(self):
         self.rgbas = np.zeros((0, 4))
@@ -179,7 +181,9 @@ class PMobject(Mobject):
 
 # TODO, Make the two implementations bellow non-redundant
 class Mobject1D(PMobject):
-    density = consts.DEFAULT_POINT_DENSITY_1D
+    CONFIG = {
+        "density": consts.DEFAULT_POINT_DENSITY_1D,
+    }
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -201,7 +205,9 @@ class Mobject1D(PMobject):
 
 
 class Mobject2D(PMobject):
-    density = consts.DEFAULT_POINT_DENSITY_2D
+    CONFIG = {
+        "density": consts.DEFAULT_POINT_DENSITY_2D,
+    }
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -218,10 +224,12 @@ class PGroup(PMobject, GroupContainer):
 
 
 class PointCloudDot(Mobject1D):
-    radius = 0.075
-    stroke_width = 2
-    density = consts.DEFAULT_POINT_DENSITY_1D
-    color = Color('YELLOW')
+    CONFIG = {
+        "radius": 0.075,
+        "stroke_width": 2,
+        "density": consts.DEFAULT_POINT_DENSITY_1D,
+        "color": Color('YELLOW'),
+    }
 
     def __init__(self, center=consts.ORIGIN, **kwargs):
         Mobject1D.__init__(self, **kwargs)
@@ -236,7 +244,9 @@ class PointCloudDot(Mobject1D):
 
 
 class Point(PMobject):
-    color = Color('BLACK')
+    CONFIG = {
+        "color": Color('BLACK'),
+    }
 
     def __init__(self, location=consts.ORIGIN, **kwargs):
         PMobject.__init__(self, **kwargs)

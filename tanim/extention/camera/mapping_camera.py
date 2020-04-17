@@ -11,9 +11,11 @@ from tanim.core.mobject.vectorized_mobject import VMobject
 
 
 class MappingCamera(Camera):
-    mapping_func = lambda p: p
-    min_num_curves = 50
-    allow_object_intrusion = False
+    CONFIG = {
+        "mapping_func": lambda p: p,
+        "min_num_curves": 50,
+        "allow_object_intrusion": False
+    }
 
     def points_to_pixel_coords(self, points):
         return Camera.points_to_pixel_coords(self, np.apply_along_axis(self.mapping_func, 1, points))

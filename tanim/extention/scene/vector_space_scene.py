@@ -36,7 +36,9 @@ Z_COLOR = Color('BLUE_D')
 # Also, methods I would have thought of as getters, like coords_to_vector, are
 # actually doing a lot of animating.
 class VectorScene(Scene):
-    basis_vector_stroke_width = 6
+    CONFIG = {
+        "basis_vector_stroke_width": 6
+    }
 
     def add_plane(self, animate=False, **kwargs):
         plane = NumberPlane(**kwargs)
@@ -243,35 +245,37 @@ class VectorScene(Scene):
 
 
 class LinearTransformationScene(VectorScene):
-    include_background_plane = True
-    include_foreground_plane = True
-    foreground_plane_kwargs = {
-        "x_max": consts.FRAME_WIDTH / 2,
-        "x_min": -consts.FRAME_WIDTH / 2,
-        "y_max": consts.FRAME_WIDTH / 2,
-        "y_min": -consts.FRAME_WIDTH / 2,
-        "faded_line_ratio": 0
-    }
-    background_plane_kwargs = {
-        "color": Color('GREY'),
-        "axis_config": {
-            "stroke_color": Color('GREY'),
+    CONFIG = {
+        "include_background_plane": True,
+        "include_foreground_plane": True,
+        "foreground_plane_kwargs": {
+            "x_max": consts.FRAME_WIDTH / 2,
+            "x_min": -consts.FRAME_WIDTH / 2,
+            "y_max": consts.FRAME_WIDTH / 2,
+            "y_min": -consts.FRAME_WIDTH / 2,
+            "faded_line_ratio": 0
         },
-        "axis_config": {
+        "background_plane_kwargs": {
             "color": Color('GREY'),
+            "axis_config": {
+                "stroke_color": Color('GREY'),
+            },
+            "axis_config": {
+                "color": Color('GREY'),
+            },
+            "background_line_style": {
+                "stroke_color": Color('GREY'),
+                "stroke_width": 1,
+            },
         },
-        "background_line_style": {
-            "stroke_color": Color('GREY'),
-            "stroke_width": 1,
-        }
+        "show_coordinates": False,
+        "show_basis_vectors": True,
+        "basis_vector_stroke_width": 6,
+        "i_hat_color": X_COLOR,
+        "j_hat_color": Y_COLOR,
+        "leave_ghost_vectors": False,
+        "t_matrix": [[3, 0], [1, 2]],
     }
-    show_coordinates = False
-    show_basis_vectors = True
-    basis_vector_stroke_width = 6
-    i_hat_color = X_COLOR
-    j_hat_color = Y_COLOR
-    leave_ghost_vectors = False
-    t_matrix = [[3, 0], [1, 2]]
 
     def setup(self):
         # The has_already_setup attr is to not break all the old Scenes

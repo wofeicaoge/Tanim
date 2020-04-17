@@ -10,15 +10,17 @@ import tanim.utils.constants as consts
 
 
 class ParametricFunction(VMobject):
-    t_min = 0
-    t_max = 1
-    step_size = 0.01  # Use "auto" (lowercase) for automatic step size
-    dt = 1e-8
-    # TODO, be smarter about figuring these out?
-    discontinuities = []
+    CONFIG = {
+        "t_min": 0,
+        "t_max": 1,
+        "step_size": 0.01,  # Use "auto" (lowercase) for automatic step size
+        "dt": 1e-8,
+        # TODO, be smarter about figuring these out?
+        "discontinuities": [],
+    }
 
     def __init__(self, function=None, **kwargs):
-        # either get a function from __init__
+        # either get a function from __init__ or from CONFIG
         self.function = function or self.function
         VMobject.__init__(self, **kwargs)
 
@@ -81,9 +83,11 @@ class ParametricFunction(VMobject):
 
 
 class FunctionGraph(ParametricFunction):
-    color = Color('YELLOW')
-    x_min = -consts.FRAME_X_RADIUS
-    x_max = consts.FRAME_X_RADIUS
+    CONFIG = {
+        "color": Color('YELLOW'),
+        "x_min": -consts.FRAME_X_RADIUS,
+        "x_max": consts.FRAME_X_RADIUS,
+    }
 
     def __init__(self, function, **kwargs):
         digest_config(self, kwargs)

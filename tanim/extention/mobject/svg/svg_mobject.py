@@ -26,15 +26,17 @@ def string_to_numbers(num_string):
 
 
 class SVGMobject(VMobject):
-    should_center = True
-    height = 2
-    width = None
-    # Must be filled in in a subclass, or when called
-    file_name = None
-    unpack_groups = True  # if False, creates a hierarchy of VGroups
-    stroke_width = consts.DEFAULT_STROKE_WIDTH
-    fill_opacity = 1.0
-    # "fill_color" : Color('GREY')
+    CONFIG = {
+        "should_center": True,
+        "height": 2,
+        "width": None,
+        # Must be filled in in a subclass, or when called
+        "file_name": None,
+        "unpack_groups": True,  # if False, creates a hierarchy of VGroups
+        "stroke_width": consts.DEFAULT_STROKE_WIDTH,
+        "fill_opacity": 1.0,
+        # "fill_color" : Color('GREY'),
+    }
 
     def __init__(self, file_name=None, **kwargs):
         digest_config(self, kwargs)

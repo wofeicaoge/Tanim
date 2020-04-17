@@ -19,21 +19,23 @@ def print_file_ready_message(file_path):
 
 
 class SceneFileWriter(object):
-    write_to_movie = False
-    # TODO, save_pngs is doing nothing
-    save_pngs = False,
-    png_mode = "RGBA"
-    save_last_frame = False
-    movie_file_extension = ".mp4"
-    gif_file_extension = ".gif"
-    livestreaming = False
-    to_twitch = False
-    twitch_key = None
-    # Previous output_file_name
-    # TODO, address this in extract_scene et. al.
-    file_name = None
-    input_file_path = ""
-    output_directory = None
+    CONFIG = {
+        "write_to_movie": False,
+        # TODO, save_pngs is doing nothing
+        "save_pngs": False,
+        "png_mode": "RGBA",
+        "save_last_frame": False,
+        "movie_file_extension": ".mp4",
+        "gif_file_extension": ".gif",
+        "livestreaming": False,
+        "to_twitch": False,
+        "twitch_key": None,
+        # Previous output_file_name
+        # TODO, address this in extract_scene et. al.
+        "file_name": None,
+        "input_file_path": "",  # ??
+        "output_directory": None,
+    }
 
     def __init__(self, scene, **kwargs):
         digest_config(self, kwargs)

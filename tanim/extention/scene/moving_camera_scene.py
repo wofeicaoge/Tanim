@@ -7,7 +7,9 @@ from tanim.extention.camera.moving_camera import MovingCamera
 
 
 class MovingCameraScene(Scene):
-    camera_class = MovingCamera
+    CONFIG = {
+        "camera_class": MovingCamera
+    }
 
     def setup(self):
         Scene.setup(self)

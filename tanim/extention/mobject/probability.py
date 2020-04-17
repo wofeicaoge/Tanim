@@ -18,13 +18,16 @@ EPSILON = 0.0001
 
 
 class SampleSpace(Rectangle):
-    height = 3
-    width = 3
-    fill_color = Color('DARK_GREY')
-    fill_opacity = 1
-    stroke_width = 0.5
-    stroke_color = Color('LIGHT_GREY')
-    default_label_scale_val = 1
+    CONFIG = {
+        "height": 3,
+        "width": 3,
+        "fill_color": Color('DARK_GREY'),
+        "fill_opacity": 1,
+        "stroke_width": 0.5,
+        "stroke_color": Color('LIGHT_GREY'),
+        ##
+        "default_label_scale_val": 1,
+    }
 
     def add_title(self, title="Sample space", buff=consts.MED_SMALL_BUFF):
         # TODO, should this really exist in SampleSpaceScene
@@ -147,18 +150,20 @@ class SampleSpace(Rectangle):
 
 
 class BarChart(VGroup):
-    height = 4
-    width = 6
-    n_ticks = 4
-    tick_width = 0.2
-    label_y_axis = True
-    y_axis_label_height = 0.25
-    max_value = 1
-    bar_colors = [Color('BLUE'), Color('YELLOW')]
-    bar_fill_opacity = 0.8
-    bar_stroke_width = 3
-    bar_names = []
-    bar_label_scale_val = 0.75
+    CONFIG = {
+        "height": 4,
+        "width": 6,
+        "n_ticks": 4,
+        "tick_width": 0.2,
+        "label_y_axis": True,
+        "y_axis_label_height": 0.25,
+        "max_value": 1,
+        "bar_colors": [Color('BLUE'), Color('YELLOW')],
+        "bar_fill_opacity": 0.8,
+        "bar_stroke_width": 3,
+        "bar_names": [],
+        "bar_label_scale_val": 0.75,
+    }
 
     def __init__(self, values, **kwargs):
         VGroup.__init__(self, **kwargs)

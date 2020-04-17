@@ -7,8 +7,10 @@ import tanim.utils.constants as consts
 
 
 class ScreenRectangle(Rectangle):
-    aspect_ratio = 16.0 / 9.0
-    height = 4
+    CONFIG = {
+        "aspect_ratio": 16.0 / 9.0,
+        "height": 4
+    }
 
     def __init__(self, **kwargs):
         Rectangle.__init__(self, **kwargs)
@@ -19,18 +21,24 @@ class ScreenRectangle(Rectangle):
 
 
 class FullScreenRectangle(ScreenRectangle):
-    height = consts.FRAME_HEIGHT
+    CONFIG = {
+        "height": consts.FRAME_HEIGHT,
+    }
 
 
 class FullScreenFadeRectangle(FullScreenRectangle):
-    stroke_width = 0
-    fill_color = Color('BLACK')
-    fill_opacity = 0.7
+    CONFIG = {
+        "stroke_width": 0,
+        "fill_color": Color('BLACK'),
+        "fill_opacity": 0.7,
+    }
 
 
 class PictureInPictureFrame(Rectangle):
-    height = 3
-    aspect_ratio = 16.0 / 9.0
+    CONFIG = {
+        "height": 3,
+        "aspect_ratio": 16.0 / 9.0
+    }
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)

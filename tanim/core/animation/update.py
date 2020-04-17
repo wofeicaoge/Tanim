@@ -7,7 +7,9 @@ class UpdateFromFunc(Animation):
     to be used when the state of one mobject is dependent
     on another simultaneously animated mobject
     """
-    suspend_mobject_updating = False
+    CONFIG = {
+        "suspend_mobject_updating": False,
+    }
 
     def __init__(self, mobject, update_function, **kwargs):
         self.update_function = update_function

@@ -23,14 +23,16 @@ class TexSymbol(VMobjectFromSVGPathstring):
 
 
 class SingleStringTexMobject(SVGMobject):
-    stroke_width = 0
-    fill_opacity = 1.0
-    background_stroke_width = 1
-    background_stroke_color = Color('BLACK')
-    should_center = True
-    height = None
-    organize_left_to_right = False
-    alignment = ""
+    CONFIG = {
+        "stroke_width": 0,
+        "fill_opacity": 1.0,
+        "background_stroke_width": 1,
+        "background_stroke_color": Color('BLACK'),
+        "should_center": True,
+        "height": None,
+        "organize_left_to_right": False,
+        "alignment": "",
+    }
 
     def __init__(self, tex_string, **kwargs):
         digest_config(self, kwargs)
@@ -132,9 +134,11 @@ class SingleStringTexMobject(SVGMobject):
 
 
 class TexMobject(SingleStringTexMobject):
-    arg_separator = " "
-    substrings_to_isolate = []
-    tex_to_color_map = {}
+    CONFIG = {
+        "arg_separator": " ",
+        "substrings_to_isolate": [],
+        "tex_to_color_map": {},
+    }
 
     def __init__(self, *tex_strings, **kwargs):
         digest_config(self, kwargs)
@@ -171,7 +175,7 @@ class TexMobject(SingleStringTexMobject):
         """
         new_submobjects = []
         curr_index = 0
-        config = self.__class__.__dict__.copy()
+        config = dict(self.CONFIG)
         config["alignment"] = ""
         for tex_string in self.tex_strings:
             sub_tex_mob = SingleStringTexMobject(tex_string, **config)
@@ -242,15 +246,19 @@ class TexMobject(SingleStringTexMobject):
 
 
 class TextMobject(TexMobject):
-    alignment = "\\centering"
-    arg_separator = ""
+    CONFIG = {
+        "alignment": "\\centering",
+        "arg_separator": "",
+    }
 
 
 class BulletedList(TextMobject):
-    buff = consts.MED_LARGE_BUFF
-    dot_scale_factor = 2
-    # Have to include because of handle_multiple_args implementation
-    alignment = ""
+    CONFIG = {
+        "buff": consts.MED_LARGE_BUFF,
+        "dot_scale_factor": 2,
+        # Have to include because of handle_multiple_args implementation
+        "alignment": "",
+    }
 
     def __init__(self, *items, **kwargs):
         line_separated_items = [s + "\\\\" for s in items]
@@ -281,8 +289,11 @@ class BulletedList(TextMobject):
 
 
 class TexMobjectFromPresetString(TexMobject):
-    tex = None
-    color = None
+    CONFIG = {
+        # To be filled by subclasses
+        "tex": None,
+        "color": None,
+    }
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -291,12 +302,14 @@ class TexMobjectFromPresetString(TexMobject):
 
 
 class Title(TextMobject):
-    scale_factor = 1
-    include_underline = True
-    underline_width = consts.FRAME_WIDTH - 2
-    # This will override underline_width
-    match_underline_width_to_text = False
-    underline_buff = consts.MED_SMALL_BUFF
+    CONFIG = {
+        "scale_factor": 1,
+        "include_underline": True,
+        "underline_width": consts.FRAME_WIDTH - 2,
+        # This will override underline_width
+        "match_underline_width_to_text": False,
+        "underline_buff": consts.MED_SMALL_BUFF,
+    }
 
     def __init__(self, *text_parts, **kwargs):
         TextMobject.__init__(self, *text_parts, **kwargs)

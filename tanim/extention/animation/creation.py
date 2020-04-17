@@ -16,17 +16,21 @@ from tanim.extention.animation.animation_group import Succession
 
 
 class Uncreate(ShowCreation):
-    rate_func = lambda t: smooth(1 - t)
-    remover = True
+    CONFIG = {
+        "rate_func": lambda t: smooth(1 - t),
+        "remover": True
+    }
 
 
 class DrawBorderThenFill(Animation):
-    run_time = 2
-    rate_func = double_smooth
-    stroke_width = 2
-    stroke_color = None
-    draw_border_animation_config = {}
-    fill_animation_config = {}
+    CONFIG = {
+        "run_time": 2,
+        "rate_func": double_smooth,
+        "stroke_width": 2,
+        "stroke_color": None,
+        "draw_border_animation_config": {},
+        "fill_animation_config": {},
+    }
 
     def __init__(self, vmobject, **kwargs):
         if not isinstance(vmobject, VMobject):
@@ -71,11 +75,13 @@ class DrawBorderThenFill(Animation):
 
 
 class Write(DrawBorderThenFill):
-    # To be figured out in
-    # set_default_config_from_lengths
-    run_time = None
-    lag_ratio = None
-    rate_func = linear
+    CONFIG = {
+        # To be figured out in
+        # set_default_config_from_lengths
+        "run_time": None,
+        "lag_ratio": None,
+        "rate_func": linear,
+    }
 
     def __init__(self, mobject, **kwargs):
         digest_config(self, kwargs)
@@ -94,8 +100,10 @@ class Write(DrawBorderThenFill):
 
 
 class ShowIncreasingSubsets(Animation):
-    suspend_mobject_updating = False,
-    int_func = np.floor
+    CONFIG = {
+        "suspend_mobject_updating": False,
+        "int_func": np.floor,
+    }
 
     def __init__(self, group, **kwargs):
         self.all_submobs = list(group.submobjects)
@@ -111,7 +119,9 @@ class ShowIncreasingSubsets(Animation):
 
 
 class ShowSubmobjectsOneByOne(ShowIncreasingSubsets):
-    int_func = np.ceil
+    CONFIG = {
+        "int_func": np.ceil,
+    }
 
     def __init__(self, group, **kwargs):
         new_group = Group(*group)
@@ -127,10 +137,12 @@ class ShowSubmobjectsOneByOne(ShowIncreasingSubsets):
 
 # TODO, this is broken...
 class AddTextWordByWord(Succession):
-    # If given a value for run_time, it will
-    # override the time_per_char
-    run_time = None
-    time_per_char = 0.06
+    CONFIG = {
+        # If given a value for run_time, it will
+        # override the time_per_char
+        "run_time": None,
+        "time_per_char": 0.06,
+    }
 
     def __init__(self, text_mobject, **kwargs):
         digest_config(self, kwargs)
@@ -138,7 +150,7 @@ class AddTextWordByWord(Succession):
         anims = it.chain(*[
             [
                 ShowIncreasingSubsets(word, run_time=tpc * len(word)),
-                Animation(word, run_time=0.005 * len(word) ** 1.5),
+                Animation(word, run_time=0.005 * len(word)**1.5),
             ]
             for word in text_mobject
         ])

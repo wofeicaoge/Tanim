@@ -11,8 +11,10 @@ import tanim.utils.constants as consts
 
 
 class SurroundingRectangle(Rectangle):
-    color = Color('YELLOW')
-    buff = consts.SMALL_BUFF
+    CONFIG = {
+        "color": Color('YELLOW'),
+        "buff": consts.SMALL_BUFF,
+    }
 
     def __init__(self, mobject, **kwargs):
         digest_config(self, kwargs)
@@ -23,10 +25,12 @@ class SurroundingRectangle(Rectangle):
 
 
 class BackgroundRectangle(SurroundingRectangle):
-    color = Color('BLACK')
-    stroke_width = 0
-    stroke_opacity = 0
-    fill_opacity = 0.75
+    CONFIG = {
+        "color": Color('BLACK'),
+        "stroke_width": 0,
+        "stroke_opacity": 0,
+        "fill_opacity": 0.75
+    }
 
     def __init__(self, mobject, **kwargs):
         SurroundingRectangle.__init__(self, mobject, **kwargs)
@@ -58,8 +62,10 @@ class BackgroundRectangle(SurroundingRectangle):
 
 
 class Cross(VGroup):
-    stroke_color = Color('RED')
-    stroke_width = 6
+    CONFIG = {
+        "stroke_color": Color('RED'),
+        "stroke_width": 6,
+    }
 
     def __init__(self, mobject, **kwargs):
         VGroup.__init__(self,
@@ -71,7 +77,9 @@ class Cross(VGroup):
 
 
 class Underline(Line):
-    buff = consts.SMALL_BUFF
+    CONFIG = {
+        "buff": consts.SMALL_BUFF,
+    }
 
     def __init__(self, mobject, **kwargs):
         super().__init__(consts.LEFT, consts.RIGHT, **kwargs)

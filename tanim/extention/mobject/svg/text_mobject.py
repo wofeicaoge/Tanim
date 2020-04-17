@@ -22,21 +22,23 @@ class TextSetting(object):
 
 
 class Text(SVGMobject):
-    # Mobject
-    color = Color('WHITE')
-    height = None
-    # Text
-    font = ''
-    gradient = None
-    lsh = -1
-    size = 1
-    slant = consts.NORMAL
-    weight = consts.NORMAL
-    t2c = {}
-    t2f = {}
-    t2g = {}
-    t2s = {}
-    t2w = {}
+    CONFIG = {
+        # Mobject
+        'color': Color('WHITE'),
+        'height': None,
+        # Text
+        'font': '',
+        'gradient': None,
+        'lsh': -1,
+        'size': 1,
+        'slant': consts.NORMAL,
+        'weight': consts.NORMAL,
+        't2c': {},
+        't2f': {},
+        't2g': {},
+        't2s': {},
+        't2w': {},
+    }
 
     def __init__(self, text, **config):
         self.text = text
@@ -74,7 +76,7 @@ class Text(SVGMobject):
         return indexes
 
     def full2short(self, config):
-        for kwargs in [config, self.__class__.__dict__.copy()]:
+        for kwargs in [config, self.CONFIG]:
             if kwargs.__contains__('line_spacing_height'):
                 kwargs['lsh'] = kwargs.pop('line_spacing_height')
             if kwargs.__contains__('text2color'):

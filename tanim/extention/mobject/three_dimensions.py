@@ -10,23 +10,27 @@ from tanim.extention.mobject.geometry import Square
 
 
 class ThreeDVMobject(VMobject):
-    shade_in_3d = True
+    CONFIG = {
+        "shade_in_3d": True,
+    }
 
 
 class ParametricSurface(VGroup):
-    u_min = 0
-    u_max = 1
-    v_min = 0
-    v_max = 1
-    resolution = 32
-    surface_piece_config = {}
-    fill_color = Color('BLUE_D')
-    fill_opacity = 1.0
-    checkerboard_colors = [Color('BLUE_D'), Color('BLUE_E')]
-    stroke_color = Color('LIGHT_GREY')
-    stroke_width = 0.5
-    should_make_jagged = False
-    pre_function_handle_to_anchor_scale_factor = 0.00001
+    CONFIG = {
+        "u_min": 0,
+        "u_max": 1,
+        "v_min": 0,
+        "v_max": 1,
+        "resolution": 32,
+        "surface_piece_config": {},
+        "fill_color": Color('BLUE_D'),
+        "fill_opacity": 1.0,
+        "checkerboard_colors": [Color('BLUE_D'), Color('BLUE_E')],
+        "stroke_color": Color('LIGHT_GREY'),
+        "stroke_width": 0.5,
+        "should_make_jagged": False,
+        "pre_function_handle_to_anchor_scale_factor": 0.00001,
+    }
 
     def __init__(self, func, **kwargs):
         VGroup.__init__(self, **kwargs)
@@ -98,12 +102,14 @@ class ParametricSurface(VGroup):
 
 
 class Sphere(ParametricSurface):
-    resolution = (12, 24)
-    radius = 1
-    u_min = 0.001
-    u_max = consts.PI - 0.001
-    v_min = 0
-    v_max = consts.TAU
+    CONFIG = {
+        "resolution": (12, 24),
+        "radius": 1,
+        "u_min": 0.001,
+        "u_max": consts.PI - 0.001,
+        "v_min": 0,
+        "v_max": consts.TAU,
+    }
 
     def __init__(self, **kwargs):
         ParametricSurface.__init__(
@@ -120,10 +126,12 @@ class Sphere(ParametricSurface):
 
 
 class Cube(VGroup):
-    fill_opacity = 0.75
-    fill_color = Color('BLUE')
-    stroke_width = 0
-    side_length = 2
+    CONFIG = {
+        "fill_opacity": 0.75,
+        "fill_color": Color('BLUE'),
+        "stroke_width": 0,
+        "side_length": 2,
+    }
 
     def generate_points(self):
         for vect in consts.IN, consts.OUT, consts.LEFT, consts.RIGHT, consts.UP, consts.DOWN:
@@ -139,7 +147,9 @@ class Cube(VGroup):
 
 
 class Prism(Cube):
-    dimensions = [3, 2, 1]
+    CONFIG = {
+        "dimensions": [3, 2, 1]
+    }
 
     def generate_points(self):
         Cube.generate_points(self)

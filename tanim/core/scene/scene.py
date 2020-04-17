@@ -90,15 +90,17 @@ def compile_play_args_to_animation_list(*args, **kwargs):
 
 
 class Scene(Container):
-    camera_class = Camera
-    camera_config = {}
-    file_writer_config = {}
-    skip_animations = False
-    always_update_mobjects = False
-    random_seed = 0
-    start_at_animation_number = None
-    end_at_animation_number = None
-    leave_progress_bars = False
+    CONFIG = {
+        "camera_class": Camera,
+        "camera_config": {},
+        "file_writer_config": {},
+        "skip_animations": False,
+        "always_update_mobjects": False,
+        "random_seed": 0,
+        "start_at_animation_number": None,
+        "end_at_animation_number": None,
+        "leave_progress_bars": False,
+    }
 
     def __init__(self, **kwargs):
         Container.__init__(self, **kwargs)

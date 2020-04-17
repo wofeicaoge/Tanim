@@ -24,10 +24,12 @@ from tanim.extention.animation.movement import Homotopy
 
 
 class FocusOn(Transform):
-    opacity = 0.2
-    color = Color('GREY')
-    run_time = 2
-    remover = True
+    CONFIG = {
+        "opacity": 0.2,
+        "color": Color('GREY'),
+        "run_time": 2,
+        "remover": True,
+    }
 
     def __init__(self, focus_point, **kwargs):
         self.focus_point = focus_point
@@ -53,9 +55,11 @@ class FocusOn(Transform):
 
 
 class Indicate(Transform):
-    rate_func = there_and_back
-    scale_factor = 1.2
-    color = Color('YELLOW')
+    CONFIG = {
+        "rate_func": there_and_back,
+        "scale_factor": 1.2,
+        "color": Color('YELLOW'),
+    }
 
     def create_target(self):
         target = self.mobject.copy()
@@ -65,11 +69,13 @@ class Indicate(Transform):
 
 
 class Flash(AnimationGroup):
-    line_length = 0.2
-    num_lines = 12
-    flash_radius = 0.3
-    line_stroke_width = 3
-    run_time = 1
+    CONFIG = {
+        "line_length": 0.2,
+        "num_lines": 12,
+        "flash_radius": 0.3,
+        "line_stroke_width": 3,
+        "run_time": 1,
+    }
 
     def __init__(self, point, color=Color('YELLOW'), **kwargs):
         self.point = point
@@ -103,10 +109,12 @@ class Flash(AnimationGroup):
 
 
 class CircleIndicate(Indicate):
-    rate_func = there_and_back
-    remover = True
-    circle_config = {
-        "color": Color('YELLOW')
+    CONFIG = {
+        "rate_func": there_and_back,
+        "remover": True,
+        "circle_config": {
+            "color": Color('YELLOW'),
+        },
     }
 
     def __init__(self, mobject, **kwargs):
@@ -125,9 +133,11 @@ class CircleIndicate(Indicate):
 
 
 class ShowPassingFlash(ShowCreation):
-    lag_ratio = 0
-    time_width = 0.1
-    remover = True
+    CONFIG = {
+        "lag_ratio": 0,
+        "time_width": 0.1,
+        "remover": True,
+    }
 
     def get_bounds(self, alpha):
         tw = self.time_width
@@ -144,12 +154,16 @@ class ShowPassingFlash(ShowCreation):
 
 
 class ShowCreationThenDestruction(ShowPassingFlash):
-    time_width = 2.0
-    run_time = 1
+    CONFIG = {
+        "time_width": 2.0,
+        "run_time": 1,
+    }
 
 
 class ShowCreationThenFadeOut(Succession):
-    remover = True
+    CONFIG = {
+        "remover": True,
+    }
 
     def __init__(self, mobject, **kwargs):
         super().__init__(
@@ -160,11 +174,13 @@ class ShowCreationThenFadeOut(Succession):
 
 
 class AnimationOnSurroundingRectangle(AnimationGroup):
-    surrounding_rectangle_config = {}
-    # Function which takes in a rectangle, and spits
-    # out some animation.  Could be some animation class,
-    # could be something more
-    rect_animation = Animation
+    CONFIG = {
+        "surrounding_rectangle_config": {},
+        # Function which takes in a rectangle, and spits
+        # out some animation.  Could be some animation class,
+        # could be something more
+        "rect_animation": Animation
+    }
 
     def __init__(self, mobject, **kwargs):
         digest_config(self, kwargs)
@@ -187,21 +203,29 @@ class AnimationOnSurroundingRectangle(AnimationGroup):
 
 
 class ShowPassingFlashAround(AnimationOnSurroundingRectangle):
-    rect_animation = ShowPassingFlash
+    CONFIG = {
+        "rect_animation": ShowPassingFlash
+    }
 
 
 class ShowCreationThenDestructionAround(AnimationOnSurroundingRectangle):
-    rect_animation = ShowCreationThenDestruction
+    CONFIG = {
+        "rect_animation": ShowCreationThenDestruction
+    }
 
 
 class ShowCreationThenFadeAround(AnimationOnSurroundingRectangle):
-    rect_animation = ShowCreationThenFadeOut
+    CONFIG = {
+        "rect_animation": ShowCreationThenFadeOut
+    }
 
 
 class ApplyWave(Homotopy):
-    direction = consts.UP
-    amplitude = 0.2
-    run_time = 1
+    CONFIG = {
+        "direction": consts.UP,
+        "amplitude": 0.2,
+        "run_time": 1,
+    }
 
     def __init__(self, mobject, **kwargs):
         digest_config(self, kwargs, locals())
@@ -219,12 +243,14 @@ class ApplyWave(Homotopy):
 
 
 class WiggleOutThenIn(Animation):
-    scale_value = 1.1
-    rotation_angle = 0.01 * consts.TAU
-    n_wiggles = 6
-    run_time = 2
-    scale_about_point = None
-    rotate_about_point = None
+    CONFIG = {
+        "scale_value": 1.1,
+        "rotation_angle": 0.01 * consts.TAU,
+        "n_wiggles": 6,
+        "run_time": 2,
+        "scale_about_point": None,
+        "rotate_about_point": None,
+    }
 
     def get_scale_about_point(self):
         if self.scale_about_point is None:
@@ -247,7 +273,9 @@ class WiggleOutThenIn(Animation):
 
 
 class TurnInsideOut(Transform):
-    path_arc = consts.TAU / 4
+    CONFIG = {
+        "path_arc": consts.TAU / 4,
+    }
 
     def create_target(self):
         return self.mobject.copy().reverse_points()

@@ -3,7 +3,9 @@ from tanim.utils.rate_functions import linear
 
 
 class Homotopy(Move):
-    run_time = 3
+    CONFIG = {
+        "run_time": 3
+    }
 
     def get_apply_function(self, t):
         return lambda p: self.function(*p, t)
@@ -33,9 +35,11 @@ class ComplexHomotopy(Homotopy):
 
 
 class PhaseFlow(Move):
-    virtual_time = 1
-    rate_func = linear,
-    suspend_mobject_updating = False
+    CONFIG = {
+        "virtual_time": 1,
+        "rate_func": linear,
+        "suspend_mobject_updating": False,
+    }
 
     def get_apply_function(self, t):
         return lambda p: p + t * self.function(*p)
